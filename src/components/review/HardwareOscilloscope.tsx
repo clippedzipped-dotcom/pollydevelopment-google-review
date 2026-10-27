@@ -27,9 +27,21 @@ export function HardwareOscilloscope() {
     let animationFrameId: number;
     let offset = 0;
 
+    const handleResize = () => {
+      const rect = canvas.getBoundingClientRect();
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = rect.width * dpr;
+      canvas.height = 120 * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+
     const render = () => {
-      const width = canvas.width;
-      const height = canvas.height;
+      const rect = canvas.getBoundingClientRect();
+      const width = rect.width;
+      const height = 120;
       ctx.clearRect(0, 0, width, height);
 
       // Draw subtle precision grid lines
@@ -93,6 +105,7 @@ export function HardwareOscilloscope() {
     render();
 
     return () => {
+      window.removeEventListener("resize", handleResize);
       cancelAnimationFrame(animationFrameId);
     };
   }, [pulseActive, waveMode]);
@@ -254,9 +267,9 @@ export function HardwareOscilloscope() {
           </div>
 
           <div className="divide-y divide-white/5 font-mono text-xs">
-            <div className="grid grid-cols-12 px-6 py-4 items-center hover:bg-white/[0.02] transition-colors">
-              <span className="col-span-5 text-zinc-500 uppercase text-[10px] tracking-wider">DRAAGGOLF FREQUENTIE</span>
-              <span className="col-span-7 text-white font-bold flex items-center gap-2">
+            <div className="grid grid-cols-12 px-6 py-3.5 sm:py-4 items-start sm:items-center hover:bg-white/[0.02] transition-colors gap-1 sm:gap-0">
+              <span className="col-span-12 sm:col-span-5 text-zinc-500 uppercase text-[10px] tracking-wider">DRAAGGOLF FREQUENTIE</span>
+              <span className="col-span-12 sm:col-span-7 text-white font-bold flex items-center gap-2">
                 <span>13.560 MHz</span>
                 <span className="text-[10px] font-normal text-zinc-400 bg-white/5 px-2 py-0.5 rounded border border-white/10">
                   HF ISM BAND
@@ -264,59 +277,59 @@ export function HardwareOscilloscope() {
               </span>
             </div>
 
-            <div className="grid grid-cols-12 px-6 py-4 items-center hover:bg-white/[0.02] transition-colors">
-              <span className="col-span-5 text-zinc-500 uppercase text-[10px] tracking-wider">SEMICONDUCTOR CHIP</span>
-              <span className="col-span-7 text-white font-bold">
+            <div className="grid grid-cols-12 px-6 py-3.5 sm:py-4 items-start sm:items-center hover:bg-white/[0.02] transition-colors gap-1 sm:gap-0">
+              <span className="col-span-12 sm:col-span-5 text-zinc-500 uppercase text-[10px] tracking-wider">SEMICONDUCTOR CHIP</span>
+              <span className="col-span-12 sm:col-span-7 text-white font-bold">
                 NXP NTAG215 (NFC Forum Type 2 Tag)
               </span>
             </div>
 
-            <div className="grid grid-cols-12 px-6 py-4 items-center hover:bg-white/[0.02] transition-colors">
-              <span className="col-span-5 text-zinc-500 uppercase text-[10px] tracking-wider">GEHEUGENCAPACITEIT</span>
-              <span className="col-span-7 text-zinc-300">
+            <div className="grid grid-cols-12 px-6 py-3.5 sm:py-4 items-start sm:items-center hover:bg-white/[0.02] transition-colors gap-1 sm:gap-0">
+              <span className="col-span-12 sm:col-span-5 text-zinc-500 uppercase text-[10px] tracking-wider">GEHEUGENCAPACITEIT</span>
+              <span className="col-span-12 sm:col-span-7 text-zinc-300">
                 504 Bytes User EEPROM (Direct NDEF URI format)
               </span>
             </div>
 
-            <div className="grid grid-cols-12 px-6 py-4 items-center hover:bg-white/[0.02] transition-colors">
-              <span className="col-span-5 text-zinc-500 uppercase text-[10px] tracking-wider">EFFECTIEVE LEESAFSTAND</span>
-              <span className="col-span-7 text-zinc-300">
+            <div className="grid grid-cols-12 px-6 py-3.5 sm:py-4 items-start sm:items-center hover:bg-white/[0.02] transition-colors gap-1 sm:gap-0">
+              <span className="col-span-12 sm:col-span-5 text-zinc-500 uppercase text-[10px] tracking-wider">EFFECTIEVE LEESAFSTAND</span>
+              <span className="col-span-12 sm:col-span-7 text-zinc-300">
                 0 – 45 mm (Touch-inductie geoptimaliseerd voor balies)
               </span>
             </div>
 
-            <div className="grid grid-cols-12 px-6 py-4 items-center hover:bg-white/[0.02] transition-colors">
-              <span className="col-span-5 text-zinc-500 uppercase text-[10px] tracking-wider">RESPONSTIJD</span>
-              <span className="col-span-7 text-white font-bold">
+            <div className="grid grid-cols-12 px-6 py-3.5 sm:py-4 items-start sm:items-center hover:bg-white/[0.02] transition-colors gap-1 sm:gap-0">
+              <span className="col-span-12 sm:col-span-5 text-zinc-500 uppercase text-[10px] tracking-wider">RESPONSTIJD</span>
+              <span className="col-span-12 sm:col-span-7 text-white font-bold">
                 &lt; 15 milliseconden zero-latency inductie
               </span>
             </div>
 
-            <div className="grid grid-cols-12 px-6 py-4 items-center hover:bg-white/[0.02] transition-colors">
-              <span className="col-span-5 text-zinc-500 uppercase text-[10px] tracking-wider">HARDWARE WRITE LOCK</span>
-              <span className="col-span-7 text-zinc-300 flex items-center gap-1.5">
+            <div className="grid grid-cols-12 px-6 py-3.5 sm:py-4 items-start sm:items-center hover:bg-white/[0.02] transition-colors gap-1 sm:gap-0">
+              <span className="col-span-12 sm:col-span-5 text-zinc-500 uppercase text-[10px] tracking-wider">HARDWARE WRITE LOCK</span>
+              <span className="col-span-12 sm:col-span-7 text-zinc-300 flex items-center gap-1.5">
                 <span className="size-1.5 rounded-full bg-[#A4C2A9]" />
                 Definitieve OTP Read-Only vergrendeling
               </span>
             </div>
 
-            <div className="grid grid-cols-12 px-6 py-4 items-center hover:bg-white/[0.02] transition-colors">
-              <span className="col-span-5 text-zinc-500 uppercase text-[10px] tracking-wider">WATER- &amp; STOFDICHTHEID</span>
-              <span className="col-span-7 text-zinc-300">
+            <div className="grid grid-cols-12 px-6 py-3.5 sm:py-4 items-start sm:items-center hover:bg-white/[0.02] transition-colors gap-1 sm:gap-0">
+              <span className="col-span-12 sm:col-span-5 text-zinc-500 uppercase text-[10px] tracking-wider">WATER- &amp; STOFDICHTHEID</span>
+              <span className="col-span-12 sm:col-span-7 text-zinc-300">
                 IP68 (Epoxy Stickers) / Krasvast Acryl Tafeldisplays
               </span>
             </div>
 
-            <div className="grid grid-cols-12 px-6 py-4 items-center hover:bg-white/[0.02] transition-colors">
-              <span className="col-span-5 text-zinc-500 uppercase text-[10px] tracking-wider">ANTI-METAAL ISOLATIE</span>
-              <span className="col-span-7 text-zinc-300">
+            <div className="grid grid-cols-12 px-6 py-3.5 sm:py-4 items-start sm:items-center hover:bg-white/[0.02] transition-colors gap-1 sm:gap-0">
+              <span className="col-span-12 sm:col-span-5 text-zinc-500 uppercase text-[10px] tracking-wider">ANTI-METAAL ISOLATIE</span>
+              <span className="col-span-12 sm:col-span-7 text-zinc-300">
                 Geïntegreerde ferriet afscherming voor metalen deuren en balies
               </span>
             </div>
 
-            <div className="grid grid-cols-12 px-6 py-4 items-center hover:bg-white/[0.02] transition-colors">
-              <span className="col-span-5 text-zinc-500 uppercase text-[10px] tracking-wider">TEMPERATUURBEREIK</span>
-              <span className="col-span-7 text-zinc-300">
+            <div className="grid grid-cols-12 px-6 py-3.5 sm:py-4 items-start sm:items-center hover:bg-white/[0.02] transition-colors gap-1 sm:gap-0">
+              <span className="col-span-12 sm:col-span-5 text-zinc-500 uppercase text-[10px] tracking-wider">TEMPERATUURBEREIK</span>
+              <span className="col-span-12 sm:col-span-7 text-zinc-300">
                 -25°C tot +70°C (Geschikt voor buitengebruik op etalageruiten)
               </span>
             </div>

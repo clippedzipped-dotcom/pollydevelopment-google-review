@@ -33,7 +33,9 @@ export default function ProductenPage() {
           </div>
           <h1 className="font-display text-4xl sm:text-6xl uppercase tracking-tight text-white leading-tight">
             VAN DICHTBIJ.<br />
-            <span className="text-[#A4C2A9]">IN BEELD.</span>
+            <span className="font-serif italic font-normal text-[#A4C2A9] lowercase capitalize">
+              in detail en textuur.
+            </span>
           </h1>
           <p className="font-sans text-sm sm:text-base text-zinc-400 leading-relaxed">
             Bekijk de oorspronkelijke foto’s van onze stickers, kaarten en tafeldisplays. Ook leverbaar in jouw exacte huisstijl, met logo of QR-code. Uitvoering, prijs en staffels bespreken we samen.

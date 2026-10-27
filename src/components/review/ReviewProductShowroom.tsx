@@ -279,7 +279,7 @@ export function ReviewProductShowroom({
               showQr={showQr}
               viewMode={viewMode}
               onToggleViewMode={() => setViewMode(viewMode === "3d" ? "photo" : "3d")}
-              onTapSuccess={onOpenTapDemo}
+              onTapSuccess={onOpenTapDemo || handlePrintQuote}
               className="my-auto w-full"
             />
 

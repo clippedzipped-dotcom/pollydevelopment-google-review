@@ -123,7 +123,7 @@ export function ReviewRoiCalculator() {
                 step="10"
                 value={weeklyVisitors}
                 onChange={handleSliderChange}
-                className="w-full h-2.5 bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-[#A4C2A9]"
+                className="w-full h-3 bg-zinc-800/90 rounded-lg appearance-none cursor-pointer accent-[#A4C2A9] focus:outline-none [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:size-5 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-[#F3F5F0] [&::-webkit-slider-thumb]:border-2 [&::-webkit-slider-thumb]:border-[#A4C2A9] [&::-webkit-slider-thumb]:shadow-[0_2px_10px_rgba(0,0,0,0.8)] [&::-webkit-slider-thumb]:cursor-grab [&::-webkit-slider-thumb]:active:cursor-grabbing [&::-webkit-slider-thumb]:active:scale-125 [&::-webkit-slider-thumb]:transition-transform"
                 aria-label="Aantal klanten per week"
               />
               <div className="flex justify-between font-mono text-[10px] text-zinc-500 mt-2">

@@ -89,11 +89,11 @@ export function ComparisonMatrix() {
         className="bg-[#121614] border-white/15 p-6 sm:p-8 rounded-3xl shadow-2xl relative overflow-hidden"
         spotlightColor="rgba(255, 255, 255, 0.05)"
       >
-        {/* Table Header */}
-        <div className="grid grid-cols-12 gap-4 pb-4 border-b border-white/10 font-mono text-[10px] sm:text-xs uppercase tracking-wider text-zinc-400">
-          <div className="col-span-12 sm:col-span-4">ASPECT</div>
-          <div className="col-span-6 sm:col-span-4 text-zinc-500">TRADITIONEEL / PAPIER</div>
-          <div className="col-span-6 sm:col-span-4 text-[#A4C2A9] font-bold">
+        {/* Table Header (Desktop only) */}
+        <div className="hidden sm:grid grid-cols-12 gap-4 pb-4 border-b border-white/10 font-mono text-xs uppercase tracking-wider text-zinc-400">
+          <div className="col-span-4">ASPECT</div>
+          <div className="col-span-4 text-zinc-500">TRADITIONEEL / PAPIER</div>
+          <div className="col-span-4 text-[#A4C2A9] font-bold">
             POLLYDEVELOPMENT NFC
           </div>
         </div>
@@ -104,27 +104,33 @@ export function ComparisonMatrix() {
             <div
               key={idx}
               onMouseEnter={handleHover}
-              className="grid grid-cols-12 gap-4 py-4 sm:py-5 text-xs sm:text-sm items-center hover:bg-white/[0.02] transition-colors rounded-xl px-2 -mx-2"
+              className="grid grid-cols-12 gap-2 sm:gap-4 py-4 sm:py-5 text-xs sm:text-sm items-center hover:bg-white/[0.02] transition-colors rounded-xl px-2 -mx-2"
             >
               {/* Aspect */}
-              <div className="col-span-12 sm:col-span-4 font-mono font-bold text-white text-xs sm:text-sm">
+              <div className="col-span-12 sm:col-span-4 font-mono font-bold text-white text-xs sm:text-sm mb-1 sm:mb-0">
                 {row.aspect}
               </div>
 
               {/* Traditional */}
-              <div className="col-span-12 sm:col-span-4 text-zinc-400 font-sans flex items-start gap-2">
+              <div className="col-span-12 sm:col-span-4 text-zinc-400 font-sans flex items-start gap-2 bg-black/40 sm:bg-transparent p-2.5 sm:p-0 rounded-xl">
+                <span className="sm:hidden font-mono text-[9px] uppercase tracking-wider text-zinc-500 block w-20 shrink-0 pt-0.5">
+                  Traditioneel:
+                </span>
                 <span className="size-4 rounded-full bg-red-500/10 text-red-400 border border-red-500/20 flex items-center justify-center shrink-0 mt-0.5 text-[10px]">
                   <X className="size-2.5" />
                 </span>
-                <span className="leading-snug">{row.traditional}</span>
+                <span className="leading-snug text-xs sm:text-sm">{row.traditional}</span>
               </div>
 
               {/* PollyDevelopment NFC */}
-              <div className="col-span-12 sm:col-span-4 text-[#F3F5F0] font-sans flex items-start gap-2 font-medium">
+              <div className="col-span-12 sm:col-span-4 text-[#F3F5F0] font-sans flex items-start gap-2 font-medium bg-[#141B16] sm:bg-transparent p-2.5 sm:p-0 rounded-xl border border-[#A4C2A9]/20 sm:border-transparent">
+                <span className="sm:hidden font-mono text-[9px] uppercase tracking-wider text-[#A4C2A9] font-bold block w-20 shrink-0 pt-0.5">
+                  Polly NFC:
+                </span>
                 <span className="size-4 rounded-full bg-[#A4C2A9]/20 text-[#A4C2A9] border border-[#A4C2A9]/30 flex items-center justify-center shrink-0 mt-0.5 text-[10px]">
                   <Check className="size-2.5 stroke-[3]" />
                 </span>
-                <span className="leading-snug">{row.polly}</span>
+                <span className="leading-snug text-xs sm:text-sm">{row.polly}</span>
               </div>
             </div>
           ))}
