@@ -30,9 +30,9 @@ export type DynamicButtonProps = Omit<
 };
 
 const buttonClasses: Record<DynamicButtonVariant, string> = {
-  emerald: "border-[#00FF66] bg-[#00FF66] text-black hover:bg-[#1affa3] shadow-[0_0_15px_rgba(0,255,102,0.3)]",
-  void: "border-[#22c55e33] bg-[#121412] text-white hover:border-[#00FF6688] hover:bg-[#1a1f1a]",
-  outline: "border-zinc-700 bg-transparent text-zinc-300 hover:border-zinc-500 hover:text-white",
+  emerald: "border-[#67826C] bg-[#506654] text-white hover:bg-[#5C7561] shadow-sm",
+  void: "border-white/10 bg-[#161C18] text-white hover:border-white/20 hover:bg-[#1E2620]",
+  outline: "border-white/15 bg-transparent text-zinc-300 hover:border-white/30 hover:text-white",
 };
 
 function getButtonClassName({

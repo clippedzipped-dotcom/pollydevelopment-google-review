@@ -11,8 +11,8 @@ import { FaqAccordion } from "@/components/review/FaqAccordion";
 
 export default function HomePage() {
   return (
-    <div className="relative min-h-screen bg-[#070907] text-white font-sans antialiased selection:bg-[#00FF66] selection:text-black overflow-x-clip">
-      {/* AMBIENT CURSOR-REACTIVE SHADER CANVAS (Unicorn Studio standard) */}
+    <div className="relative min-h-screen bg-[#0E1210] text-[#F3F5F0] font-sans antialiased selection:bg-[#506654] selection:text-white overflow-x-clip">
+      {/* AMBIENT CURSOR-REACTIVE SHADER CANVAS (Subtle natural light) */}
       <AmbientShaderCanvas />
 
       {/* FIXED SITE HEADER (With Web Audio Sound Controller) */}
@@ -25,9 +25,9 @@ export default function HomePage() {
       <ImpactMetricsRibbon />
 
       {/* INTRO HERO BAND */}
-      <section className="relative z-10 py-16 px-4 bg-[#0B0E0C] border-b border-white/10 text-center">
+      <section className="relative z-10 py-16 px-4 bg-[#131815] border-b border-white/10 text-center">
         <div className="max-w-4xl mx-auto space-y-4">
-          <p className="font-mono text-xs text-emerald-400 uppercase tracking-widest">
+          <p className="font-mono text-xs text-[#A4C2A9] uppercase tracking-widest">
             OP DE BALIE · OP JE DEUR OF RAAM · ALTIJD DICHTBIJ
           </p>
           <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl uppercase tracking-tight text-white leading-tight">
@@ -60,17 +60,17 @@ export default function HomePage() {
       <FaqAccordion />
 
       {/* FOOTER */}
-      <footer className="relative z-10 py-16 px-4 bg-black border-t border-zinc-900 font-mono text-xs text-zinc-500">
+      <footer className="relative z-10 py-16 px-4 bg-[#0A0D0B] border-t border-zinc-900 font-mono text-xs text-zinc-500">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-3">
-            <div className="size-7 rounded bg-emerald-500 text-black font-black flex items-center justify-center text-xs">
+            <div className="size-7 rounded bg-[#3D4F40] text-white font-bold flex items-center justify-center text-xs">
               P.
             </div>
             <div>
               <span className="text-zinc-200 block font-bold">
-                POLLYDEVELOPMENT // GOOGLE REVIEW NFC TAGS © 2026
+                POLLYDEVELOPMENT · GOOGLE REVIEW NFC HARDWARE © 2026
               </span>
-              <span className="text-[10px] text-zinc-600 block">
+              <span className="text-[10px] text-zinc-500 block">
                 Onafhankelijke aanbieder van premium NFC hardware. Google is een geregistreerd handelsmerk van Google LLC.
               </span>
             </div>
@@ -90,7 +90,7 @@ export default function HomePage() {
             </a>
             <a
               href="tel:+31623916558"
-              className="hover:text-white transition-colors text-emerald-400 font-bold"
+              className="hover:text-white transition-colors text-zinc-300 font-bold"
             >
               06 23916558
             </a>
@@ -99,16 +99,16 @@ export default function HomePage() {
       </footer>
 
       {/* MOBILE STICKY DOCK (Bel Joey / Bel Luc) */}
-      <div className="sm:hidden fixed bottom-3 inset-x-3 z-50 p-2 rounded-2xl bg-black/95 backdrop-blur-md border border-white/20 shadow-2xl flex items-center justify-between gap-2">
+      <div className="sm:hidden fixed bottom-3 inset-x-3 z-50 p-2 rounded-2xl bg-[#0E1210]/95 backdrop-blur-md border border-white/20 shadow-2xl flex items-center justify-between gap-2">
         <a
           href="tel:+31623916558"
-          className="flex-1 py-2.5 rounded-xl bg-white text-black font-mono text-xs font-bold uppercase tracking-wider text-center active:scale-[0.98] shadow"
+          className="flex-1 py-2.5 rounded-xl bg-[#F5F6F2] text-zinc-950 font-mono text-xs font-bold uppercase tracking-wider text-center active:scale-[0.98] shadow"
         >
           Bel Joey ↗
         </a>
         <a
           href="tel:+31610635256"
-          className="flex-1 py-2.5 rounded-xl bg-emerald-500 text-black font-mono text-xs font-bold uppercase tracking-wider text-center active:scale-[0.98] shadow"
+          className="flex-1 py-2.5 rounded-xl bg-[#3D4F40] text-white border border-[#526B57] font-mono text-xs font-bold uppercase tracking-wider text-center active:scale-[0.98] shadow"
         >
           Bel Luc ↗
         </a>

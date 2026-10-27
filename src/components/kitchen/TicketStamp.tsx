@@ -75,7 +75,7 @@ export function Ticket({
 
         {/* Ticket stub footer */}
         <div className="flex items-center justify-between px-4 py-2.5 bg-black/40 font-mono text-[10px] tracking-widest text-zinc-400">
-          <span className="text-[#00FF66]">{badge}</span>
+          <span className="text-[#A4C2A9] font-medium">{badge}</span>
           <span>{serialNumber}</span>
           <span className="opacity-70">VALID 2026-2027</span>
         </div>
@@ -94,11 +94,11 @@ export function Stamp({ children, className, tag = "OFFICIAL" }: StampProps) {
   return (
     <div
       className={cn(
-        "relative inline-flex items-center gap-2 rounded-md border border-[#00FF66] bg-[#00FF6612] px-2.5 py-1 font-mono text-[11px] font-bold tracking-wider text-[#00FF66] uppercase shadow-[0_0_12px_rgba(0,255,102,0.15)]",
+        "relative inline-flex items-center gap-2 rounded-md border border-[#67826C]/40 bg-[#506654]/15 px-2.5 py-1 font-mono text-[11px] font-medium tracking-wider text-[#A4C2A9] uppercase",
         className
       )}
     >
-      <span className="size-1.5 rounded-full bg-[#00FF66] animate-pulse" />
+      <span className="size-1.5 rounded-full bg-[#8CAE93]" />
       <span>{tag}</span>
       {children}
     </div>

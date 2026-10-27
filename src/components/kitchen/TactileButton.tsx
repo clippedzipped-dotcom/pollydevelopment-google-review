@@ -36,14 +36,14 @@ export const TactileButton = forwardRef<HTMLButtonElement, TactileButtonProps>(
         ? "h-12 px-6 text-base tracking-wide"
         : "h-10 px-4 text-sm font-medium";
 
-    // Theme variants for Luc & Joey: Green, Black, White
+    // Theme variants for Luc & Joey: Refined Sage, Void, White
     const themeStyles = {
       emerald: {
-        face: "var(--theme-accent, #00FF66)",
-        highlight: "rgba(255, 255, 255, 0.35)",
-        text: "#000000",
-        base: "var(--theme-accent-dim, #00993D)",
-        shadow: "rgba(0, 0, 0, 0.45)",
+        face: "#3D4F40",
+        highlight: "#506654",
+        text: "#FFFFFF",
+        base: "#243026",
+        shadow: "rgba(0, 0, 0, 0.4)",
       },
       void: {
         face: "#161816",
@@ -55,15 +55,15 @@ export const TactileButton = forwardRef<HTMLButtonElement, TactileButtonProps>(
       ghost: {
         face: "#161816",
         highlight: "#262c27",
-        text: "var(--theme-accent, #00FF66)",
+        text: "var(--theme-accent, #8CAE93)",
         base: "#0b0c0b",
         shadow: "#040504",
       },
       white: {
-        face: "#FFFFFF",
-        highlight: "#F0F0F0",
-        text: "#000000",
-        base: "#D4D4D8",
+        face: "#F7F8F5",
+        highlight: "#FFFFFF",
+        text: "#121614",
+        base: "#D8D9D2",
         shadow: "#71717A",
       },
     }[variant];
@@ -82,7 +82,7 @@ export const TactileButton = forwardRef<HTMLButtonElement, TactileButtonProps>(
         onClick={handleClick}
         className={cn(
           "group/tactile relative inline-grid w-max shrink-0 cursor-pointer select-none border-0 bg-transparent p-0 font-inherit leading-none",
-          "focus-visible:outline-2 focus-visible:outline-[#00FF66] focus-visible:outline-offset-2",
+          "focus-visible:outline-2 focus-visible:outline-[#8CAE93] focus-visible:outline-offset-2",
           "disabled:pointer-events-none disabled:opacity-45 aria-disabled:pointer-events-none aria-disabled:opacity-45",
           className
         )}

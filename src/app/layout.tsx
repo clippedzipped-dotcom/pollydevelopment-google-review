@@ -55,7 +55,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="nl" className="dark scroll-smooth">
-      <body className="antialiased min-h-screen bg-[#070907] text-white selection:bg-[#00FF66] selection:text-black">
+      <body className="antialiased min-h-screen bg-[#0E1210] text-[#F3F5F0] selection:bg-[#506654] selection:text-white">
         <SmoothScrollProvider>
           {children}
         </SmoothScrollProvider>

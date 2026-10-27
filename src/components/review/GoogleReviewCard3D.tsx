@@ -162,7 +162,7 @@ export function GoogleReviewCard3D({
               animate={{ scale: 2.3, opacity: 0 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.85, delay: (wave - 1) * 0.16, ease: "easeOut" }}
-              className="pointer-events-none absolute inset-0 -m-6 rounded-[2.5rem] border-2 border-emerald-400 shadow-[0_0_30px_rgba(52,168,83,0.8)] z-30"
+              className="pointer-events-none absolute inset-0 -m-6 rounded-[2.5rem] border-2 border-[#8CAE93]/70 shadow-[0_0_25px_rgba(140,174,147,0.3)] z-30"
             />
           ))}
         </AnimatePresence>
@@ -314,7 +314,7 @@ export function GoogleReviewCard3D({
                 </h3>
 
                 <p className="mt-1 font-mono text-[10px] tracking-widest uppercase opacity-75">
-                  TIK MET JE TELEFOON // REVIEW DIRECT
+                  TIK MET JE TELEFOON · REVIEW DIRECT
                 </p>
               </div>
 
@@ -388,7 +388,7 @@ export function GoogleReviewCard3D({
                   </div>
                 ) : (
                   <div className="size-20 rounded-full border border-dashed border-white/40 flex items-center justify-center mb-2">
-                    <Wifi className="size-8 rotate-90 text-emerald-400 animate-pulse" />
+                    <Wifi className="size-8 rotate-90 text-[#8CAE93]" />
                   </div>
                 )}
 
@@ -401,8 +401,8 @@ export function GoogleReviewCard3D({
               </div>
 
               {/* Back Footer */}
-              <div className="border-t border-white/10 pt-2 flex items-center justify-between font-mono text-[8px] text-zinc-500">
-                <span>POLLYDEVELOPMENT // AMSTERDAM</span>
+              <div className="border-t border-white/10 pt-2 flex items-center justify-between font-mono text-[8px] text-zinc-400">
+                <span>POLLYDEVELOPMENT · AMSTERDAM</span>
                 <span className="text-zinc-400">FLIP OM VOORKANT TE ZIEN ↺</span>
               </div>
             </div>
@@ -420,7 +420,7 @@ export function GoogleReviewCard3D({
           className={cn(
             "relative group flex items-center gap-2 rounded-full px-5 py-2 font-mono text-xs font-bold tracking-widest uppercase transition-all duration-200 select-none cursor-pointer",
             isTapping
-              ? "bg-[#FBBC04] text-black shadow-[0_0_24px_rgba(251,188,4,0.8)]"
+              ? "bg-[#FBBC04] text-black shadow-md"
               : "bg-black/90 hover:bg-white text-white hover:text-black border border-white/20 shadow-md"
           )}
         >

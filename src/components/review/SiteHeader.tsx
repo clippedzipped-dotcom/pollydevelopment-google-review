@@ -30,11 +30,11 @@ export function SiteHeader() {
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 w-full backdrop-blur-md bg-[#070907]/85 border-b border-white/10 transition-colors">
+    <header className="fixed top-0 left-0 right-0 z-50 w-full backdrop-blur-md bg-[#0E1210]/90 border-b border-white/10 transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-8 h-16 flex items-center justify-between">
         {/* Brand */}
         <Link href="/" className="flex items-center gap-3 group">
-          <div className="size-8 rounded-lg bg-black border border-emerald-500/50 p-1 flex items-center justify-center overflow-hidden shadow-[0_0_12px_rgba(0,255,102,0.3)]">
+          <div className="size-8 rounded-lg bg-[#161C18] border border-white/15 p-1 flex items-center justify-center overflow-hidden shadow-sm">
             <Image
               src="/images/products/pollydevelopment-logo.png"
               alt="PollyDevelopment Logo"
@@ -47,8 +47,8 @@ export function SiteHeader() {
             <span className="font-display text-sm sm:text-base tracking-tight block uppercase text-white font-bold">
               Google Review Kaarten
             </span>
-            <span className="font-mono text-[9px] block tracking-widest uppercase text-emerald-400">
-              POLLYDEVELOPMENT // NFC HARDWARE
+            <span className="font-mono text-[9px] block tracking-widest uppercase text-zinc-400">
+              POLLYDEVELOPMENT · AMSTERDAM
             </span>
           </div>
         </Link>
@@ -78,9 +78,9 @@ export function SiteHeader() {
           </a>
         </nav>
 
-        {/* Action Controls: Sound Toggle & Quick CTAs */}
+        {/* Action Controls: Sound Toggle & Tactile CTAs */}
         <div className="flex items-center gap-2 sm:gap-3">
-          {/* Procedural Web Audio Sound Switch */}
+          {/* Subtle Audio Micro-Haptics Switch */}
           <button
             type="button"
             onClick={handleToggleSound}
@@ -88,13 +88,13 @@ export function SiteHeader() {
             className={cn(
               "px-2.5 py-1.5 rounded-full border font-mono text-[10px] font-bold uppercase tracking-wider flex items-center gap-1.5 transition-all cursor-pointer select-none active:scale-95",
               soundOn
-                ? "bg-emerald-500/10 border-emerald-500/40 text-emerald-400 shadow-[0_0_10px_rgba(0,255,102,0.15)]"
+                ? "bg-white/10 border-white/20 text-zinc-200"
                 : "bg-zinc-900 border-zinc-800 text-zinc-500 hover:text-zinc-300"
             )}
           >
             {soundOn ? (
               <>
-                <Volume2 className="size-3 text-emerald-400 animate-pulse" />
+                <Volume2 className="size-3 text-[#A4C2A9]" />
                 <span className="hidden sm:inline">SFX AAN</span>
               </>
             ) : (
@@ -109,13 +109,13 @@ export function SiteHeader() {
             href="tel:+31623916558"
             className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-white/20 bg-white/5 hover:bg-white hover:text-black hover:border-white font-mono text-[11px] font-bold transition-all cursor-pointer shadow-sm active:translate-y-0.5"
           >
-            <Phone className="size-3 text-emerald-400 group-hover:text-black" />
+            <Phone className="size-3 text-zinc-400 group-hover:text-black" />
             <span>Bel Joey of Luc</span>
           </a>
 
           <a
             href="#contact"
-            className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-emerald-500 hover:bg-emerald-400 text-black font-mono text-[11px] font-bold uppercase tracking-wider transition-all cursor-pointer shadow-[0_0_15px_rgba(0,255,102,0.3)] active:translate-y-0.5"
+            className="flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-[#F5F6F2] hover:bg-white text-zinc-950 font-mono text-[11px] font-bold uppercase tracking-wider transition-all cursor-pointer shadow-sm active:translate-y-0.5"
           >
             <span>Offerte</span>
             <ArrowRight className="size-3" />

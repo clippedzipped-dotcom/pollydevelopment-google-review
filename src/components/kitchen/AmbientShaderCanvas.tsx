@@ -51,7 +51,7 @@ export function AmbientShaderCanvas() {
 
       ctx.clearRect(0, 0, width, height);
 
-      // 1. Primary ambient emerald orb
+      // 1. Primary ambient natural sage light
       const grad1 = ctx.createRadialGradient(
         mouseX,
         mouseY,
@@ -60,14 +60,14 @@ export function AmbientShaderCanvas() {
         mouseY,
         Math.max(width, height) * 0.55
       );
-      grad1.addColorStop(0, "rgba(0, 255, 102, 0.075)");
-      grad1.addColorStop(0.4, "rgba(0, 168, 67, 0.035)");
-      grad1.addColorStop(1, "rgba(7, 9, 7, 0)");
+      grad1.addColorStop(0, "rgba(80, 102, 84, 0.08)");
+      grad1.addColorStop(0.5, "rgba(50, 66, 53, 0.03)");
+      grad1.addColorStop(1, "rgba(14, 18, 16, 0)");
 
       ctx.fillStyle = grad1;
       ctx.fillRect(0, 0, width, height);
 
-      // 2. Secondary undulating harmonic wave orb (opposite quadrant)
+      // 2. Secondary subtle warm ambient light
       const secX = width * 0.5 + Math.sin(time * 0.8) * (width * 0.25);
       const secY = height * 0.35 + Math.cos(time * 0.6) * (height * 0.2);
       const grad2 = ctx.createRadialGradient(
@@ -78,9 +78,9 @@ export function AmbientShaderCanvas() {
         secY,
         Math.max(width, height) * 0.45
       );
-      grad2.addColorStop(0, "rgba(80, 102, 84, 0.08)");
-      grad2.addColorStop(0.5, "rgba(20, 35, 25, 0.025)");
-      grad2.addColorStop(1, "rgba(7, 9, 7, 0)");
+      grad2.addColorStop(0, "rgba(140, 174, 147, 0.05)");
+      grad2.addColorStop(0.5, "rgba(30, 40, 32, 0.02)");
+      grad2.addColorStop(1, "rgba(14, 18, 16, 0)");
 
       ctx.fillStyle = grad2;
       ctx.fillRect(0, 0, width, height);
@@ -88,7 +88,7 @@ export function AmbientShaderCanvas() {
       // 3. Subtle organic flowing filament mesh line
       ctx.beginPath();
       ctx.lineWidth = 1;
-      ctx.strokeStyle = "rgba(0, 255, 102, 0.03)";
+      ctx.strokeStyle = "rgba(140, 174, 147, 0.04)";
       const segments = 16;
       for (let i = 0; i <= segments; i++) {
         const x = (width / segments) * i;

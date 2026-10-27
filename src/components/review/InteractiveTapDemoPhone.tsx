@@ -523,15 +523,15 @@ export function InteractiveTapDemoPhone({
             className="lg:col-span-6 flex flex-col justify-center items-start text-left z-20 max-w-xl"
           >
             {/* Kicker Eyebrow with Radar Pulse & Realtime Status HUD */}
-            <div className="flex flex-wrap items-center gap-2 font-mono text-[9px] tracking-widest uppercase text-emerald-400 mb-2 sm:mb-3">
-              <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 shadow-[0_0_12px_rgba(0,255,102,0.15)]">
-                <span className="size-1.5 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_8px_#00FF66]" />
+            <div className="flex flex-wrap items-center gap-2 font-mono text-[9px] tracking-widest uppercase text-zinc-400 mb-2 sm:mb-3">
+              <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#161C18] border border-white/10 text-[#A4C2A9]">
+                <span className="size-1.5 rounded-full bg-[#8CAE93]" />
                 <span className="font-bold">NFC HARDWARE SPECIMEN</span>
               </div>
-              <span className="text-zinc-600 hidden sm:inline">//</span>
+              <span className="text-zinc-600 hidden sm:inline">·</span>
               <span className="text-zinc-400 hidden sm:inline">3D INTERACTIVE LAB</span>
-              <span className="text-zinc-600 hidden sm:inline">//</span>
-              <span className="text-emerald-400/90 font-bold hidden sm:inline">13.56 MHz HF</span>
+              <span className="text-zinc-600 hidden sm:inline">·</span>
+              <span className="text-zinc-400 font-medium hidden sm:inline">13.56 MHz HF</span>
             </div>
 
             {/* Cross-fading Narrative Chapters */}
@@ -546,7 +546,7 @@ export function InteractiveTapDemoPhone({
               >
                 <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl uppercase tracking-tight text-white leading-[0.95]">
                   GOED GEDAAN?<br />
-                  <span className="text-emerald-400 drop-shadow-[0_0_25px_rgba(0,255,102,0.25)]">
+                  <span className="text-[#A4C2A9]">
                     LAAT HET HOREN.
                   </span>
                 </h1>
@@ -565,7 +565,7 @@ export function InteractiveTapDemoPhone({
               >
                 <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl uppercase tracking-tight text-white leading-[0.95]">
                   TELEFOON ERBIJ.<br />
-                  <span className="text-emerald-400 drop-shadow-[0_0_25px_rgba(0,255,102,0.25)]">
+                  <span className="text-[#A4C2A9]">
                     PAGINA OPEN.
                   </span>
                 </h2>
@@ -584,7 +584,7 @@ export function InteractiveTapDemoPhone({
               >
                 <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl uppercase tracking-tight text-white leading-[0.95]">
                   HUN ERVARING.<br />
-                  <span className="text-emerald-400 drop-shadow-[0_0_25px_rgba(0,255,102,0.25)]">
+                  <span className="text-[#A4C2A9]">
                     JOUW VERHAAL.
                   </span>
                 </h2>
@@ -598,7 +598,7 @@ export function InteractiveTapDemoPhone({
             <div className="w-full p-3 sm:p-4 rounded-2xl bg-[#0c100e]/85 border border-white/10 backdrop-blur-2xl shadow-[inset_0_1px_0_rgba(255,255,255,0.12),0_20px_45px_rgba(0,0,0,0.85)] mt-1 mb-3 space-y-3">
               {/* Header with Product Form-Factor Selector */}
               <div className="flex items-center justify-between font-mono text-[9px] uppercase tracking-widest text-zinc-400">
-                <span className="flex items-center gap-1.5 text-emerald-400 font-bold">
+                <span className="flex items-center gap-1.5 text-[#A4C2A9] font-bold">
                   <Sparkles className="size-3" />
                   3D HARDWARE VORMFACTOR:
                 </span>
@@ -615,7 +615,7 @@ export function InteractiveTapDemoPhone({
                     className={cn(
                       "px-2 py-0.5 rounded-md font-mono text-[8px] uppercase transition-all cursor-pointer flex items-center gap-1",
                       selectedProductId === "card"
-                        ? "bg-emerald-500/20 text-emerald-300 font-bold border border-emerald-500/40"
+                        ? "bg-white/15 text-white font-medium border border-white/20"
                         : "text-zinc-500 hover:text-zinc-300 border border-transparent"
                     )}
                   >
@@ -633,7 +633,7 @@ export function InteractiveTapDemoPhone({
                     className={cn(
                       "px-2 py-0.5 rounded-md font-mono text-[8px] uppercase transition-all cursor-pointer flex items-center gap-1",
                       selectedProductId === "sticker"
-                        ? "bg-emerald-500/20 text-emerald-300 font-bold border border-emerald-500/40"
+                        ? "bg-white/15 text-white font-medium border border-white/20"
                         : "text-zinc-500 hover:text-zinc-300 border border-transparent"
                     )}
                   >
@@ -651,7 +651,7 @@ export function InteractiveTapDemoPhone({
                     className={cn(
                       "px-2 py-0.5 rounded-md font-mono text-[8px] uppercase transition-all cursor-pointer flex items-center gap-1",
                       selectedProductId === "display"
-                        ? "bg-emerald-500/20 text-emerald-300 font-bold border border-emerald-500/40"
+                        ? "bg-white/15 text-white font-medium border border-white/20"
                         : "text-zinc-500 hover:text-zinc-300 border border-transparent"
                     )}
                   >
@@ -668,7 +668,7 @@ export function InteractiveTapDemoPhone({
                   value={businessName}
                   onChange={(e) => setBusinessName(e.target.value)}
                   placeholder="Voer jouw zaak in..."
-                  className="flex-1 bg-black/60 border border-zinc-700/80 rounded-xl px-3 py-1.5 text-xs font-mono text-white placeholder-zinc-500 focus:outline-none focus:border-emerald-400 transition-colors shadow-inner"
+                  className="flex-1 bg-black/60 border border-zinc-700/80 rounded-xl px-3 py-1.5 text-xs font-mono text-white placeholder-zinc-500 focus:outline-none focus:border-[#8CAE93] transition-colors shadow-inner"
                 />
 
                 <div className="hidden sm:flex items-center gap-1">
@@ -683,7 +683,7 @@ export function InteractiveTapDemoPhone({
                       className={cn(
                         "px-2 py-1 rounded-lg font-mono text-[9px] uppercase transition-colors cursor-pointer border",
                         businessName === preset
-                          ? "bg-emerald-500/20 border-emerald-400 text-emerald-300"
+                          ? "bg-white text-black font-semibold border-white"
                           : "bg-zinc-800/80 border-zinc-700 text-zinc-400 hover:text-white"
                       )}
                     >
@@ -713,13 +713,13 @@ export function InteractiveTapDemoPhone({
                         className={cn(
                           "size-5 rounded-full border transition-all cursor-pointer relative",
                           isSelected
-                            ? "border-emerald-400 scale-125 shadow-[0_0_10px_#00FF66]"
+                            ? "ring-2 ring-white ring-offset-2 ring-offset-[#0c100e] scale-110"
                             : "border-zinc-700 hover:scale-110 opacity-70 hover:opacity-100"
                         )}
                         title={c.name}
                       >
                         {isSelected && (
-                          <span className="absolute inset-0 m-auto size-1.5 rounded-full bg-emerald-400" />
+                          <span className="absolute inset-0 m-auto size-1.5 rounded-full bg-white" />
                         )}
                       </button>
                     );
@@ -731,7 +731,7 @@ export function InteractiveTapDemoPhone({
                     <button
                       type="button"
                       onClick={handleFlipCard}
-                      className="flex items-center gap-1 text-[9px] text-zinc-400 hover:text-emerald-400 transition-colors cursor-pointer"
+                      className="flex items-center gap-1 text-[9px] text-zinc-400 hover:text-white transition-colors cursor-pointer"
                     >
                       <RotateCw className="size-2.5" />
                       <span>{isFlipped ? "Voorkant" : "Draai om 180°"}</span>
@@ -744,7 +744,7 @@ export function InteractiveTapDemoPhone({
                       setCardMode(cardMode === "3d" ? "photo" : "3d");
                       playMechanicalClick();
                     }}
-                    className="text-[9px] text-emerald-400 hover:underline uppercase tracking-wider cursor-pointer"
+                    className="text-[9px] text-zinc-300 hover:text-white underline uppercase tracking-wider cursor-pointer"
                   >
                     {cardMode === "3d" ? "📷 Originele Foto" : "✨ 3D Specimen"}
                   </button>
@@ -760,7 +760,7 @@ export function InteractiveTapDemoPhone({
                 className={cn(
                   "p-2 sm:p-2.5 rounded-xl border text-left font-mono transition-all cursor-pointer select-none",
                   activeChapter === 1
-                    ? "bg-zinc-800/90 border-emerald-400 text-white shadow-[0_0_15px_rgba(0,255,102,0.15)]"
+                    ? "bg-[#1E2620] border-[#8CAE93]/60 text-white shadow-sm"
                     : "bg-black/40 border-zinc-800 text-zinc-500 hover:text-zinc-300"
                 )}
               >
@@ -769,11 +769,11 @@ export function InteractiveTapDemoPhone({
                     className={cn(
                       "size-1.5 rounded-full transition-all",
                       activeChapter === 1
-                        ? "bg-emerald-400 shadow-[0_0_6px_#00FF66]"
+                        ? "bg-[#8CAE93]"
                         : "bg-zinc-700"
                     )}
                   />
-                  <span className="text-[9px] text-emerald-400 font-bold">STAP 01</span>
+                  <span className="text-[9px] text-[#A4C2A9] font-bold">STAP 01</span>
                 </div>
                 <div className="text-xs font-bold mt-0.5 truncate">01. Ruststand</div>
               </button>
@@ -784,7 +784,7 @@ export function InteractiveTapDemoPhone({
                 className={cn(
                   "p-2 sm:p-2.5 rounded-xl border text-left font-mono transition-all cursor-pointer select-none",
                   activeChapter === 2
-                    ? "bg-zinc-800/90 border-emerald-400 text-white shadow-[0_0_15px_rgba(0,255,102,0.15)]"
+                    ? "bg-[#1E2620] border-[#8CAE93]/60 text-white shadow-sm"
                     : "bg-black/40 border-zinc-800 text-zinc-500 hover:text-zinc-300"
                 )}
               >
@@ -793,11 +793,11 @@ export function InteractiveTapDemoPhone({
                     className={cn(
                       "size-1.5 rounded-full transition-all",
                       activeChapter === 2
-                        ? "bg-emerald-400 shadow-[0_0_6px_#00FF66]"
+                        ? "bg-[#8CAE93]"
                         : "bg-zinc-700"
                     )}
                   />
-                  <span className="text-[9px] text-emerald-400 font-bold">STAP 02</span>
+                  <span className="text-[9px] text-[#A4C2A9] font-bold">STAP 02</span>
                 </div>
                 <div className="text-xs font-bold mt-0.5 truncate">02. NFC Tik</div>
               </button>
@@ -808,7 +808,7 @@ export function InteractiveTapDemoPhone({
                 className={cn(
                   "p-2 sm:p-2.5 rounded-xl border text-left font-mono transition-all cursor-pointer select-none",
                   activeChapter === 3
-                    ? "bg-zinc-800/90 border-emerald-400 text-white shadow-[0_0_15px_rgba(0,255,102,0.15)]"
+                    ? "bg-[#1E2620] border-[#8CAE93]/60 text-white shadow-sm"
                     : "bg-black/40 border-zinc-800 text-zinc-500 hover:text-zinc-300"
                 )}
               >
@@ -817,11 +817,11 @@ export function InteractiveTapDemoPhone({
                     className={cn(
                       "size-1.5 rounded-full transition-all",
                       activeChapter === 3
-                        ? "bg-emerald-400 shadow-[0_0_6px_#00FF66]"
+                        ? "bg-[#8CAE93]"
                         : "bg-zinc-700"
                     )}
                   />
-                  <span className="text-[9px] text-emerald-400 font-bold">STAP 03</span>
+                  <span className="text-[9px] text-[#A4C2A9] font-bold">STAP 03</span>
                 </div>
                 <div className="text-xs font-bold mt-0.5 truncate">03. 5 Sterren</div>
               </button>
@@ -830,17 +830,17 @@ export function InteractiveTapDemoPhone({
             {/* ACTION ROW & TOOL BAR */}
             <div className="pt-3 flex flex-wrap items-center gap-2.5 w-full">
               <TactileButton
-                variant="emerald"
+                variant="white"
                 size="md"
                 onClick={runSimulation}
                 data-cursor="[SPEEL SIMULATIE AF]"
-                className="shadow-[0_4px_0_#008833,0_12px_24px_rgba(0,255,102,0.35)] active:translate-y-1 active:shadow-none"
+                className="shadow-lg active:translate-y-1 active:shadow-none"
               >
                 {isSimulating ? (
                   <Pause className="size-3.5 fill-black" />
                 ) : (
                   <>
-                    <span className="size-2 rounded-full bg-black animate-ping mr-0.5" />
+                    <span className="size-2 rounded-full bg-[#506654] animate-ping mr-0.5" />
                     <Play className="size-3.5 fill-black" />
                   </>
                 )}
@@ -861,10 +861,10 @@ export function InteractiveTapDemoPhone({
 
               <a
                 href="#collectie"
-                className="hidden sm:flex items-center gap-1.5 px-3 py-2 rounded-xl border border-zinc-800 bg-zinc-900/60 text-zinc-300 hover:text-white font-mono text-xs transition-colors ml-auto"
+                className="hidden sm:flex items-center gap-1.5 px-3 py-2 rounded-xl border border-zinc-800 bg-zinc-900/60 text-zinc-300 hover:text-white font-mono text-xs transition-colors ml-auto group"
               >
                 <span>Bekijk Collectie</span>
-                <ArrowRight className="size-3 text-emerald-400" />
+                <ArrowRight className="size-3 text-zinc-400 group-hover:text-white" />
               </a>
 
               {/* Sound Equalizer Visualizer Toggle */}
@@ -876,11 +876,11 @@ export function InteractiveTapDemoPhone({
               >
                 {soundOn ? (
                   <>
-                    <Volume2 className="size-3.5 text-emerald-400" />
+                    <Volume2 className="size-3.5 text-[#8CAE93]" />
                     <div className="flex items-end gap-0.5 h-3">
-                      <span className="w-0.5 h-2 bg-emerald-400 animate-pulse" />
-                      <span className="w-0.5 h-3 bg-emerald-400 animate-pulse delay-75" />
-                      <span className="w-0.5 h-1.5 bg-emerald-400 animate-pulse delay-150" />
+                      <span className="w-0.5 h-2 bg-[#8CAE93]" />
+                      <span className="w-0.5 h-3 bg-[#8CAE93]" />
+                      <span className="w-0.5 h-1.5 bg-[#8CAE93]" />
                     </div>
                   </>
                 ) : (
@@ -902,18 +902,18 @@ export function InteractiveTapDemoPhone({
               {/* CAD Caliper Coordinates & Calibration Markings on Stage Frame */}
               <div
                 aria-hidden="true"
-                className="pointer-events-none absolute inset-0 font-mono text-[7.5px] text-zinc-600 uppercase tracking-widest flex flex-col justify-between p-2 sm:p-3 select-none"
+                className="pointer-events-none absolute inset-0 font-mono text-[7.5px] text-zinc-500 uppercase tracking-widest flex flex-col justify-between p-2 sm:p-3 select-none"
               >
-                <div className="flex justify-between items-center opacity-70">
-                  <span className="flex items-center gap-1.5 text-emerald-400/90 font-bold">
-                    <span className="size-1.5 bg-emerald-400 rounded-full animate-ping" />
-                    CALIPER // NTAG215 HF INDUCTION
+                <div className="flex justify-between items-center opacity-80">
+                  <span className="flex items-center gap-1.5 text-zinc-400 font-medium">
+                    <span className="size-1.5 bg-[#8CAE93] rounded-full" />
+                    POLLYDEVELOPMENT · HARDWARE LAB
                   </span>
-                  <span>ISO/IEC 14443-A PROTOCOL</span>
+                  <span>ISO/IEC 14443-A STANDAARD</span>
                 </div>
-                <div className="flex justify-between items-center opacity-70">
-                  <span>FREQ // 13.560 MHz FIELD ACTIVE</span>
-                  <span>ZERO-LATENCY // &lt;15ms</span>
+                <div className="flex justify-between items-center opacity-80">
+                  <span>FREQUENTIE · 13.560 MHz HF</span>
+                  <span>CONTACTLOOS · &lt;200ms</span>
                 </div>
               </div>
 
@@ -1096,8 +1096,8 @@ export function InteractiveTapDemoPhone({
                               {/* Live 13.56 MHz RF Broadcasting Field Waves in Step 1 */}
                               {activeChapter === 1 && (
                                 <div className="pointer-events-none absolute -inset-1 flex items-center justify-center">
-                                  <span className="absolute size-9 rounded-full border border-emerald-400/50 animate-ping opacity-60" />
-                                  <span className="absolute size-12 rounded-full border border-emerald-400/25 animate-pulse" />
+                                  <span className="absolute size-9 rounded-full border border-[#8CAE93]/60 animate-ping opacity-60" />
+                                  <span className="absolute size-12 rounded-full border border-[#8CAE93]/30 animate-pulse" />
                                 </div>
                               )}
                               <Wifi className="size-3 sm:size-3.5 rotate-90 text-white relative z-10" />
@@ -1178,7 +1178,7 @@ export function InteractiveTapDemoPhone({
                       {/* Concentric Copper Antenna Coil Traces */}
                       <div className="my-auto flex items-center justify-between px-2">
                         <div className="space-y-1 font-mono text-[8px]">
-                          <div className="text-emerald-400 font-bold">
+                          <div className="text-[#A4C2A9] font-bold">
                             POLLYDEVELOPMENT
                           </div>
                           <div className="text-zinc-400">
@@ -1203,7 +1203,7 @@ export function InteractiveTapDemoPhone({
 
                       <div className="border-t border-white/10 pt-1.5 flex items-center justify-between font-mono text-[7px] text-zinc-400 uppercase">
                         <span>MADE IN THE NETHERLANDS</span>
-                        <span className="text-emerald-400">ENCRYPTION VERIFIED</span>
+                        <span className="text-[#A4C2A9]">OFFICIEEL PRODUCT</span>
                       </div>
                       </div>
                     </>
@@ -1218,9 +1218,9 @@ export function InteractiveTapDemoPhone({
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: [0.75, 1, 0.75], y: [0, -3, 0] }}
                 transition={{ repeat: Infinity, duration: 3.4, ease: "easeInOut" }}
-                className="absolute bottom-3 left-[28%] sm:left-[30%] -translate-x-1/2 font-mono text-[8px] uppercase tracking-widest text-emerald-400 bg-black/85 backdrop-blur-md px-3 py-1 rounded-full border border-emerald-500/30 flex items-center gap-1.5 shadow-[0_0_15px_rgba(0,255,102,0.25)] pointer-events-none whitespace-nowrap z-25 select-none"
+                className="absolute bottom-3 left-[28%] sm:left-[30%] -translate-x-1/2 font-mono text-[8px] uppercase tracking-widest text-zinc-300 bg-[#121614]/90 backdrop-blur-md px-3 py-1 rounded-full border border-white/15 flex items-center gap-1.5 shadow-md pointer-events-none whitespace-nowrap z-25 select-none"
               >
-                <span className="size-1.5 rounded-full bg-emerald-400 animate-ping" />
+                <span className="size-1.5 rounded-full bg-[#8CAE93]" />
                 <span>TIK SPECIMEN VOOR DEMO · BEWEEG IN 3D</span>
               </motion.div>
             )}
@@ -1233,7 +1233,7 @@ export function InteractiveTapDemoPhone({
                 opacity: ringOpacity,
                 scale: ringScale,
               }}
-              className="absolute z-15 left-[42%] sm:left-[44%] top-[12%] sm:top-[14%] size-28 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-emerald-400 pointer-events-none shadow-[0_0_35px_rgba(0,255,102,0.9),inset_0_0_20px_rgba(0,255,102,0.5)]"
+              className="absolute z-15 left-[42%] sm:left-[44%] top-[12%] sm:top-[14%] size-28 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-[#8CAE93]/80 pointer-events-none shadow-[0_0_30px_rgba(140,174,147,0.4),inset_0_0_15px_rgba(140,174,147,0.25)]"
             />
 
             {/* ------------------------------------------------------------- */}
@@ -1350,7 +1350,7 @@ export function InteractiveTapDemoPhone({
                         Tik om reviewpagina van {businessName} te openen
                       </span>
                     </div>
-                    <div className="size-4 sm:size-5 rounded-full bg-zinc-100 flex items-center justify-center shrink-0 text-zinc-700 group-hover:bg-emerald-500 group-hover:text-black transition-colors">
+                    <div className="size-4 sm:size-5 rounded-full bg-zinc-100 flex items-center justify-center shrink-0 text-zinc-700 group-hover:bg-[#506654] group-hover:text-white transition-colors">
                       <ArrowRight className="size-2.5" />
                     </div>
                   </motion.div>
@@ -1380,7 +1380,7 @@ export function InteractiveTapDemoPhone({
                           <div>
                             {/* Header with Google Brand & Business Identity */}
                             <div className="flex items-center gap-2 mb-1.5 pb-1.5 border-b border-zinc-100">
-                              <div className="size-6 sm:size-7 rounded-full bg-emerald-800 text-white font-bold text-xs flex items-center justify-center shrink-0 shadow-sm">
+                              <div className="size-6 sm:size-7 rounded-full bg-[#3D4F40] text-white font-bold text-xs flex items-center justify-center shrink-0 shadow-sm">
                                 {businessName.slice(0, 1).toUpperCase()}
                               </div>
                               <div className="text-left min-w-0 flex-1">
@@ -1474,7 +1474,7 @@ export function InteractiveTapDemoPhone({
                       ) : (
                         /* Submitted Success State */
                         <div className="h-full flex flex-col items-center justify-center text-center py-3">
-                          <div className="size-9 rounded-full bg-emerald-100 border border-emerald-300 text-emerald-600 flex items-center justify-center mb-1.5 animate-bounce shadow-sm">
+                          <div className="size-9 rounded-full bg-[#EDF2EB] border border-[#A4C2A9] text-[#3D4F40] flex items-center justify-center mb-1.5 animate-bounce shadow-sm">
                             <Check className="size-4 stroke-[3]" />
                           </div>
                           <h4 className="font-bold text-[11px] text-zinc-900 leading-tight">
@@ -1515,7 +1515,7 @@ export function InteractiveTapDemoPhone({
         <div className="absolute bottom-0 inset-x-0 h-1 bg-white/5">
           <motion.div
             style={{ scaleX: activeProgress }}
-            className="h-full bg-emerald-400 origin-left shadow-[0_0_10px_#00FF66]"
+            className="h-full bg-[#8CAE93] origin-left shadow-sm"
           />
         </div>
       </div>

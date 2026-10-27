@@ -53,7 +53,7 @@ export const COLOR_SWATCHES: Record<ReviewColorSwatch, ColorSwatchConfig> = {
     dutchName: "inkt",
     primaryBg: "#171F1C",
     secondaryBg: "#0F1412",
-    accent: "#00FF66",
+    accent: "#A4C2A9",
     text: "#F4F6F2",
     textColor: "text-[#F4F6F2]",
     border: "border-[#2A3732]",

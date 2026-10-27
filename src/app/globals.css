@@ -41,13 +41,13 @@
   --color-paper: #ffffff;
   --color-muted: #737373;
   --color-rule: #262626;
-  --color-accent: #00FF66;
+  --color-accent: #8CAE93;
 
-  /* Dynamic Customizer Theme Tokens */
-  --theme-accent: #00FF66;
-  --theme-accent-dim: #00993D;
-  --theme-accent-glow: rgba(0, 255, 102, 0.25);
-  --theme-accent-rgb: 0, 255, 102;
+  /* Refined Nordic Sage Theme Tokens */
+  --theme-accent: #8CAE93;
+  --theme-accent-dim: #506654;
+  --theme-accent-glow: rgba(140, 174, 147, 0.2);
+  --theme-accent-rgb: 140, 174, 147;
 
   --u: 1px;
   --a: 100vw;
@@ -240,13 +240,13 @@ html[data-environment="terminal"]::after {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #152217;
+  background: #242D26;
   border-radius: 3px;
-  border: 1px solid rgba(0, 255, 102, 0.2);
+  border: 1px solid rgba(140, 174, 147, 0.2);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #00FF66;
+  background: #506654;
 }
 
 /* Cursor hidden when desktop has-cursor is active */
@@ -417,11 +417,11 @@ html.has-cursor textarea {
   top: 24%;
   width: 94px;
   height: 94px;
-  border: 2px solid #00FF66;
+  border: 1.5px solid rgba(164, 194, 169, 0.7);
   border-radius: 50%;
   opacity: 0;
   z-index: 12;
-  box-shadow: 0 0 25px rgba(0, 255, 102, 0.6), inset 0 0 15px rgba(0, 255, 102, 0.4);
+  box-shadow: 0 0 20px rgba(140, 174, 147, 0.35), inset 0 0 10px rgba(140, 174, 147, 0.2);
 }
 
 @media (max-width: 1100px) {

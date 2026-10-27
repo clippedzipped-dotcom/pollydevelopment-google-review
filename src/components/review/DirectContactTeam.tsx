@@ -30,27 +30,27 @@ export function DirectContactTeam() {
       <div className="grid lg:grid-cols-12 gap-10 items-center">
         {/* LEFT COLUMN: INTRO */}
         <div className="lg:col-span-5 space-y-5">
-          <div className="flex items-center gap-2 font-mono text-[10px] tracking-widest uppercase text-emerald-400">
-            <span className="size-2 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_8px_#00FF66]" />
-            <span>VANDAAG BEREIKBAAR VOOR ADVIES &amp; OFFERTES</span>
+          <div className="flex items-center gap-2 font-mono text-[10px] tracking-widest uppercase text-zinc-400">
+            <span className="size-1.5 rounded-full bg-[#A4C2A9]" />
+            <span>DIRECTE LIJN NAAR JOEY &amp; LUC</span>
           </div>
 
           <h2 className="font-display text-4xl sm:text-6xl uppercase tracking-tight text-white leading-[0.92]">
             LATEN WE<br />
-            <span className="text-emerald-400">CONTACT MAKEN.</span>
+            <span className="text-[#A4C2A9]">CONTACT MAKEN.</span>
           </h2>
 
           <p className="font-sans text-sm sm:text-base text-zinc-300 leading-relaxed">
-            Wij zijn Joey en Luc, de twee gezichten achter PollyDevelopment. Geen anonieme ticketbox of keuzemenu: bel of app ons rechtstreeks voor advies, een snelle proefdruk of een scherpe offerte.
+            Wij zijn Joey en Luc, de twee gezichten achter PollyDevelopment. Geen ticketsysteem of keuzemenu: bel of app ons rechtstreeks voor advies, een snelle proefdruk of een scherpe staffelprijs.
           </p>
 
           <div className="space-y-2 pt-2 font-mono text-xs text-zinc-400">
             <div className="flex items-center gap-2 text-zinc-300">
-              <Clock className="size-4 text-emerald-400" />
+              <Clock className="size-4 text-[#A4C2A9]" />
               <span>Reactie binnen 2 uur tijdens werkdagen</span>
             </div>
             <div className="flex items-center gap-2 text-zinc-300">
-              <Sparkles className="size-4 text-emerald-400" />
+              <Sparkles className="size-4 text-[#A4C2A9]" />
               <span>Vrijblijvend digitaal drukvoorbeeld van jouw logo</span>
             </div>
           </div>
@@ -60,22 +60,22 @@ export function DirectContactTeam() {
         <div className="lg:col-span-7 grid sm:grid-cols-2 gap-6">
           {/* JOEY'S CARD */}
           <SpotlightCard
-            className="bg-[#0C0F0C] border-white/15 p-6 flex flex-col justify-between shadow-2xl relative group"
-            spotlightColor="rgba(0, 255, 102, 0.15)"
+            className="bg-[#121614] border-white/15 p-6 flex flex-col justify-between shadow-xl relative group"
+            spotlightColor="rgba(255, 255, 255, 0.06)"
           >
             <div>
               <div className="flex items-start justify-between mb-4">
-                <div className="size-14 rounded-2xl bg-black border border-emerald-500/40 text-emerald-400 font-display text-2xl font-bold flex items-center justify-center shadow-[0_0_15px_rgba(0,255,102,0.2)]">
+                <div className="size-14 rounded-2xl bg-[#18201A] border border-white/15 text-white font-display text-2xl font-bold flex items-center justify-center shadow-inner">
                   J.
                 </div>
                 <button
                   type="button"
                   onClick={() => handleCopy("+31623916558", "Joey")}
                   title="Kopieer telefoonnummer"
-                  className="p-2 rounded-lg border border-zinc-800 bg-zinc-900/60 text-zinc-400 hover:text-white transition-colors cursor-pointer"
+                  className="p-2 rounded-lg border border-white/10 bg-white/5 text-zinc-400 hover:text-white transition-colors cursor-pointer"
                 >
                   {copiedPerson === "Joey" ? (
-                    <Check className="size-3.5 text-emerald-400" />
+                    <Check className="size-3.5 text-[#A4C2A9]" />
                   ) : (
                     <Copy className="size-3.5" />
                   )}
@@ -86,12 +86,12 @@ export function DirectContactTeam() {
                 <h3 className="font-display text-3xl font-bold uppercase tracking-tight text-white">
                   Joey
                 </h3>
-                <span className="font-mono text-[9px] uppercase px-2 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 font-bold">
+                <span className="font-mono text-[9px] uppercase px-2 py-0.5 rounded bg-white/10 border border-white/15 text-zinc-300 font-bold">
                   COMMERCIEEL &amp; ADVIES
                 </span>
               </div>
 
-              <p className="font-mono text-xs text-emerald-400 mt-1">
+              <p className="font-mono text-xs text-zinc-300 mt-1">
                 Aanvragen, aantallen &amp; offertes.
               </p>
               <p className="font-sans text-xs text-zinc-400 mt-3 leading-relaxed">
@@ -102,7 +102,7 @@ export function DirectContactTeam() {
             <div className="space-y-2.5 pt-6 border-t border-white/5">
               <a href="tel:+31623916558" className="block w-full">
                 <TactileButton
-                  variant="emerald"
+                  variant="white"
                   size="md"
                   depth={4}
                   className="w-full flex items-center justify-center gap-2 font-mono text-xs font-bold uppercase tracking-wider"
@@ -116,9 +116,9 @@ export function DirectContactTeam() {
                 href="https://wa.me/31623916558?text=Hallo%20Joey,%20ik%20heb%20interesse%20in%20Google%20Review%20NFC%20kaarten%20voor%20mijn%20bedrijf."
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full py-2.5 rounded-xl border border-zinc-800 hover:border-zinc-700 bg-zinc-900 text-zinc-300 hover:text-white font-mono text-xs flex items-center justify-center gap-2 transition-all cursor-pointer active:translate-y-0.5"
+                className="w-full py-2.5 rounded-xl border border-white/10 hover:border-white/20 bg-white/5 text-zinc-300 hover:text-white font-mono text-xs flex items-center justify-center gap-2 transition-all cursor-pointer active:translate-y-0.5"
               >
-                <MessageSquare className="size-3.5 text-emerald-400" />
+                <MessageSquare className="size-3.5 text-[#A4C2A9]" />
                 <span>WhatsApp Joey ↗</span>
               </a>
             </div>
@@ -126,22 +126,22 @@ export function DirectContactTeam() {
 
           {/* LUC'S CARD */}
           <SpotlightCard
-            className="bg-[#0C0F0C] border-white/15 p-6 flex flex-col justify-between shadow-2xl relative group"
-            spotlightColor="rgba(255, 255, 255, 0.12)"
+            className="bg-[#121614] border-white/15 p-6 flex flex-col justify-between shadow-xl relative group"
+            spotlightColor="rgba(255, 255, 255, 0.06)"
           >
             <div>
               <div className="flex items-start justify-between mb-4">
-                <div className="size-14 rounded-2xl bg-black border border-white/30 text-white font-display text-2xl font-bold flex items-center justify-center shadow-[0_0_15px_rgba(255,255,255,0.15)]">
+                <div className="size-14 rounded-2xl bg-[#18201A] border border-white/15 text-white font-display text-2xl font-bold flex items-center justify-center shadow-inner">
                   L.
                 </div>
                 <button
                   type="button"
                   onClick={() => handleCopy("+31610635256", "Luc")}
                   title="Kopieer telefoonnummer"
-                  className="p-2 rounded-lg border border-zinc-800 bg-zinc-900/60 text-zinc-400 hover:text-white transition-colors cursor-pointer"
+                  className="p-2 rounded-lg border border-white/10 bg-white/5 text-zinc-400 hover:text-white transition-colors cursor-pointer"
                 >
                   {copiedPerson === "Luc" ? (
-                    <Check className="size-3.5 text-emerald-400" />
+                    <Check className="size-3.5 text-[#A4C2A9]" />
                   ) : (
                     <Copy className="size-3.5" />
                   )}
@@ -152,7 +152,7 @@ export function DirectContactTeam() {
                 <h3 className="font-display text-3xl font-bold uppercase tracking-tight text-white">
                   Luc
                 </h3>
-                <span className="font-mono text-[9px] uppercase px-2 py-0.5 rounded bg-white/10 border border-white/20 text-zinc-300 font-bold">
+                <span className="font-mono text-[9px] uppercase px-2 py-0.5 rounded bg-white/10 border border-white/15 text-zinc-300 font-bold">
                   DESIGN &amp; PROEFDRUK
                 </span>
               </div>
@@ -182,9 +182,9 @@ export function DirectContactTeam() {
                 href="https://wa.me/31610635256?text=Hallo%20Luc,%20ik%20wil%20graag%20overleggen%20over%20een%20opdruk%20en%20proefdruk%20voor%20Google%20Review%20tags."
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full py-2.5 rounded-xl border border-zinc-800 hover:border-zinc-700 bg-zinc-900 text-zinc-300 hover:text-white font-mono text-xs flex items-center justify-center gap-2 transition-all cursor-pointer active:translate-y-0.5"
+                className="w-full py-2.5 rounded-xl border border-white/10 hover:border-white/20 bg-white/5 text-zinc-300 hover:text-white font-mono text-xs flex items-center justify-center gap-2 transition-all cursor-pointer active:translate-y-0.5"
               >
-                <MessageSquare className="size-3.5 text-emerald-400" />
+                <MessageSquare className="size-3.5 text-[#A4C2A9]" />
                 <span>WhatsApp Luc ↗</span>
               </a>
             </div>

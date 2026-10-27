@@ -176,8 +176,8 @@ export function HoldToConfirmButton({
       {...buttonProps}
       aria-busy={isHolding}
       className={cn(
-        "relative isolate inline-flex h-10 min-w-44 touch-none cursor-pointer select-none items-center justify-center overflow-hidden rounded-xl border border-[#00FF6644] bg-[#0d120e] px-4 font-mono font-medium text-xs tracking-wider text-[#00FF66] outline-none shadow-[0_0_20px_rgba(0,255,102,0.1)] transition-[transform,border-color,background-color,color] duration-150 [transition-timing-function:cubic-bezier(0.23,1,0.32,1)] focus-visible:ring-2 focus-visible:ring-[#00FF66] focus-visible:ring-offset-2 focus-visible:ring-offset-black data-[input=pointer]:active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50",
-        isConfirmed && "bg-[#00FF66] text-black border-[#00FF66]",
+        "relative isolate inline-flex h-10 min-w-44 touch-none cursor-pointer select-none items-center justify-center overflow-hidden rounded-xl border border-white/15 bg-[#161B18] px-4 font-mono font-medium text-xs tracking-wider text-zinc-200 outline-none transition-[transform,border-color,background-color,color] duration-150 [transition-timing-function:cubic-bezier(0.23,1,0.32,1)] focus-visible:ring-2 focus-visible:ring-[#8CAE93] focus-visible:ring-offset-2 focus-visible:ring-offset-black data-[input=pointer]:active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50",
+        isConfirmed && "bg-[#506654] text-white border-[#67826C]",
         className
       )}
       data-input={inputMode}
@@ -210,7 +210,7 @@ export function HoldToConfirmButton({
           </span>
           <span
             aria-hidden="true"
-            className="absolute inset-0 flex items-center justify-center gap-2 bg-[#00FF66] px-4 font-bold text-black"
+            className="absolute inset-0 flex items-center justify-center gap-2 bg-[#506654] px-4 font-bold text-white"
             style={overlayStyle}
           >
             <ShieldAlert className="size-3.5" />

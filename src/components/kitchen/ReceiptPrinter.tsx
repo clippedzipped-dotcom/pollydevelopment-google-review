@@ -197,7 +197,7 @@ export function ReceiptPrinterStatus({
             {isComplete ? (
               <motion.span
                 animate={{ opacity: 1, scale: 1 }}
-                className="col-start-1 row-start-1 text-[#00FF66]"
+                className="col-start-1 row-start-1 text-[#8CAE93]"
                 initial={{ opacity: 0, scale: 0.8 }}
                 key="complete"
                 transition={{ duration: animate ? 0.2 : 0, ease: easeOut }}
@@ -212,7 +212,7 @@ export function ReceiptPrinterStatus({
                 key="working"
                 transition={{ duration: animate ? 0.2 : 0, ease: easeOut }}
               >
-                <Loader2 className="size-4 animate-spin text-[#00FF66]" />
+                <Loader2 className="size-4 animate-spin text-[#8CAE93]" />
               </motion.span>
             )}
           </AnimatePresence>
@@ -222,7 +222,7 @@ export function ReceiptPrinterStatus({
         </span>
       </div>
       <div className="flex items-center gap-1.5 font-mono text-[10px] text-zinc-500">
-        <span className="inline-block size-1.5 rounded-full bg-[#00FF66] animate-pulse" />
+        <span className="inline-block size-1.5 rounded-full bg-[#8CAE93]" />
         <span>13.56 MHz</span>
       </div>
     </div>

@@ -17,7 +17,7 @@ export default function ProductenPage() {
   const products = Object.values(REVIEW_PRODUCTS);
 
   return (
-    <div className="relative min-h-screen bg-[#070907] text-white font-sans antialiased selection:bg-[#00FF66] selection:text-black overflow-x-hidden">
+    <div className="relative min-h-screen bg-[#0E1210] text-[#F3F5F0] font-sans antialiased selection:bg-[#506654] selection:text-white overflow-x-hidden">
       {/* AMBIENT SHADER CANVAS */}
       <AmbientShaderCanvas />
 
@@ -27,13 +27,13 @@ export default function ProductenPage() {
       {/* INTRO HERO */}
       <section className="pt-32 sm:pt-40 pb-16 px-4 max-w-7xl mx-auto relative z-10">
         <div className="max-w-2xl space-y-4">
-          <div className="flex items-center gap-2 font-mono text-[10px] tracking-widest uppercase text-emerald-400">
-            <span className="size-1.5 rounded-full bg-emerald-400 animate-pulse" />
+          <div className="flex items-center gap-2 font-mono text-[10px] tracking-widest uppercase text-[#A4C2A9]">
+            <span className="size-1.5 rounded-full bg-[#8CAE93]" />
             <span>DE ORIGINELE PRODUCTVOORBEELDEN</span>
           </div>
           <h1 className="font-display text-4xl sm:text-6xl uppercase tracking-tight text-white leading-tight">
             VAN DICHTBIJ.<br />
-            <span className="text-emerald-400">IN BEELD.</span>
+            <span className="text-[#A4C2A9]">IN BEELD.</span>
           </h1>
           <p className="font-sans text-sm sm:text-base text-zinc-400 leading-relaxed">
             Bekijk de oorspronkelijke foto’s van onze stickers, kaarten en tafeldisplays. Ook leverbaar in jouw exacte huisstijl, met logo of QR-code. Uitvoering, prijs en staffels bespreken we samen.
@@ -41,7 +41,7 @@ export default function ProductenPage() {
           <div className="pt-2">
             <Link
               href="/#collectie"
-              className="inline-flex items-center gap-2 font-mono text-xs font-bold text-emerald-400 hover:underline"
+              className="inline-flex items-center gap-2 font-mono text-xs font-bold text-[#A4C2A9] hover:underline"
             >
               <ArrowLeft className="size-3.5" />
               <span>Terug naar de 3D showroom &amp; studio</span>
@@ -56,8 +56,8 @@ export default function ProductenPage() {
           {products.map((p) => (
             <SpotlightCard
               key={p.id}
-              className="bg-black/70 border-zinc-800 p-0 overflow-hidden flex flex-col justify-between group shadow-2xl"
-              spotlightColor="rgba(0, 255, 102, 0.12)"
+              className="bg-[#121614]/90 border-zinc-800 p-0 overflow-hidden flex flex-col justify-between group shadow-2xl"
+              spotlightColor="rgba(255, 255, 255, 0.08)"
             >
               {/* Product Photo with Glass Effect */}
               <div className="relative w-full aspect-[4/3] bg-zinc-950 overflow-hidden">
@@ -68,8 +68,8 @@ export default function ProductenPage() {
                   className="object-cover transition-transform duration-700 group-hover:scale-105"
                   sizes="(max-width: 768px) 100vw, 33vw"
                 />
-                <div className="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-black/85 backdrop-blur-md border border-white/20 font-mono text-[9px] uppercase tracking-wider text-emerald-400 font-bold">
-                  {`${p.number} // ${p.title}`}
+                <div className="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-black/85 backdrop-blur-md border border-white/20 font-mono text-[9px] uppercase tracking-wider text-[#A4C2A9] font-bold">
+                  {`${p.number} · ${p.title}`}
                 </div>
               </div>
 
@@ -90,7 +90,7 @@ export default function ProductenPage() {
                   </span>
                   <a
                     href="tel:+31623916558"
-                    className="font-bold text-emerald-400 hover:underline flex items-center gap-1"
+                    className="font-bold text-[#A4C2A9] hover:underline flex items-center gap-1"
                   >
                     <span>Vraag advies aan</span>
                     <ArrowRight className="size-3" />
@@ -106,7 +106,7 @@ export default function ProductenPage() {
                     rel="noopener noreferrer"
                     className="w-full py-2.5 rounded-xl bg-zinc-900 hover:bg-zinc-800 border border-zinc-700 text-zinc-200 hover:text-white font-mono text-xs flex items-center justify-center gap-2 transition-all cursor-pointer"
                   >
-                    <MessageSquare className="size-3.5 text-emerald-400" />
+                    <MessageSquare className="size-3.5 text-[#A4C2A9]" />
                     <span>WhatsApp voor sample ↗</span>
                   </a>
                 </div>

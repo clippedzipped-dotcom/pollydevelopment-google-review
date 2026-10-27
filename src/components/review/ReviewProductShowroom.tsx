@@ -80,13 +80,13 @@ export function ReviewProductShowroom({
       {/* SECTION INTRO */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-white/10 pb-8">
         <div>
-          <div className="flex items-center gap-2 font-mono text-[10px] tracking-widest uppercase text-emerald-400 mb-2">
-            <span className="size-1.5 rounded-full bg-emerald-400 animate-pulse" />
+          <div className="flex items-center gap-2 font-mono text-[10px] tracking-widest uppercase text-zinc-400 mb-2">
+            <span className="size-1.5 rounded-full bg-[#A4C2A9]" />
             <span>DE COLLECTIE · DRIE VORMEN HELEMAAL VAN JOU</span>
           </div>
           <h2 className="font-display text-3xl sm:text-5xl lg:text-6xl tracking-tight text-white uppercase leading-[0.95]">
             JOUW HUISSTIJL.<br />
-            <span className="text-emerald-400">TANGIBLE HARDWARE.</span>
+            <span className="text-[#A4C2A9]">TANGIBLE HARDWARE.</span>
           </h2>
         </div>
         <p className="font-sans text-sm sm:text-base text-zinc-400 max-w-md leading-relaxed">
@@ -173,14 +173,14 @@ export function ReviewProductShowroom({
               className={cn(
                 "flex items-center gap-2 px-3 py-2 rounded-xl border font-mono text-xs font-bold transition-all cursor-pointer active:scale-[0.98]",
                 showLogo
-                  ? "bg-zinc-800 text-white border-emerald-400 shadow-sm"
+                  ? "bg-white/10 text-white border-white/25 shadow-sm"
                   : "bg-black/40 text-zinc-500 border-zinc-800 hover:text-zinc-300"
               )}
             >
               <div
                 className={cn(
                   "size-4 rounded border flex items-center justify-center",
-                  showLogo ? "bg-emerald-500 border-emerald-500 text-black" : "border-zinc-600"
+                  showLogo ? "bg-[#506654] border-[#67826C] text-white" : "border-zinc-600"
                 )}
               >
                 {showLogo && <Check className="size-3 stroke-[3]" />}
@@ -198,14 +198,14 @@ export function ReviewProductShowroom({
               className={cn(
                 "flex items-center gap-2 px-3 py-2 rounded-xl border font-mono text-xs font-bold transition-all cursor-pointer active:scale-[0.98]",
                 showQr
-                  ? "bg-zinc-800 text-white border-emerald-400 shadow-sm"
+                  ? "bg-white/10 text-white border-white/25 shadow-sm"
                   : "bg-black/40 text-zinc-500 border-zinc-800 hover:text-zinc-300"
               )}
             >
               <div
                 className={cn(
                   "size-4 rounded border flex items-center justify-center",
-                  showQr ? "bg-emerald-500 border-emerald-500 text-black" : "border-zinc-600"
+                  showQr ? "bg-[#506654] border-[#67826C] text-white" : "border-zinc-600"
                 )}
               >
                 {showQr && <Check className="size-3 stroke-[3]" />}
@@ -225,14 +225,14 @@ export function ReviewProductShowroom({
             value={businessName}
             onChange={(e) => setBusinessName(e.target.value)}
             placeholder="Jouw Zaak"
-            className="w-full px-3.5 py-2 rounded-xl border border-zinc-800 bg-zinc-900/80 font-mono text-xs text-white placeholder-zinc-500 focus:outline-none focus:border-emerald-400 focus:ring-1 focus:ring-emerald-400"
+            className="w-full px-3.5 py-2 rounded-xl border border-white/10 bg-black/40 font-mono text-xs text-white placeholder-zinc-500 focus:outline-none focus:border-white/30 focus:ring-1 focus:ring-white/20"
           />
         </div>
 
         {/* Studio Status Notification line */}
         <div className="md:col-span-12 pt-3 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-2 font-mono text-[10px] text-zinc-400">
           <div className="flex items-center gap-2">
-            <span className="size-1.5 rounded-full bg-emerald-400" />
+            <span className="size-1.5 rounded-full bg-[#A4C2A9]" />
             <span>
               Voorbeeld: <strong className="text-white">{swatch.dutchName}</strong>, {showLogo ? "met" : "zonder"} logo en {showQr ? "met" : "zonder"} QR-code. Formaat: {product.formFactor}.
             </span>
@@ -240,7 +240,7 @@ export function ReviewProductShowroom({
           <button
             type="button"
             onClick={() => setViewMode(viewMode === "3d" ? "photo" : "3d")}
-            className="text-emerald-400 hover:underline cursor-pointer"
+            className="text-zinc-300 hover:text-white underline cursor-pointer"
           >
             {viewMode === "3d" ? "Bekijk originele productfoto ↗" : "Terug naar 3D huisstijl ↗"}
           </button>
@@ -253,8 +253,8 @@ export function ReviewProductShowroom({
         <div className="lg:col-span-7 flex flex-col items-center">
           <div className="w-full rounded-3xl border border-white/10 bg-gradient-to-b from-black/80 to-[#0A0D0B] p-6 sm:p-10 shadow-2xl relative overflow-hidden flex flex-col items-center justify-center min-h-[480px]">
             {/* Top Scene Caption */}
-            <div className="w-full flex items-center justify-between font-mono text-[10px] text-zinc-500 mb-4 pb-2 border-b border-white/5">
-              <span>SPECIMEN // {product.number} {product.title.toUpperCase()}</span>
+            <div className="w-full flex items-center justify-between font-mono text-[10px] text-zinc-400 mb-4 pb-2 border-b border-white/5">
+              <span>MODEL · {product.number} {product.title.toUpperCase()}</span>
               <span>13.560 MHz HF NFC</span>
             </div>
 
@@ -286,7 +286,7 @@ export function ReviewProductShowroom({
               <span className="font-bold text-white uppercase tracking-wider">
                 {product.title}
               </span>
-              <span className="text-emerald-400 font-bold">
+              <span className="text-[#A4C2A9] font-bold">
                 {product.priceNote}
               </span>
             </div>
@@ -319,7 +319,7 @@ export function ReviewProductShowroom({
                 >
                   <div className="flex items-center justify-between text-[10px] text-zinc-500 group-hover:text-zinc-600 font-mono mb-1">
                     <span>SALES &amp; ADVIES</span>
-                    <Phone className="size-3 group-hover:text-emerald-600" />
+                    <Phone className="size-3 group-hover:text-zinc-900" />
                   </div>
                   <div>
                     <span className="font-bold text-xs block">Bel Joey</span>
@@ -336,7 +336,7 @@ export function ReviewProductShowroom({
                 >
                   <div className="flex items-center justify-between text-[10px] text-zinc-500 group-hover:text-zinc-600 font-mono mb-1">
                     <span>DESIGN &amp; HUISSTIJL</span>
-                    <Phone className="size-3 group-hover:text-emerald-600" />
+                    <Phone className="size-3 group-hover:text-zinc-900" />
                   </div>
                   <div>
                     <span className="font-bold text-xs block">Bel Luc</span>
@@ -358,7 +358,7 @@ export function ReviewProductShowroom({
                     )}`;
                     window.open(url, "_blank");
                   }}
-                  className="w-full py-3.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-black font-mono text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(0,255,102,0.3)] transition-all cursor-pointer"
+                  className="w-full py-3.5 rounded-xl bg-[#F5F6F2] hover:bg-white text-zinc-950 font-mono text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2 shadow-md transition-all cursor-pointer"
                 >
                   <span className="flex items-center justify-center gap-2">
                     <MessageSquare className="size-4" />
@@ -388,7 +388,7 @@ export function ReviewProductShowroom({
           <div className="p-5 rounded-3xl border border-zinc-800 bg-black/60 shadow-xl space-y-3">
             <div className="flex items-center justify-between font-mono text-[10px] text-zinc-400 uppercase tracking-widest">
               <span className="flex items-center gap-1.5">
-                <Printer className="size-3.5 text-emerald-400" />
+                <Printer className="size-3.5 text-[#A4C2A9]" />
                 <span className="font-bold text-white">ORDER SPECIFICATIE BON</span>
               </span>
               <button
@@ -409,7 +409,7 @@ export function ReviewProductShowroom({
                   <ReceiptPrinter.Paper className="p-4 text-zinc-900 bg-[#FAF9F5] shadow-xl text-[10px] space-y-2 font-mono">
                     <div className="text-center pb-2 border-b border-dashed border-zinc-400">
                       <span className="font-bold block tracking-widest text-[11px]">
-                        POLLYDEVELOPMENT // REVIEW TAGS
+                        POLLYDEVELOPMENT · REVIEW TAGS
                       </span>
                       <span className="text-[9px] text-zinc-600 block">
                         AMSTERDAM · NEDERLAND &amp; BELGIË
@@ -438,7 +438,7 @@ export function ReviewProductShowroom({
                       </div>
                       <div className="flex justify-between">
                         <span className="text-zinc-600">STATUS:</span>
-                        <span className="font-bold text-emerald-800">OFFERTE OP AANVRAAG</span>
+                        <span className="font-bold text-zinc-900">OFFERTE OP AANVRAAG</span>
                       </div>
                     </div>
 
