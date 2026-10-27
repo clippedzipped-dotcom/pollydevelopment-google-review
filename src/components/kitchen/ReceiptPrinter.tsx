@@ -1,6 +1,6 @@
 "use client";
 
-import { CheckCircle2, Loader2, Download, X } from "lucide-react";
+import { CheckCircle2, Loader2 } from "lucide-react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import {
   type ComponentPropsWithoutRef,
@@ -177,7 +177,7 @@ export function ReceiptPrinterStatus({
   label,
   ...props
 }: ComponentPropsWithoutRef<"div"> & { label?: string }) {
-  const { animate, shouldMove, stage } = useReceiptPrinter("ReceiptPrinter.Status");
+  const { animate, stage } = useReceiptPrinter("ReceiptPrinter.Status");
   const isComplete = stage === "complete";
 
   const defaultLabels: Record<ReceiptPrinterStage, string> = {

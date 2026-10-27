@@ -81,17 +81,22 @@ export function ScrambleText({
   const [displayText, setDisplayText] = useState(() => scrambleText(children, 0, "stable"));
 
   useEffect(() => {
+    let animId: number;
+    let timer: number;
     const segments = getTextSegments(children);
+
     if (segments.length === 0 || intervalMs <= 0 || shouldReduceMotion()) {
-      setDisplayText(children);
-      return;
+      animId = requestAnimationFrame(() => setDisplayText(children));
+      return () => cancelAnimationFrame(animId);
     }
 
     let revealedCount = 0;
     const revealStep = getRevealStep(segments.length);
-    setDisplayText(scrambleSegments(segments, revealedCount, "random"));
+    animId = requestAnimationFrame(() => {
+      setDisplayText(scrambleSegments(segments, revealedCount, "random"));
+    });
 
-    const timer = window.setInterval(() => {
+    timer = window.setInterval(() => {
       revealedCount = Math.min(segments.length, revealedCount + revealStep);
       setDisplayText(scrambleSegments(segments, revealedCount, "random"));
       if (revealedCount >= segments.length) {
@@ -100,6 +105,7 @@ export function ScrambleText({
     }, intervalMs);
 
     return () => {
+      cancelAnimationFrame(animId);
       window.clearInterval(timer);
     };
   }, [children, intervalMs, triggerKey]);

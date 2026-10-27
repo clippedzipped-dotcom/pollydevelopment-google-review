@@ -101,7 +101,7 @@ export default function ProductenPage() {
                   sizes="(max-width: 768px) 100vw, 33vw"
                 />
                 <div className="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-black/80 backdrop-blur-md border border-white/20 font-mono text-[9px] uppercase tracking-wider text-emerald-400 font-bold">
-                  {p.number} // {p.title}
+                  {`${p.number} // ${p.title}`}
                 </div>
               </div>
 

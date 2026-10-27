@@ -8,11 +8,6 @@ import {
   MessageSquare,
   ArrowRight,
   ChevronDown,
-  Sparkles,
-  Shield,
-  Layers,
-  Star,
-  CheckCircle2,
 } from "lucide-react";
 
 export default function HomePage() {
@@ -91,13 +86,8 @@ export default function HomePage() {
         </div>
       </header>
 
-      {/* HERO SECTION: Interactive Tap Demo Story */}
-      <section
-        id="tap-demo"
-        className="relative z-10 pt-32 sm:pt-36 pb-20 px-4 max-w-7xl mx-auto border-b border-white/10"
-      >
-        <InteractiveTapDemoPhone />
-      </section>
+      {/* HERO SECTION: Interactive Tap Demo Story (Authentic PollyDevelopment Sticky Scroll Engine) */}
+      <InteractiveTapDemoPhone />
 
       {/* INTRO BAND */}
       <section className="relative z-10 py-16 px-4 bg-[#0B0E0C] border-b border-white/10 text-center">

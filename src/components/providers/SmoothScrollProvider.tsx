@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef, createContext, useContext } from "react";
+import React, { useEffect, useState, createContext, useContext } from "react";
 import Lenis from "lenis";
 import "lenis/dist/lenis.css";
 
@@ -15,7 +15,7 @@ export function useSmoothScroll() {
 }
 
 export function SmoothScrollProvider({ children }: { children: React.ReactNode }) {
-  const lenisRef = useRef<Lenis | null>(null);
+  const [lenisInstance, setLenisInstance] = useState<Lenis | null>(null);
 
   useEffect(() => {
     // Only initialize smooth scroll on client with fine pointer or desktop/touch with wheel
@@ -30,7 +30,7 @@ export function SmoothScrollProvider({ children }: { children: React.ReactNode }
       infinite: false,
     });
 
-    lenisRef.current = lenis;
+    setLenisInstance(lenis);
 
     // Expose lenis globally for external synchronizers (Three.js, custom anchors)
     (window as unknown as { __lenis?: Lenis }).__lenis = lenis;
@@ -57,13 +57,13 @@ export function SmoothScrollProvider({ children }: { children: React.ReactNode }
       window.removeEventListener("nfc:modal-state", handleModalState);
       cancelAnimationFrame(animId);
       lenis.destroy();
-      lenisRef.current = null;
+      setLenisInstance(null);
       delete (window as unknown as { __lenis?: Lenis }).__lenis;
     };
   }, []);
 
   return (
-    <SmoothScrollContext.Provider value={{ lenis: lenisRef.current }}>
+    <SmoothScrollContext.Provider value={{ lenis: lenisInstance }}>
       {children}
     </SmoothScrollContext.Provider>
   );

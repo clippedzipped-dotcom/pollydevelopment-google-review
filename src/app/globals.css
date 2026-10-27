@@ -281,3 +281,191 @@ html.has-cursor textarea {
   }
 }
 
+/* AUTHENTIC POLLYDEVELOPMENT TAP STORY ENGINE */
+.tap-story {
+  position: relative;
+  width: 100%;
+}
+.tap-live {
+  height: 340svh;
+  position: relative;
+}
+.tap-stage {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+.tap-demo {
+  position: relative;
+  height: 520px;
+  width: 100%;
+  --phone-width: 216px;
+  perspective: 1600px;
+  isolation: isolate;
+}
+.tap-surface {
+  position: absolute;
+  inset: 4% -12% 4% -4%;
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 50%, rgba(38, 62, 48, 0.45) 0%, transparent 70%);
+  pointer-events: none;
+}
+.nfc-card {
+  position: absolute;
+  left: 7%;
+  top: 27%;
+  width: 176px;
+  aspect-ratio: 155/300;
+  transform: rotate(-9deg);
+  filter: drop-shadow(0 18px 20px rgba(0, 0, 0, 0.5));
+  z-index: 10;
+}
+.nfc-photo {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  clip-path: polygon(4% 2%, 93% 8%, 96% 93%, 4% 99%);
+}
+.nfc-photo img {
+  position: absolute;
+  max-width: none;
+  width: 580.645%;
+  height: 200%;
+  left: -329.032%;
+  top: -65%;
+  object-fit: fill;
+}
+.demo-phone {
+  position: absolute;
+  left: 53%;
+  top: 6%;
+  width: var(--phone-width);
+  height: calc(var(--phone-width) * 2.05);
+  padding: 7px;
+  border-radius: 36px;
+  background: #242c2a;
+  box-shadow: inset 0 0 0 2px #56605c, 0 30px 50px rgba(0, 0, 0, 0.6);
+  transform: rotate(9deg);
+  z-index: 20;
+}
+.phone-screen {
+  position: relative;
+  height: 100%;
+  border-radius: 29px;
+  overflow: hidden;
+  background: #dce5d5;
+  color: #172a27;
+  font-family: var(--font-sans);
+}
+.phone-status {
+  position: absolute;
+  top: 13px;
+  left: 19px;
+  right: 17px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  font-weight: 700;
+  z-index: 5;
+}
+.phone-island {
+  position: absolute;
+  top: 9px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 65px;
+  height: 19px;
+  border-radius: 20px;
+  background: #18201d;
+  z-index: 6;
+}
+.phone-home {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(150deg, #e7ecdf 10%, #a4b697 58%, #53785d 100%);
+  padding: 60px 20px 20px;
+  text-align: center;
+}
+.phone-notification {
+  position: absolute;
+  top: 50px;
+  left: 9px;
+  right: 9px;
+  z-index: 25;
+  background: #f9fbf5;
+  box-shadow: 0 8px 22px rgba(23, 42, 39, 0.25);
+  border-radius: 13px;
+  padding: 10px 9px;
+  display: flex;
+  gap: 9px;
+  align-items: center;
+}
+.phone-review {
+  position: absolute;
+  inset: 0;
+  background: #fbfcf8;
+  padding-top: 40px;
+  z-index: 15;
+}
+.tap-ring {
+  position: absolute;
+  left: 26%;
+  top: 24%;
+  width: 94px;
+  height: 94px;
+  border: 2px solid #00FF66;
+  border-radius: 50%;
+  opacity: 0;
+  z-index: 12;
+  box-shadow: 0 0 25px rgba(0, 255, 102, 0.6), inset 0 0 15px rgba(0, 255, 102, 0.4);
+}
+
+@media (max-width: 1100px) {
+  .tap-demo {
+    --phone-width: 195px;
+  }
+  .nfc-card {
+    width: 155px;
+    left: 2%;
+  }
+  .demo-phone {
+    left: 48%;
+  }
+}
+
+@media (max-width: 900px) {
+  .tap-live {
+    height: 310svh;
+  }
+  .tap-demo {
+    height: 380px;
+    max-width: 440px;
+    margin: auto;
+    --phone-width: 160px;
+  }
+  .nfc-card {
+    width: 120px;
+    left: 8%;
+    top: 22%;
+  }
+  .demo-phone {
+    left: 50%;
+    top: 2%;
+    padding: 5px;
+    border-radius: 27px;
+  }
+  .phone-screen {
+    border-radius: 22px;
+  }
+  .tap-ring {
+    left: 28%;
+    top: 18%;
+    width: 70px;
+    height: 70px;
+  }
+}
+
