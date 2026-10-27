@@ -26,17 +26,21 @@ import {
   Layers,
   ArrowRight,
   RotateCw,
+  Disc,
+  Monitor,
 } from "lucide-react";
 import confetti from "canvas-confetti";
 import {
   COLOR_SWATCHES,
   ReviewColorSwatch,
+  REVIEW_PRODUCTS,
 } from "@/data/review-products";
 import {
   playNfcTapSound,
   playMechanicalClick,
   playTickSound,
   playConfirmSound,
+  playTabSwitch,
   triggerHaptic,
   setSoundEnabled,
 } from "@/helpers/sound-effects";
@@ -60,18 +64,23 @@ export function InteractiveTapDemoPhone({
   className,
 }: InteractiveTapDemoPhoneProps) {
   const containerRef = useRef<HTMLElement>(null);
+  const stageRef = useRef<HTMLDivElement>(null);
   const cardRef = useRef<HTMLDivElement>(null);
 
   // Business Customizer state
   const [businessName, setBusinessName] = useState(initialBusinessName);
   const [cardMode, setCardMode] = useState<"3d" | "photo">("3d");
+  const [selectedProductId, setSelectedProductId] = useState<"card" | "sticker" | "display">("card");
   const [selectedColor, setSelectedColor] = useState<ReviewColorSwatch>("sage");
   const [isFlipped, setIsFlipped] = useState(false);
 
-  // 3D Tilt & Glare state for the 3D card specimen
+  // 3D Tilt & Specular Glare state
   const [rotateX, setRotateX] = useState(0);
   const [rotateY, setRotateY] = useState(0);
   const [glarePos, setGlarePos] = useState({ x: 50, y: 50, opacity: 0 });
+
+  // Spotlight stage position for living ambient lighting
+  const [spotlightPos, setSpotlightPos] = useState({ x: 50, y: 50 });
 
   // Review interaction state inside phone
   const [rating, setRating] = useState(5);
@@ -85,6 +94,7 @@ export function InteractiveTapDemoPhone({
   const [qrCodeDataUrl, setQrCodeDataUrl] = useState<string>("");
 
   const swatch = COLOR_SWATCHES[selectedColor];
+  const product = REVIEW_PRODUCTS[selectedProductId];
 
   // Generate dynamic QR code for the business review slug
   useEffect(() => {
@@ -296,6 +306,18 @@ export function InteractiveTapDemoPhone({
   const chap3Opacity = useTransform(activeProgress, [0, 0.54, 0.62, 1], [0, 0, 1, 1]);
   const chap3Y = useTransform(activeProgress, [0, 0.54, 0.62, 1], [20, 20, 0, 0]);
 
+  // Stage Mouse Move for Living Spotlight & 3D Specimen Tilt
+  const handleStageMouseMove = (e: MouseEvent<HTMLDivElement>) => {
+    if (!stageRef.current) return;
+    const rect = stageRef.current.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    setSpotlightPos({
+      x: (x / rect.width) * 100,
+      y: (y / rect.height) * 100,
+    });
+  };
+
   // Card Mouse Move for 3D Specimen Glare & Tilt
   const handleCardMouseMove = (e: MouseEvent<HTMLDivElement>) => {
     if (!cardRef.current || cardMode !== "3d") return;
@@ -441,21 +463,34 @@ export function InteractiveTapDemoPhone({
       )}
     >
       {/* ========================================================================= */}
-      {/* AMBIENT LIVING ATMOSPHERE & CAD TECHNICAL GRID (The Kitchen Environment)   */}
+      {/* AMBIENT LIVING ATMOSPHERE & CAD TECHNICAL GRID (The Kitchen Standard)     */}
       {/* ========================================================================= */}
       <div
         aria-hidden="true"
-        className="pointer-events-none fixed inset-0 z-0 bg-[radial-gradient(circle_at_65%_35%,rgba(38,62,48,0.28)_0%,transparent_60%)]"
+        className="pointer-events-none fixed inset-0 z-0 bg-[radial-gradient(circle_at_65%_35%,rgba(0,255,102,0.06)_0%,rgba(38,62,48,0.22)_35%,transparent_65%)]"
       />
       <div
         aria-hidden="true"
-        className="pointer-events-none fixed inset-0 z-0 opacity-25 cad-grid-pattern"
+        className="pointer-events-none fixed inset-0 z-0 opacity-20 cad-grid-pattern"
       />
 
       {/* ========================================================================= */}
       {/* STICKY STAGE VIEWPORT (100svh pinned during 260svh scrub)                 */}
       {/* ========================================================================= */}
-      <div className="sticky top-0 h-screen min-h-[100svh] w-full flex items-center justify-center overflow-hidden z-10">
+      <div
+        ref={stageRef}
+        onMouseMove={handleStageMouseMove}
+        className="sticky top-0 h-screen min-h-[100svh] w-full flex items-center justify-center overflow-hidden z-10"
+      >
+        {/* Dynamic Living Cursor Spotlight */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 z-0 transition-opacity duration-300"
+          style={{
+            background: `radial-gradient(650px circle at ${spotlightPos.x}% ${spotlightPos.y}%, rgba(0, 255, 102, 0.08) 0%, rgba(38, 62, 48, 0.05) 40%, transparent 80%)`,
+          }}
+        />
+
         <div className="w-full max-w-7xl mx-auto px-4 sm:px-8 grid lg:grid-cols-12 gap-8 lg:gap-10 items-center relative z-10 pt-16 sm:pt-20">
           {/* ========================================================================= */}
           {/* LEFT COLUMN: Narrative Chapters, Live Customizer & Tactile Controls       */}
@@ -468,7 +503,7 @@ export function InteractiveTapDemoPhone({
             </div>
 
             {/* Cross-fading Narrative Chapters */}
-            <div className="relative min-h-[200px] sm:min-h-[220px] w-full">
+            <div className="relative min-h-[190px] sm:min-h-[210px] w-full">
               {/* Chapter 1: Ruststand */}
               <motion.div
                 style={{ opacity: chap1Opacity, y: chap1Y }}
@@ -484,7 +519,7 @@ export function InteractiveTapDemoPhone({
                   </span>
                 </h1>
                 <p className="font-sans text-sm sm:text-base text-zinc-400 mt-3 sm:mt-4 leading-relaxed max-w-md">
-                  Van een fijn klantcontact naar een geverifieerde 5-sterren Google review. Met één simpele tik op jouw 3D-ontworpen NFC-kaart of sticker.
+                  Van een fijn klantcontact naar een geverifieerde 5-sterren Google review. Met één simpele tik op jouw 3D-ontworpen NFC-kaart, sticker of tafeldisplay.
                 </p>
               </motion.div>
 
@@ -528,13 +563,70 @@ export function InteractiveTapDemoPhone({
             </div>
 
             {/* LIVE CUSTOMIZER & 3D STUDIO CONTROLS (The Kitchen Standard) */}
-            <div className="w-full p-3 sm:p-3.5 rounded-2xl bg-zinc-950/80 border border-zinc-800/80 backdrop-blur-xl shadow-2xl mt-1 mb-3 space-y-2.5">
+            <div className="w-full p-3 sm:p-4 rounded-2xl bg-[#0c100e]/85 border border-white/10 backdrop-blur-2xl shadow-[inset_0_1px_0_rgba(255,255,255,0.12),0_20px_45px_rgba(0,0,0,0.85)] mt-1 mb-3 space-y-3">
+              {/* Header with Product Form-Factor Selector */}
               <div className="flex items-center justify-between font-mono text-[9px] uppercase tracking-widest text-zinc-400">
                 <span className="flex items-center gap-1.5 text-emerald-400 font-bold">
                   <Sparkles className="size-3" />
-                  3D HARDWARE CUSTOMIZER:
+                  3D HARDWARE VORMFACTOR:
                 </span>
-                <span className="text-zinc-500 hidden sm:inline">LIVE WEERGAVE IN ANIMATIE</span>
+
+                {/* Form-Factor Segmented Control */}
+                <div className="flex items-center gap-1 p-0.5 rounded-lg bg-black/60 border border-zinc-800">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setSelectedProductId("card");
+                      playTabSwitch();
+                      triggerHaptic("light");
+                    }}
+                    className={cn(
+                      "px-2 py-0.5 rounded-md font-mono text-[8px] uppercase transition-all cursor-pointer flex items-center gap-1",
+                      selectedProductId === "card"
+                        ? "bg-emerald-500/20 text-emerald-300 font-bold border border-emerald-500/40"
+                        : "text-zinc-500 hover:text-zinc-300 border border-transparent"
+                    )}
+                  >
+                    <CreditCard className="size-2.5" />
+                    <span>Pasje</span>
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setSelectedProductId("sticker");
+                      playTabSwitch();
+                      triggerHaptic("light");
+                    }}
+                    className={cn(
+                      "px-2 py-0.5 rounded-md font-mono text-[8px] uppercase transition-all cursor-pointer flex items-center gap-1",
+                      selectedProductId === "sticker"
+                        ? "bg-emerald-500/20 text-emerald-300 font-bold border border-emerald-500/40"
+                        : "text-zinc-500 hover:text-zinc-300 border border-transparent"
+                    )}
+                  >
+                    <Disc className="size-2.5" />
+                    <span>Sticker</span>
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setSelectedProductId("display");
+                      playTabSwitch();
+                      triggerHaptic("light");
+                    }}
+                    className={cn(
+                      "px-2 py-0.5 rounded-md font-mono text-[8px] uppercase transition-all cursor-pointer flex items-center gap-1",
+                      selectedProductId === "display"
+                        ? "bg-emerald-500/20 text-emerald-300 font-bold border border-emerald-500/40"
+                        : "text-zinc-500 hover:text-zinc-300 border border-transparent"
+                    )}
+                  >
+                    <Monitor className="size-2.5" />
+                    <span>Display</span>
+                  </button>
+                </div>
               </div>
 
               {/* Business Name Input & Presets */}
@@ -587,13 +679,17 @@ export function InteractiveTapDemoPhone({
                         }}
                         style={{ backgroundColor: c.primaryBg }}
                         className={cn(
-                          "size-5 rounded-full border transition-all cursor-pointer",
+                          "size-5 rounded-full border transition-all cursor-pointer relative",
                           isSelected
-                            ? "border-emerald-400 scale-125 shadow-[0_0_8px_#00FF66]"
+                            ? "border-emerald-400 scale-125 shadow-[0_0_10px_#00FF66]"
                             : "border-zinc-700 hover:scale-110 opacity-70 hover:opacity-100"
                         )}
                         title={c.name}
-                      />
+                      >
+                        {isSelected && (
+                          <span className="absolute inset-0 m-auto size-1.5 rounded-full bg-emerald-400" />
+                        )}
+                      </button>
                     );
                   })}
                 </div>
@@ -606,7 +702,7 @@ export function InteractiveTapDemoPhone({
                       className="flex items-center gap-1 text-[9px] text-zinc-400 hover:text-emerald-400 transition-colors cursor-pointer"
                     >
                       <RotateCw className="size-2.5" />
-                      <span>{isFlipped ? "Naar voorkant" : "Draai om 180°"}</span>
+                      <span>{isFlipped ? "Voorkant" : "Draai om 180°"}</span>
                     </button>
                   )}
 
@@ -624,7 +720,7 @@ export function InteractiveTapDemoPhone({
               </div>
             </div>
 
-            {/* STEP SCRUBBER PILLS (The Kitchen Skeuomorfisme 2.0) */}
+            {/* STEP SCRUBBER PILLS (With Active LED Indicators) */}
             <div className="w-full grid grid-cols-3 gap-2">
               <button
                 type="button"
@@ -636,7 +732,17 @@ export function InteractiveTapDemoPhone({
                     : "bg-black/40 border-zinc-800 text-zinc-500 hover:text-zinc-300"
                 )}
               >
-                <div className="text-[9px] text-emerald-400 font-bold">STAP 01</div>
+                <div className="flex items-center gap-1.5">
+                  <span
+                    className={cn(
+                      "size-1.5 rounded-full transition-all",
+                      activeChapter === 1
+                        ? "bg-emerald-400 shadow-[0_0_6px_#00FF66]"
+                        : "bg-zinc-700"
+                    )}
+                  />
+                  <span className="text-[9px] text-emerald-400 font-bold">STAP 01</span>
+                </div>
                 <div className="text-xs font-bold mt-0.5 truncate">01. Ruststand</div>
               </button>
 
@@ -650,7 +756,17 @@ export function InteractiveTapDemoPhone({
                     : "bg-black/40 border-zinc-800 text-zinc-500 hover:text-zinc-300"
                 )}
               >
-                <div className="text-[9px] text-emerald-400 font-bold">STAP 02</div>
+                <div className="flex items-center gap-1.5">
+                  <span
+                    className={cn(
+                      "size-1.5 rounded-full transition-all",
+                      activeChapter === 2
+                        ? "bg-emerald-400 shadow-[0_0_6px_#00FF66]"
+                        : "bg-zinc-700"
+                    )}
+                  />
+                  <span className="text-[9px] text-emerald-400 font-bold">STAP 02</span>
+                </div>
                 <div className="text-xs font-bold mt-0.5 truncate">02. NFC Tik</div>
               </button>
 
@@ -664,7 +780,17 @@ export function InteractiveTapDemoPhone({
                     : "bg-black/40 border-zinc-800 text-zinc-500 hover:text-zinc-300"
                 )}
               >
-                <div className="text-[9px] text-emerald-400 font-bold">STAP 03</div>
+                <div className="flex items-center gap-1.5">
+                  <span
+                    className={cn(
+                      "size-1.5 rounded-full transition-all",
+                      activeChapter === 3
+                        ? "bg-emerald-400 shadow-[0_0_6px_#00FF66]"
+                        : "bg-zinc-700"
+                    )}
+                  />
+                  <span className="text-[9px] text-emerald-400 font-bold">STAP 03</span>
+                </div>
                 <div className="text-xs font-bold mt-0.5 truncate">03. 5 Sterren</div>
               </button>
             </div>
@@ -701,14 +827,22 @@ export function InteractiveTapDemoPhone({
                 <ArrowRight className="size-3 text-emerald-400" />
               </a>
 
+              {/* Sound Equalizer Visualizer Toggle */}
               <button
                 type="button"
                 onClick={toggleSound}
-                className="p-2 rounded-xl border border-zinc-800 bg-zinc-900/60 text-zinc-400 hover:text-white transition-colors cursor-pointer"
+                className="flex items-center gap-1.5 px-2.5 py-2 rounded-xl border border-zinc-800 bg-zinc-900/60 text-zinc-400 hover:text-white transition-colors cursor-pointer"
                 title={soundOn ? "Geluid aan (Web Audio Synthesizer)" : "Geluid gedempt"}
               >
                 {soundOn ? (
-                  <Volume2 className="size-3.5 text-emerald-400" />
+                  <>
+                    <Volume2 className="size-3.5 text-emerald-400" />
+                    <div className="flex items-end gap-0.5 h-3">
+                      <span className="w-0.5 h-2 bg-emerald-400 animate-pulse" />
+                      <span className="w-0.5 h-3 bg-emerald-400 animate-pulse delay-75" />
+                      <span className="w-0.5 h-1.5 bg-emerald-400 animate-pulse delay-150" />
+                    </div>
+                  </>
                 ) : (
                   <VolumeX className="size-3.5" />
                 )}
@@ -732,7 +866,7 @@ export function InteractiveTapDemoPhone({
               />
 
               {/* ------------------------------------------------------------- */}
-              {/* THE 3D NFC SPECIMEN CARD (Tilted, Tactile & Interactive)      */}
+              {/* THE 3D NFC SPECIMEN (Card, Sticker, or Display)                */}
               {/* ------------------------------------------------------------- */}
               <motion.div
                 ref={cardRef}
@@ -759,9 +893,13 @@ export function InteractiveTapDemoPhone({
                 }}
                 className={cn(
                   "absolute z-10 cursor-pointer transition-shadow",
-                  cardMode === "3d"
-                    ? "left-[4%] sm:left-[8%] top-[24%] sm:top-[26%] w-[250px] sm:w-[290px] aspect-[85.6/53.98] rounded-2xl shadow-[0_25px_60px_-15px_rgba(0,0,0,0.9),0_0_35px_rgba(80,102,84,0.3)]"
-                    : "nfc-card"
+                  cardMode === "photo"
+                    ? "nfc-card"
+                    : selectedProductId === "sticker"
+                    ? "left-[6%] sm:left-[10%] top-[24%] sm:top-[26%] size-[220px] sm:size-[250px] rounded-full shadow-[0_25px_60px_-15px_rgba(0,0,0,0.9),0_0_35px_rgba(80,102,84,0.35)]"
+                    : selectedProductId === "display"
+                    ? "left-[6%] sm:left-[10%] top-[20%] sm:top-[22%] w-[230px] sm:w-[260px] aspect-[80/120] rounded-2xl shadow-[0_30px_70px_-10px_rgba(0,0,0,0.95),0_0_35px_rgba(80,102,84,0.3)]"
+                    : "left-[4%] sm:left-[8%] top-[24%] sm:top-[26%] w-[250px] sm:w-[290px] aspect-[85.6/53.98] rounded-2xl shadow-[0_25px_60px_-15px_rgba(0,0,0,0.9),0_0_35px_rgba(80,102,84,0.3)]"
                 )}
               >
                 {cardMode === "photo" ? (
@@ -786,7 +924,8 @@ export function InteractiveTapDemoPhone({
                         background: `linear-gradient(135deg, ${swatch.primaryBg} 0%, ${swatch.secondaryBg} 100%)`,
                       }}
                       className={cn(
-                        "absolute inset-0 flex flex-col justify-between overflow-hidden border p-4 sm:p-5 transition-colors duration-300 rounded-2xl",
+                        "absolute inset-0 flex flex-col justify-between overflow-hidden border p-4 sm:p-5 transition-colors duration-300",
+                        selectedProductId === "sticker" ? "rounded-full" : "rounded-2xl",
                         swatch.border,
                         swatch.textColor
                       )}
@@ -810,6 +949,16 @@ export function InteractiveTapDemoPhone({
                             "repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255, 255, 255, 0.08) 2px, rgba(255, 255, 255, 0.08) 4px)",
                         }}
                       />
+
+                      {/* Concentric NFC Antenna Coil for Stickers */}
+                      {selectedProductId === "sticker" && (
+                        <div
+                          aria-hidden="true"
+                          className="pointer-events-none absolute inset-3 rounded-full border border-white/20 opacity-30 flex items-center justify-center"
+                        >
+                          <div className="size-4/5 rounded-full border border-dashed border-white/25" />
+                        </div>
+                      )}
 
                       {/* Top Row: Business Brand & NFC Contact Wave */}
                       <div className="relative z-10 flex items-center justify-between">
@@ -868,7 +1017,7 @@ export function InteractiveTapDemoPhone({
                           </span>
                         </div>
 
-                        {qrCodeDataUrl && (
+                        {qrCodeDataUrl && selectedProductId !== "sticker" && (
                           <div className="size-7 rounded bg-white p-0.5 shadow">
                             {/* eslint-disable-next-line @next/next/no-img-element */}
                             <img
@@ -898,13 +1047,16 @@ export function InteractiveTapDemoPhone({
                         background: `linear-gradient(135deg, ${swatch.secondaryBg} 0%, #080A09 100%)`,
                       }}
                       className={cn(
-                        "absolute inset-0 flex flex-col justify-between overflow-hidden border p-4 sm:p-5 transition-colors duration-300 rounded-2xl",
+                        "absolute inset-0 flex flex-col justify-between overflow-hidden border p-4 sm:p-5 transition-colors duration-300",
+                        selectedProductId === "sticker" ? "rounded-full" : "rounded-2xl",
                         swatch.border,
                         "text-white"
                       )}
                     >
                       {/* Magnetic Stripe Graphic */}
-                      <div className="-mx-5 -mt-1 h-6 bg-black/90 border-y border-zinc-800" />
+                      {selectedProductId !== "sticker" && (
+                        <div className="-mx-5 -mt-1 h-6 bg-black/90 border-y border-zinc-800" />
+                      )}
 
                       {/* Concentric Copper Antenna Coil Traces */}
                       <div className="my-auto flex items-center justify-between px-2">
@@ -921,7 +1073,7 @@ export function InteractiveTapDemoPhone({
                         </div>
 
                         {qrCodeDataUrl && (
-                          <div className="size-11 rounded-lg bg-white p-1 shadow-md">
+                          <div className="size-10 sm:size-11 rounded-lg bg-white p-1 shadow-md">
                             {/* eslint-disable-next-line @next/next/no-img-element */}
                             <img
                               src={qrCodeDataUrl}
