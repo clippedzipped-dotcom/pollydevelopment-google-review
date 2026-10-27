@@ -17,6 +17,9 @@ import {
   MessageSquare,
   Printer,
   Check,
+  Sparkles,
+  CheckCircle2,
+  ShieldCheck,
 } from "lucide-react";
 import {
   playMechanicalClick,
@@ -386,7 +389,7 @@ export function ReviewProductShowroom({
                 </div>
               </div>
 
-              {/* Instant Tactile WhatsApp Quotation CTA */}
+              {/* Instant Tactile WhatsApp Quotation CTA & Free Proof Lead Magnet */}
               <div className="space-y-2 pt-1">
                 <button
                   type="button"
@@ -405,7 +408,43 @@ export function ReviewProductShowroom({
                   <span>VRAAG VRIJBLIJVEND OFFERTE AAN</span>
                 </button>
 
-                <div className="flex items-center justify-between text-[10px] font-mono text-zinc-500 px-1">
+                <button
+                  type="button"
+                  onClick={() => {
+                    playMechanicalClick();
+                    triggerHaptic("medium");
+                    const url = `https://wa.me/31610635256?text=${encodeURIComponent(
+                      `Hallo Luc! Ik stuur hierbij graag mijn logo voor een gratis digitaal drukvoorbeeld van de Google Review NFC tags (${product.title}, kleur ${swatch.name}) voor ${businessName}.`
+                    )}`;
+                    window.open(url, "_blank");
+                  }}
+                  className="w-full py-2.5 px-3 rounded-xl border border-white/20 bg-white/5 hover:bg-white/10 text-white font-mono text-[10px] sm:text-[11px] font-bold uppercase tracking-wider flex items-center justify-center gap-2 transition-all active:translate-y-0.5 cursor-pointer"
+                >
+                  <Sparkles className="size-3.5 text-[#A4C2A9]" />
+                  <span>Gratis digitaal proefontwerp met logo ↗</span>
+                </button>
+
+                {/* Trust & Value Guarantees */}
+                <div className="grid grid-cols-2 gap-2 pt-2.5 border-t border-zinc-800 font-mono text-[9px] text-zinc-400">
+                  <div className="flex items-center gap-1.5">
+                    <CheckCircle2 className="size-3 text-[#A4C2A9] shrink-0" />
+                    <span>Geen abonnement (eenmalig)</span>
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <CheckCircle2 className="size-3 text-[#A4C2A9] shrink-0" />
+                    <span>Proefontwerp binnen 2 uur</span>
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <CheckCircle2 className="size-3 text-[#A4C2A9] shrink-0" />
+                    <span>Plug &amp; Play voorgeprogrammeerd</span>
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <CheckCircle2 className="size-3 text-[#A4C2A9] shrink-0" />
+                    <span>Levenslange chipgarantie</span>
+                  </div>
+                </div>
+
+                <div className="flex items-center justify-between text-[10px] font-mono text-zinc-500 pt-1 px-1">
                   <span>* Print automatisch specificatiebon</span>
                   <a
                     href={`https://wa.me/31623916558?text=${encodeURIComponent(

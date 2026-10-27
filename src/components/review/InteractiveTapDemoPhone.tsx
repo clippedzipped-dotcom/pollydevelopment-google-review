@@ -1508,16 +1508,28 @@ export function InteractiveTapDemoPhone({
                           <p className="text-[7px] text-zinc-600 leading-relaxed max-w-[150px] mx-auto">
                             Jouw 5-sterren review is gekoppeld en verhoogt direct de Google Maps vindbaarheid van {businessName}.
                           </p>
-                          <button
-                            type="button"
-                            onClick={() => {
-                              setIsSubmitted(false);
-                              playTickSound();
-                            }}
-                            className="mt-2.5 px-3 py-1 rounded-full bg-zinc-900 hover:bg-black text-white font-mono text-[7px] uppercase tracking-wider transition-all cursor-pointer shadow-sm active:scale-95"
-                          >
-                            Opnieuw testen ↺
-                          </button>
+                          <div className="mt-2.5 flex items-center justify-center gap-1.5">
+                            <button
+                              type="button"
+                              onClick={() => {
+                                setIsSubmitted(false);
+                                playTickSound();
+                              }}
+                              className="px-2.5 py-1 rounded-full bg-zinc-200 hover:bg-zinc-300 text-zinc-800 font-mono text-[7px] uppercase tracking-wider transition-all cursor-pointer shadow-xs active:scale-95"
+                            >
+                              Opnieuw ↺
+                            </button>
+
+                            <a
+                              href="#collectie"
+                              onClick={() => {
+                                playMechanicalClick();
+                              }}
+                              className="px-2.5 py-1 rounded-full bg-[#121614] hover:bg-black text-white font-mono text-[7px] font-bold uppercase tracking-wider transition-all cursor-pointer shadow-sm active:scale-95 flex items-center gap-1"
+                            >
+                              <span>Bestel Kaart ↗</span>
+                            </a>
+                          </div>
                         </div>
                       )}
                     </div>

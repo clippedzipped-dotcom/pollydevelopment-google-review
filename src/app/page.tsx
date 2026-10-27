@@ -4,7 +4,9 @@ import { AmbientShaderCanvas } from "@/components/kitchen/AmbientShaderCanvas";
 import { ReviewProductShowroom } from "@/components/review/ReviewProductShowroom";
 import { InteractiveTapDemoPhone } from "@/components/review/InteractiveTapDemoPhone";
 import { ImpactMetricsRibbon } from "@/components/review/ImpactMetricsRibbon";
+import { ComparisonMatrix } from "@/components/review/ComparisonMatrix";
 import { InteractiveStepsBento } from "@/components/review/InteractiveStepsBento";
+import { ReviewRoiCalculator } from "@/components/review/ReviewRoiCalculator";
 import { HardwareOscilloscope } from "@/components/review/HardwareOscilloscope";
 import { DirectContactTeam } from "@/components/review/DirectContactTeam";
 import { FaqAccordion } from "@/components/review/FaqAccordion";
@@ -23,6 +25,9 @@ export default function HomePage() {
 
       {/* HARDWARE IMPACT & TELEMETRY RIBBON */}
       <ImpactMetricsRibbon />
+
+      {/* COMPARISON MATRIX: Traditional Paper vs PollyDevelopment NFC */}
+      <ComparisonMatrix />
 
       {/* INTRO HERO BAND */}
       <section className="relative z-10 py-16 px-4 bg-[#131815] border-b border-white/10 text-center">
@@ -52,6 +57,9 @@ export default function HomePage() {
 
       {/* HOE HET WERKT (INTERACTIVE 3-STEP BENTO GRID) */}
       <InteractiveStepsBento />
+
+      {/* INTERACTIVE REVIEW ROI & GROWTH CALCULATOR */}
+      <ReviewRoiCalculator />
 
       {/* TECHNICAL HARDWARE BLUEPRINT & RF OSCILLOSCOPE */}
       <HardwareOscilloscope />

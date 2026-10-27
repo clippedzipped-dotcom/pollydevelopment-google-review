@@ -54,18 +54,21 @@ export function SiteHeader() {
         </Link>
 
         {/* Center Navigation */}
-        <nav className="hidden md:flex items-center gap-6 font-mono text-xs">
+        <nav className="hidden lg:flex items-center gap-5 font-mono text-xs">
           <a href="#tap-demo" className="text-zinc-400 hover:text-white transition-colors">
             Simulatie
-          </a>
-          <a href="#hoe-het-werkt" className="text-zinc-400 hover:text-white transition-colors">
-            Hoe het werkt
           </a>
           <a href="#collectie" className="text-zinc-400 hover:text-white transition-colors">
             Collectie
           </a>
+          <a href="#hoe-het-werkt" className="text-zinc-400 hover:text-white transition-colors">
+            Hoe het werkt
+          </a>
+          <a href="#roi-calculator" className="text-[#A4C2A9] hover:text-white transition-colors font-medium">
+            Bereken Groei
+          </a>
           <Link href="/producten" className="text-zinc-400 hover:text-white transition-colors">
-            Productfoto’s
+            Foto’s
           </Link>
           <a href="#specificaties" className="text-zinc-400 hover:text-white transition-colors">
             Specificaties
@@ -114,7 +117,7 @@ export function SiteHeader() {
           </a>
 
           <a
-            href="#contact"
+            href="#collectie"
             className="flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-[#F5F6F2] hover:bg-white text-zinc-950 font-mono text-[11px] font-bold uppercase tracking-wider transition-all cursor-pointer shadow-sm active:translate-y-0.5"
           >
             <span>Offerte</span>
