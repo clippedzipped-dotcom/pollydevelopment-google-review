@@ -28,6 +28,7 @@ import {
   RotateCw,
   Disc,
   Monitor,
+  Camera,
 } from "lucide-react";
 import confetti from "canvas-confetti";
 import {
@@ -744,9 +745,19 @@ export function InteractiveTapDemoPhone({
                       setCardMode(cardMode === "3d" ? "photo" : "3d");
                       playMechanicalClick();
                     }}
-                    className="text-[9px] text-zinc-300 hover:text-white underline uppercase tracking-wider cursor-pointer"
+                    className="flex items-center gap-1 text-[9px] text-zinc-300 hover:text-white underline uppercase tracking-wider cursor-pointer"
                   >
-                    {cardMode === "3d" ? "📷 Originele Foto" : "✨ 3D Specimen"}
+                    {cardMode === "3d" ? (
+                      <>
+                        <Camera className="size-2.5 text-[#A4C2A9]" />
+                        <span>Originele Foto</span>
+                      </>
+                    ) : (
+                      <>
+                        <Sparkles className="size-2.5 text-[#A4C2A9]" />
+                        <span>3D Specimen</span>
+                      </>
+                    )}
                   </button>
                 </div>
               </div>

@@ -194,6 +194,7 @@ export function ReviewProductShowroom({
   const [isDraggingOver, setIsDraggingOver] = useState(false);
   const [linkCheckerInput, setLinkCheckerInput] = useState("");
   const [linkCheckerVerified, setLinkCheckerVerified] = useState(false);
+  const [linkCheckerType, setLinkCheckerType] = useState<"url" | "name" | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   // Receipt printer state
@@ -260,8 +261,14 @@ export function ReviewProductShowroom({
   const handleVerifyLink = () => {
     playMechanicalClick();
     triggerHaptic("light");
-    if (linkCheckerInput.trim().length > 2) {
+    const trimmed = linkCheckerInput.trim();
+    if (trimmed.length > 2) {
       setLinkCheckerVerified(true);
+      if (trimmed.includes("http") || trimmed.includes("g.page") || trimmed.includes("maps") || trimmed.includes("goo.gl")) {
+        setLinkCheckerType("url");
+      } else {
+        setLinkCheckerType("name");
+      }
     }
   };
 
@@ -715,15 +722,46 @@ export function ReviewProductShowroom({
               <button
                 type="button"
                 onClick={handleVerifyLink}
-                className="px-3 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-white text-[10px] font-bold uppercase tracking-wider cursor-pointer transition-colors active:scale-95"
+                className="px-3.5 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-white text-[10px] font-bold uppercase tracking-wider cursor-pointer transition-colors active:scale-95"
               >
                 Controleer
               </button>
             </div>
+
+            {!linkCheckerInput && businessName && businessName !== "Jouw Zaak" && (
+              <div className="pt-0.5">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setLinkCheckerInput(businessName);
+                    setLinkCheckerVerified(true);
+                    setLinkCheckerType("name");
+                    playMechanicalClick();
+                    triggerHaptic("light");
+                  }}
+                  className="text-[9.5px] text-zinc-400 hover:text-white underline cursor-pointer"
+                >
+                  Of test direct met &ldquo;{businessName}&rdquo; ↗
+                </button>
+              </div>
+            )}
+
             {linkCheckerVerified && (
-              <div className="flex items-center gap-2 text-[10px] text-[#A4C2A9] bg-[#161F18] border border-[#2B3B2E] px-3 py-1.5 rounded-lg">
-                <CheckCircle2 className="size-3.5 shrink-0" />
-                <span>Perfect: wij koppelen &amp; vergrendelen deze Google review link direct op jouw NFC chips.</span>
+              <div className="flex items-start gap-2.5 text-[10px] text-[#A4C2A9] bg-[#161F18] border border-[#2B3B2E] p-3 rounded-xl font-mono leading-relaxed">
+                <CheckCircle2 className="size-4 shrink-0 text-[#A4C2A9] mt-0.5" />
+                <div>
+                  {linkCheckerType === "url" ? (
+                    <div>
+                      <strong className="text-white block mb-0.5">Directe Google Review link gedetecteerd!</strong>
+                      <span>Joey &amp; Luc programmeren en vergrendelen deze shortlink hardwarematig (NDEF read-only lock) op jouw tags. Niemand kan jouw chip wissen of overschrijven.</span>
+                    </div>
+                  ) : (
+                    <div>
+                      <strong className="text-white block mb-0.5">Bedrijfsnaam herkend!</strong>
+                      <span>Joey &amp; Luc halen kosteloos jouw officiële Google Place ID op en sturen vooraf een digitaal drukvoorbeeld ter goedkeuring via WhatsApp of mail.</span>
+                    </div>
+                  )}
+                </div>
               </div>
             )}
           </div>
