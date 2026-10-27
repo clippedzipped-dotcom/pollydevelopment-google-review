@@ -12,7 +12,7 @@ import {
 
 export default function HomePage() {
   return (
-    <div className="relative min-h-screen bg-[#070907] text-white font-sans antialiased selection:bg-[#00FF66] selection:text-black overflow-x-hidden">
+    <div className="relative min-h-screen bg-[#070907] text-white font-sans antialiased selection:bg-[#00FF66] selection:text-black overflow-x-clip">
       {/* AMBIENT BACKGROUND GLOW */}
       <div
         aria-hidden="true"
