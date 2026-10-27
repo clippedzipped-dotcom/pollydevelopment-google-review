@@ -191,74 +191,84 @@ export function InteractiveTapDemoPhone({
     return () => unsubscribe();
   }, [activeProgress, soundOn]);
 
-  // MOTION TRANSFORMS (Calibrated to keep the phone inside bounds)
+  // MOTION TRANSFORMS (Calibrated kinematics for authentic physical contact & phone focus)
 
-  // 1. Phone Transforms
+  // 1. Phone Transforms (Meets card on tap, then straightens up into clear review focus)
   const phoneX = useTransform(
     activeProgress,
     [0, 0.15, 0.36, 0.54, 0.72, 1],
-    [0, 0, -95, -15, -15, -15]
+    [0, 0, -28, 0, 0, 0]
   );
   const phoneY = useTransform(
     activeProgress,
     [0, 0.15, 0.36, 0.54, 0.72, 1],
-    [0, 0, 36, -8, -8, -8]
+    [0, 0, 16, -4, -4, -4]
   );
   const phoneRotateZ = useTransform(
     activeProgress,
     [0, 0.15, 0.36, 0.54, 0.72, 1],
-    [10, 10, -6, -2, -2, -2]
+    [8, 8, -4, 0, 0, 0]
   );
   const phoneRotateY = useTransform(
     activeProgress,
     [0, 0.15, 0.36, 0.54, 0.72, 1],
-    [-12, -12, 8, 0, 0, 0]
+    [-10, -10, 6, 0, 0, 0]
   );
   const phoneScale = useTransform(
     activeProgress,
     [0, 0.15, 0.36, 0.54, 0.72, 1],
-    [1, 1, 1.04, 1.02, 1.02, 1.02]
+    [1, 1, 1.02, 1.05, 1.05, 1.05]
   );
 
-  // 2. Card Transforms
+  // 2. Card Transforms (Translates towards phone top edge at tap, then rests back)
+  const cardX = useTransform(
+    activeProgress,
+    [0, 0.15, 0.36, 0.52, 0.75, 1],
+    [0, 0, 85, 20, 8, 0]
+  );
   const cardY = useTransform(
     activeProgress,
-    [0, 0.15, 0.36, 0.54, 0.72, 1],
-    [0, 0, -12, 12, 12, 12]
+    [0, 0.15, 0.36, 0.52, 0.75, 1],
+    [0, 0, -14, 10, 10, 10]
   );
   const cardRotateZ = useTransform(
     activeProgress,
-    [0, 0.15, 0.36, 0.54, 0.72, 1],
-    [-8, -8, 4, -6, -6, -6]
+    [0, 0.15, 0.36, 0.52, 0.75, 1],
+    [-8, -8, 5, -5, -5, -5]
   );
   const cardScale = useTransform(
     activeProgress,
-    [0, 0.15, 0.36, 0.54, 0.72, 1],
-    [1, 1, 1.05, 1, 1, 1]
+    [0, 0.15, 0.36, 0.52, 0.75, 1],
+    [1, 1, 1.04, 0.98, 0.98, 0.98]
+  );
+  const cardOpacity = useTransform(
+    activeProgress,
+    [0, 0.45, 0.60, 1],
+    [1, 1, 0.9, 0.85]
   );
 
   // 3. Tap Sonar Ring (Centered at the NFC antenna contact point)
   const ringOpacity = useTransform(
     activeProgress,
-    [0, 0.32, 0.36, 0.43, 0.48, 1],
-    [0, 0, 0.9, 0.4, 0, 0]
+    [0, 0.32, 0.36, 0.44, 0.50, 1],
+    [0, 0, 1, 0.4, 0, 0]
   );
   const ringScale = useTransform(
     activeProgress,
-    [0, 0.32, 0.36, 0.45, 1],
-    [0.4, 0.4, 0.95, 1.9, 1.9]
+    [0, 0.32, 0.36, 0.46, 1],
+    [0.35, 0.35, 1, 2.2, 2.2]
   );
 
   // 4. Phone Screen Transitions
   const notifOpacity = useTransform(
     activeProgress,
-    [0, 0.33, 0.37, 0.48, 0.53, 1],
+    [0, 0.25, 0.32, 0.50, 0.56, 1],
     [0, 0, 1, 1, 0, 0]
   );
   const notifY = useTransform(
     activeProgress,
-    [0, 0.33, 0.37, 0.48, 0.53, 1],
-    [-16, -16, 0, 0, -14, -14]
+    [0, 0.25, 0.32, 0.50, 0.56, 1],
+    [-18, -18, 0, 0, -12, -12]
   );
 
   const homeOpacity = useTransform(
@@ -873,9 +883,11 @@ export function InteractiveTapDemoPhone({
                 onMouseMove={handleCardMouseMove}
                 onMouseLeave={handleCardMouseLeave}
                 style={{
+                  x: cardX,
                   y: cardY,
                   rotateZ: cardRotateZ,
                   scale: cardScale,
+                  opacity: cardOpacity,
                   transformStyle: "preserve-3d",
                 }}
                 animate={
@@ -1101,7 +1113,7 @@ export function InteractiveTapDemoPhone({
                   opacity: ringOpacity,
                   scale: ringScale,
                 }}
-                className="absolute z-15 left-[34%] sm:left-[36%] top-[25%] sm:top-[27%] size-24 rounded-full border-2 border-emerald-400 pointer-events-none shadow-[0_0_30px_rgba(0,255,102,0.8),inset_0_0_20px_rgba(0,255,102,0.4)]"
+                className="absolute z-15 left-[42%] sm:left-[44%] top-[12%] sm:top-[14%] size-28 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-emerald-400 pointer-events-none shadow-[0_0_35px_rgba(0,255,102,0.9),inset_0_0_20px_rgba(0,255,102,0.5)]"
               />
 
               {/* ------------------------------------------------------------- */}
@@ -1165,140 +1177,193 @@ export function InteractiveTapDemoPhone({
                     </div>
                   </motion.div>
 
-                  {/* DROP-DOWN NATIVE NOTIFICATION (Slides down at NFC tap) */}
+                  {/* DROP-DOWN NATIVE NOTIFICATION (Slides down from Dynamic Island at NFC tap) */}
                   <motion.div
                     style={{
                       opacity: notifOpacity,
                       y: notifY,
                     }}
                     onClick={() => jumpToStep(0.78)}
-                    className="phone-notification cursor-pointer group"
+                    className="absolute top-[40px] inset-x-2 z-30 p-2 sm:p-2.5 rounded-2xl bg-white/92 backdrop-blur-xl border border-white/80 shadow-[0_12px_28px_rgba(0,0,0,0.22)] cursor-pointer group flex items-center gap-2 select-none active:scale-[0.98] transition-transform"
                     title="Tik om review direct te openen"
                   >
-                    <span className="notification-icon bg-emerald-100 text-emerald-900 border border-emerald-300">
-                      G
-                    </span>
+                    <div className="size-6 sm:size-7 rounded-xl bg-gradient-to-br from-white to-zinc-100 border border-zinc-200 shadow-sm flex items-center justify-center shrink-0">
+                      <svg className="size-3.5 sm:size-4" viewBox="0 0 24 24">
+                        <path
+                          fill="#4285F4"
+                          d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
+                        />
+                        <path
+                          fill="#34A853"
+                          d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
+                        />
+                        <path
+                          fill="#FBBC05"
+                          d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"
+                        />
+                        <path
+                          fill="#EA4335"
+                          d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"
+                        />
+                      </svg>
+                    </div>
                     <div className="text-left flex-1 min-w-0">
-                      <strong className="text-zinc-950 font-bold block truncate text-[9px]">
+                      <div className="flex items-center justify-between text-[7px] uppercase font-bold text-zinc-500 tracking-wider">
+                        <span>GOOGLE KAARTEN</span>
+                        <span className="font-normal text-zinc-400">nu</span>
+                      </div>
+                      <strong className="text-zinc-950 font-bold block truncate text-[9px] leading-tight">
                         NFC-tag gedetecteerd
                       </strong>
-                      <span className="text-zinc-600 truncate block text-[8px]">
-                        Open reviewpagina van {businessName}
+                      <span className="text-zinc-600 truncate block text-[7.5px] leading-tight">
+                        Tik om reviewpagina van {businessName} te openen
                       </span>
                     </div>
-                    <ArrowRight className="size-3 text-emerald-600 transition-transform group-hover:translate-x-0.5" />
+                    <div className="size-4 sm:size-5 rounded-full bg-zinc-100 flex items-center justify-center shrink-0 text-zinc-700 group-hover:bg-emerald-500 group-hover:text-black transition-colors">
+                      <ArrowRight className="size-2.5" />
+                    </div>
                   </motion.div>
 
-                  {/* SCREEN 2: Google Review Web Page (Authentic Form) */}
+                  {/* SCREEN 2: Google Review In-App Web View (Authentic Experience) */}
                   <motion.div
                     style={{
                       opacity: reviewOpacity,
                       y: reviewY,
                       scale: reviewScale,
                     }}
-                    className="phone-review"
+                    className="absolute inset-0 bg-[#F8F9FA] z-20 flex flex-col pt-9 pb-4 px-2.5 select-none text-zinc-900"
                   >
-                    {/* Simulated Browser Address Bar */}
-                    <div className="browser-address">
-                      🔒 g.page/{businessName.toLowerCase().replace(/[^a-z0-9]/g, "")}/review
+                    {/* Simulated Safari / Chrome URL Bar */}
+                    <div className="w-full h-5 sm:h-5.5 rounded-full bg-zinc-200/90 border border-zinc-300/80 px-2 flex items-center justify-between text-[7px] font-mono text-zinc-600 mb-1.5 shadow-inner shrink-0">
+                      <span className="flex items-center gap-1 truncate max-w-[130px]">
+                        <span className="text-[6.5px]">🔒</span>
+                        <span className="truncate">g.page/{businessName.toLowerCase().replace(/[^a-z0-9]/g, "")}/review</span>
+                      </span>
+                      <span className="text-[7.5px] text-zinc-400">↻</span>
                     </div>
 
-                    {/* Review Page Body */}
-                    <div className="review-page">
+                    {/* Review Sheet Content */}
+                    <div className="flex-1 flex flex-col justify-between overflow-hidden bg-white rounded-2xl border border-zinc-200/90 p-2.5 sm:p-3 shadow-md">
                       {!isSubmitted ? (
                         <>
-                          <div className="review-brand">
-                            {businessName.slice(0, 1).toUpperCase()}
+                          <div>
+                            {/* Header with Google Brand & Business Identity */}
+                            <div className="flex items-center gap-2 mb-1.5 pb-1.5 border-b border-zinc-100">
+                              <div className="size-6 sm:size-7 rounded-full bg-emerald-800 text-white font-bold text-xs flex items-center justify-center shrink-0 shadow-sm">
+                                {businessName.slice(0, 1).toUpperCase()}
+                              </div>
+                              <div className="text-left min-w-0 flex-1">
+                                <div className="flex items-center gap-1">
+                                  <span className="text-[9.5px] sm:text-[10px] font-bold text-zinc-900 truncate block">
+                                    {businessName}
+                                  </span>
+                                  <span className="size-2.5 rounded-full bg-blue-500 text-white text-[6px] flex items-center justify-center shrink-0" title="Geverifieerd">
+                                    ✓
+                                  </span>
+                                </div>
+                                <span className="text-[7px] sm:text-[7.5px] text-zinc-500 block">
+                                  Google-beoordeling · Openbaar
+                                </span>
+                              </div>
+                            </div>
+
+                            <div className="text-center my-1">
+                              <h4 className="text-[10.5px] sm:text-[11px] font-bold text-zinc-900 leading-tight">
+                                Hoe was jouw ervaring?
+                              </h4>
+                              <p className="text-[7px] sm:text-[7.5px] text-zinc-500">
+                                Deel je beoordeling met toekomstige bezoekers
+                              </p>
+
+                              {/* 5 Golden Interactive Stars */}
+                              <div className="flex justify-center items-center gap-1 my-1.5 sm:my-2">
+                                {[1, 2, 3, 4, 5].map((s) => {
+                                  const isGold = (hoverRating ?? (rating || animatedStarsCount)) >= s;
+                                  return (
+                                    <button
+                                      key={s}
+                                      type="button"
+                                      onMouseEnter={() => setHoverRating(s)}
+                                      onMouseLeave={() => setHoverRating(null)}
+                                      onClick={() => {
+                                        setRating(s);
+                                        if (soundOn) playMechanicalClick();
+                                        triggerHaptic("light");
+                                      }}
+                                      className="cursor-pointer transition-transform hover:scale-125 active:scale-95 focus:outline-none p-0.5"
+                                      aria-label={`${s} sterren`}
+                                    >
+                                      <Star
+                                        className={cn(
+                                          "size-3.5 sm:size-4 transition-colors",
+                                          isGold
+                                            ? "fill-[#FBBC04] text-[#FBBC04] drop-shadow-[0_1px_4px_rgba(251,188,4,0.5)]"
+                                            : "fill-zinc-200 text-zinc-300"
+                                        )}
+                                      />
+                                    </button>
+                                  );
+                                })}
+                              </div>
+
+                              <div className="text-[7.5px] sm:text-[8px] font-semibold text-amber-600 mb-1.5">
+                                {rating === 5
+                                  ? "★★★★★ Uitstekend (5 van 5)"
+                                  : `${rating} van de 5 sterren`}
+                              </div>
+
+                              {/* Simulated Review Text Input */}
+                              <div className="rounded-xl border border-zinc-200 bg-zinc-50/80 p-1.5 text-left mb-1.5">
+                                <textarea
+                                  value={reviewText}
+                                  onChange={(e) => setReviewText(e.target.value)}
+                                  rows={2}
+                                  className="w-full bg-transparent border-0 text-[7.5px] sm:text-[8px] text-zinc-800 leading-tight focus:outline-none resize-none p-0 placeholder-zinc-400 font-sans"
+                                  placeholder="Deel details over jouw ervaring bij deze zaak..."
+                                />
+                              </div>
+                            </div>
                           </div>
-                          <p className="review-business truncate px-2 text-[9px] font-bold">
-                            {businessName}
-                          </p>
 
-                          <h3 className="text-sm sm:text-base font-bold leading-tight mt-1">
-                            Hoe was jouw<br />ervaring?
-                          </h3>
-                          <p className="text-zinc-500 text-[8px]">
-                            Deel je beoordeling met toekomstige bezoekers.
-                          </p>
-
-                          {/* 5 Golden Interactive Stars */}
-                          <div className="review-stars flex justify-center gap-1 my-2">
-                            {[1, 2, 3, 4, 5].map((s) => {
-                              const isGold =
-                                (hoverRating ?? (rating || animatedStarsCount)) >= s;
-                              return (
-                                <button
-                                  key={s}
-                                  type="button"
-                                  onMouseEnter={() => setHoverRating(s)}
-                                  onMouseLeave={() => setHoverRating(null)}
-                                  onClick={() => {
-                                    setRating(s);
-                                    if (soundOn) playMechanicalClick();
-                                    triggerHaptic("light");
-                                  }}
-                                  className="cursor-pointer transition-transform hover:scale-125 focus:outline-none p-0.5"
-                                  aria-label={`${s} sterren`}
-                                >
-                                  <Star
-                                    className={cn(
-                                      "size-4 sm:size-5 transition-colors",
-                                      isGold
-                                        ? "fill-[#FBBC04] text-[#FBBC04] drop-shadow-[0_1px_4px_rgba(251,188,4,0.4)]"
-                                        : "fill-[#b4bdb1] text-[#b4bdb1]"
-                                    )}
-                                  />
-                                </button>
-                              );
-                            })}
+                          {/* Tactile Google Blue Submit Button */}
+                          <div>
+                            <button
+                              type="button"
+                              onClick={handleReviewSubmit}
+                              className="w-full py-1.5 sm:py-2 px-3 rounded-xl bg-[#1a73e8] hover:bg-[#1557b0] text-white font-medium text-[8.5px] sm:text-[9px] shadow-[0_2px_6px_rgba(26,115,232,0.35)] transition-all active:scale-[0.97] flex items-center justify-center gap-1.5 cursor-pointer"
+                            >
+                              <Send className="size-2.5" />
+                              <span>Plaats review op Google</span>
+                            </button>
+                            <span className="block text-[6.5px] text-zinc-400 text-center mt-1">
+                              Fictief interactief voorbeeld · Geen data verzonden
+                            </span>
                           </div>
-
-                          {/* Editable Message Box */}
-                          <div className="review-message text-left">
-                            <textarea
-                              value={reviewText}
-                              onChange={(e) => setReviewText(e.target.value)}
-                              rows={2}
-                              className="w-full bg-transparent border-0 text-[8px] text-zinc-800 leading-tight focus:outline-none resize-none p-0"
-                              placeholder="Schrijf je ervaring..."
-                            />
-                          </div>
-
-                          {/* Tactile Review Submit Button */}
-                          <button
-                            type="button"
-                            onClick={handleReviewSubmit}
-                            className="review-submit w-full cursor-pointer transition-transform active:scale-[0.97] flex items-center justify-center gap-1.5"
-                          >
-                            <Send className="size-2.5" />
-                            <span>Deel je ervaring</span>
-                          </button>
-
-                          <p className="review-disclaimer text-[7px] text-zinc-400 mt-2">
-                            Fictief interactief voorbeeld · Er wordt geen review geplaatst.
-                          </p>
                         </>
                       ) : (
                         /* Submitted Success State */
-                        <div className="py-6 flex flex-col items-center justify-center text-center">
-                          <div className="size-10 rounded-full bg-emerald-100 border border-emerald-300 text-emerald-700 flex items-center justify-center mx-auto mb-2 animate-bounce">
-                            <Check className="size-6" />
+                        <div className="h-full flex flex-col items-center justify-center text-center py-3">
+                          <div className="size-9 rounded-full bg-emerald-100 border border-emerald-300 text-emerald-600 flex items-center justify-center mb-1.5 animate-bounce shadow-sm">
+                            <Check className="size-4 stroke-[3]" />
                           </div>
-                          <h4 className="font-bold text-xs text-zinc-900">
+                          <h4 className="font-bold text-[11px] text-zinc-900 leading-tight">
                             Bedankt voor je review!
                           </h4>
-                          <div className="flex items-center justify-center gap-0.5 my-1.5">
+                          <div className="flex items-center justify-center gap-0.5 my-1">
                             {[1, 2, 3, 4, 5].slice(0, rating).map((s) => (
-                              <Star key={s} className="size-3 fill-[#FBBC04] text-[#FBBC04]" />
+                              <Star key={s} className="size-2.5 fill-[#FBBC04] text-[#FBBC04]" />
                             ))}
                           </div>
-                          <p className="text-[8px] text-zinc-500 leading-tight max-w-[170px] mx-auto">
-                            Jouw feedback helpt andere klanten én verhoogt de Google vindbaarheid van {businessName}.
+                          <p className="text-[7px] text-zinc-600 leading-relaxed max-w-[150px] mx-auto">
+                            Jouw 5-sterren review is gekoppeld en verhoogt direct de Google Maps vindbaarheid van {businessName}.
                           </p>
                           <button
                             type="button"
-                            onClick={() => setIsSubmitted(false)}
-                            className="mt-3 px-3 py-1 rounded-md bg-zinc-800 text-white font-mono text-[8px] uppercase tracking-wider hover:bg-black cursor-pointer"
+                            onClick={() => {
+                              setIsSubmitted(false);
+                              playTickSound();
+                            }}
+                            className="mt-2.5 px-3 py-1 rounded-full bg-zinc-900 hover:bg-black text-white font-mono text-[7px] uppercase tracking-wider transition-all cursor-pointer shadow-sm active:scale-95"
                           >
                             Opnieuw testen ↺
                           </button>
