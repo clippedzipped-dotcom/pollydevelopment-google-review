@@ -1,0 +1,283 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "PixelOperator";
+  src: url("/fonts/PixelOperator.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "Geist";
+  src: url("/fonts/Geist-Light.woff2") format("woff2");
+  font-weight: 300;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "Geist";
+  src: url("/fonts/Geist-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "Geist";
+  src: url("/fonts/Geist-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: block;
+}
+
+:root {
+  --font-display: "PixelOperator", ui-monospace, monospace;
+  --font-sans: "Geist", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  --color-ink: #070907;
+  --color-paper: #ffffff;
+  --color-muted: #737373;
+  --color-rule: #262626;
+  --color-accent: #00FF66;
+
+  /* Dynamic Customizer Theme Tokens */
+  --theme-accent: #00FF66;
+  --theme-accent-dim: #00993D;
+  --theme-accent-glow: rgba(0, 255, 102, 0.25);
+  --theme-accent-rgb: 0, 255, 102;
+
+  --u: 1px;
+  --a: 100vw;
+  --av: calc(var(--a) / 100);
+  --aw: 100%;
+  --ax: 0px;
+
+  --rule-1: calc(var(--ax) + var(--aw) * 0.136);
+  --rule-2: calc(var(--ax) + var(--aw) * 0.378);
+  --rule-3: calc(var(--ax) + var(--aw) * 0.622);
+  --rule-4: calc(var(--ax) + var(--aw) * 0.864);
+  --edge: 24px;
+}
+
+@media (min-width: 1729px) {
+  :root {
+    --u: calc(0.545px + 0.02633vw);
+    --a: calc(1728 * var(--u));
+    --aw: var(--a);
+    --ax: calc((100% - var(--a)) / 2);
+  }
+}
+
+html {
+  background-color: var(--color-ink);
+  color: var(--color-paper);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  margin: 0;
+  background-color: var(--color-ink);
+  color: var(--color-paper);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+}
+
+/* Authentic Flabbergast Typography */
+.t-display {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(28px, 3.2vw, 56px);
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  margin: 0;
+  line-height: 0.92;
+}
+
+.t-display--xl {
+  font-size: clamp(38px, 4.8vw, 84px);
+}
+
+/* Typography switch: Clean Tech mode */
+html[data-typography="clean"] .t-display {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 0.95;
+}
+
+/* Environment styling */
+html[data-environment="cleanroom"] {
+  --color-ink: #F4F4F0;
+  --color-paper: #090C09;
+  background-color: #F4F4F0;
+  color: #090C09;
+}
+html[data-environment="cleanroom"] body {
+  background-color: #F4F4F0;
+  color: #090C09;
+}
+html[data-environment="cleanroom"] .site-header {
+  background-color: rgba(244, 244, 240, 0.92);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+html[data-environment="cleanroom"] .architectural-rule {
+  border-color: rgba(0, 0, 0, 0.08);
+}
+html[data-environment="cleanroom"] .text-white {
+  color: #090C09 !important;
+}
+html[data-environment="cleanroom"] .text-zinc-400 {
+  color: #52525b !important;
+}
+html[data-environment="cleanroom"] .text-zinc-500 {
+  color: #71717a !important;
+}
+html[data-environment="cleanroom"] .border-zinc-800,
+html[data-environment="cleanroom"] .border-zinc-700,
+html[data-environment="cleanroom"] .border-zinc-900 {
+  border-color: rgba(0, 0, 0, 0.12) !important;
+}
+html[data-environment="cleanroom"] .bg-\[\#070907\],
+html[data-environment="cleanroom"] .bg-\[\#070907\]\/80 {
+  background-color: #F4F4F0 !important;
+}
+html[data-environment="cleanroom"] .cad-grid-pattern {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.05) 1px, transparent 1px) !important;
+  background-size: 24px 24px !important;
+}
+
+html[data-environment="shader"] {
+  --color-ink: #040608;
+  --color-paper: #F3F4F6;
+  background-color: #040608;
+}
+html[data-environment="shader"] .bg-\[\#070907\],
+html[data-environment="shader"] .bg-\[\#070907\]\/80 {
+  background-color: rgba(4, 6, 8, 0.45) !important;
+}
+
+html[data-environment="terminal"] {
+  --color-ink: #040804;
+  --color-paper: #22c55e;
+  background-color: #040804;
+}
+html[data-environment="terminal"] body {
+  background-color: #040804;
+}
+html[data-environment="terminal"] .bg-\[\#070907\],
+html[data-environment="terminal"] .bg-\[\#070907\]\/80 {
+  background-color: #040804 !important;
+}
+html[data-environment="terminal"]::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 255, 102, 0.04) 0px,
+    rgba(0, 255, 102, 0.04) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  z-index: 9999;
+}
+
+/* CRT Raster Scanlines Overlay */
+.crt-overlay {
+  background: linear-gradient(
+    rgba(18, 16, 16, 0) 50%, 
+    rgba(0, 0, 0, 0.4) 50%
+  ), linear-gradient(
+    90deg,
+    rgba(255, 0, 0, 0.03),
+    rgba(0, 255, 0, 0.01),
+    rgba(0, 0, 255, 0.03)
+  );
+  background-size: 100% 3px, 6px 100%;
+  pointer-events: none;
+}
+
+/* CAD Technical Caliper Grid */
+.cad-grid-pattern {
+  background-size: 32px 32px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+}
+
+.t-body {
+  font-family: var(--font-sans);
+  font-size: clamp(14px, 1.05vw, 17px);
+  letter-spacing: -0.01em;
+  line-height: 1.45;
+  color: var(--color-muted);
+}
+
+.hero__mask {
+  display: block;
+  overflow: hidden;
+  margin-bottom: -0.12em;
+  padding-bottom: 0.12em;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #070907;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #152217;
+  border-radius: 3px;
+  border: 1px solid rgba(0, 255, 102, 0.2);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #00FF66;
+}
+
+/* Cursor hidden when desktop has-cursor is active */
+html.has-cursor,
+html.has-cursor * {
+  cursor: none !important;
+}
+
+html.has-cursor input,
+html.has-cursor textarea {
+  cursor: text !important;
+}
+
+@keyframes border-beam {
+  100% {
+    offset-distance: 100%;
+  }
+}
+
+.animate-border-beam {
+  animation: border-beam linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
