@@ -81,8 +81,19 @@ export function SiteHeader() {
           </a>
         </nav>
 
-        {/* Action Controls: Sound Toggle & Tactile CTAs */}
+        {/* Action Controls: Live Status, Sound Toggle & Tactile CTAs */}
         <div className="flex items-center gap-2 sm:gap-3">
+          {/* Live Availability Pill */}
+          <div className="hidden xl:flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#141A16] border border-[#2B392E] font-mono text-[10px] text-zinc-300 shadow-sm select-none">
+            <span className="relative flex size-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#A4C2A9] opacity-75" />
+              <span className="relative inline-flex rounded-full size-2 bg-[#67826C]" />
+            </span>
+            <span className="text-zinc-200 font-medium">Joey &amp; Luc online</span>
+            <span className="text-zinc-500">·</span>
+            <span className="text-[#A4C2A9]">Reactie &lt; 2u</span>
+          </div>
+
           {/* Subtle Audio Micro-Haptics Switch */}
           <button
             type="button"

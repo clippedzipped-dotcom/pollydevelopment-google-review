@@ -32,6 +32,7 @@ interface GoogleReviewCard3DProps {
   businessName?: string;
   showLogo?: boolean;
   showQr?: boolean;
+  customLogoUrl?: string | null;
   viewMode?: "3d" | "photo";
   onToggleViewMode?: () => void;
   onTapSuccess?: () => void;
@@ -44,6 +45,7 @@ export function GoogleReviewCard3D({
   businessName = "JOUW BEDRIJF",
   showLogo = true,
   showQr = true,
+  customLogoUrl,
   viewMode = "3d",
   onToggleViewMode,
   onTapSuccess,
@@ -79,6 +81,32 @@ export function GoogleReviewCard3D({
       }
     );
   }, [swatch.id]);
+
+  // Mobile Device Gyroscope Tilt Physics (Awwwards standard)
+  useEffect(() => {
+    const handleOrientation = (e: DeviceOrientationEvent) => {
+      if (e.gamma === null || e.beta === null) return;
+      const gamma = Math.max(-20, Math.min(20, e.gamma));
+      const beta = Math.max(-20, Math.min(20, e.beta - 45));
+
+      setRotateY(gamma * 0.65);
+      setRotateX(-beta * 0.65);
+      setGlarePos({
+        x: 50 + gamma * 1.6,
+        y: 50 + beta * 1.6,
+        opacity: 0.35,
+      });
+    };
+
+    if (typeof window !== "undefined" && "DeviceOrientationEvent" in window) {
+      window.addEventListener("deviceorientation", handleOrientation);
+    }
+    return () => {
+      if (typeof window !== "undefined") {
+        window.removeEventListener("deviceorientation", handleOrientation);
+      }
+    };
+  }, []);
 
   const handleMouseMove = (e: MouseEvent<HTMLDivElement>) => {
     if (!cardRef.current || viewMode === "photo") return;
@@ -269,13 +297,22 @@ export function GoogleReviewCard3D({
                 <div className="flex items-center gap-2.5">
                   {showLogo && (
                     <div className="relative size-8 sm:size-9 rounded-lg bg-black/40 border border-white/20 p-1 flex items-center justify-center overflow-hidden shadow-sm">
-                      <Image
-                        src="/images/products/pollydevelopment-logo.png"
-                        alt="Logo"
-                        width={32}
-                        height={32}
-                        className="object-contain"
-                      />
+                      {customLogoUrl ? (
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img
+                          src={customLogoUrl}
+                          alt="Custom Logo"
+                          className="size-full object-contain"
+                        />
+                      ) : (
+                        <Image
+                          src="/images/products/pollydevelopment-logo.png"
+                          alt="Logo"
+                          width={32}
+                          height={32}
+                          className="object-contain"
+                        />
+                      )}
                     </div>
                   )}
                   <div>

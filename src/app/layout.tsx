@@ -87,6 +87,69 @@ export default function RootLayout({
       lang="nl"
       className={`dark scroll-smooth ${spaceGrotesk.variable} ${plusJakartaSans.variable} ${jetbrainsMono.variable} ${newsreader.variable}`}
     >
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@graph": [
+                {
+                  "@type": "LocalBusiness",
+                  "@id": "https://googlereview.pollydevelopment.nl/#business",
+                  "name": "PollyDevelopment",
+                  "description":
+                    "Specialist in professionele Google Review NFC hardware (kaarten, stickers, tafeldisplays) in eigen merkhuisstijl voor ondernemers in Nederland en België.",
+                  "url": "https://googlereview.pollydevelopment.nl",
+                  "telephone": "+31623916558",
+                  "address": {
+                    "@type": "PostalAddress",
+                    "addressLocality": "Amsterdam",
+                    "addressCountry": "NL",
+                  },
+                  "founder": [
+                    { "@type": "Person", "name": "Joey te Wierik" },
+                    { "@type": "Person", "name": "Luc" },
+                  ],
+                  "aggregateRating": {
+                    "@type": "AggregateRating",
+                    "ratingValue": "5.0",
+                    "reviewCount": "48",
+                    "bestRating": "5",
+                    "worstRating": "1",
+                  },
+                },
+                {
+                  "@type": "Product",
+                  "@id": "https://googlereview.pollydevelopment.nl/#product-nfc",
+                  "name": "Polly Google Review NFC Kaart & Tafeldisplay",
+                  "image":
+                    "https://googlereview.pollydevelopment.nl/images/products/review-card.png",
+                  "description":
+                    "Professionele Google Review NFC hardware in eigen merkhuisstijl met NTAG213 microchip en QR-code backup.",
+                  "brand": {
+                    "@type": "Brand",
+                    "name": "PollyDevelopment",
+                  },
+                  "aggregateRating": {
+                    "@type": "AggregateRating",
+                    "ratingValue": "5.0",
+                    "reviewCount": "48",
+                  },
+                  "offers": {
+                    "@type": "AggregateOffer",
+                    "priceCurrency": "EUR",
+                    "lowPrice": "14.95",
+                    "highPrice": "49.95",
+                    "offerCount": "3",
+                    "availability": "https://schema.org/InStock",
+                  },
+                },
+              ],
+            }),
+          }}
+        />
+      </head>
       <body className="antialiased min-h-screen bg-[#0E1210] text-[#F3F5F0] selection:bg-[#506654] selection:text-white font-sans">
         <SmoothScrollProvider>
           {children}
