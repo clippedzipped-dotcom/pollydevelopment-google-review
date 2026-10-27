@@ -141,7 +141,7 @@ export function HardwareOscilloscope() {
             </div>
             <h2 className="font-display text-3xl sm:text-5xl uppercase tracking-tight text-white leading-[0.95]">
               GEPRODUCEERD CONFORM<br />
-              <span className="text-[#A4C2A9]">ISO/IEC 14443-A.</span>
+              <span className="font-serif italic font-normal text-[#A4C2A9]">ISO/IEC 14443-A norm.</span>
             </h2>
             <p className="font-sans text-sm text-zinc-400 mt-4 leading-relaxed">
               Onze tags maken uitsluitend gebruik van originele NXP Semiconductors chips. Geen middleware, geen tracking en geen persoonsgegevens opslag. Het signaal wordt direct doorgegeven naar jouw officiële Google Review dialoog.

@@ -1,6 +1,35 @@
 import type { Metadata, Viewport } from "next";
+import { Plus_Jakarta_Sans, Space_Grotesk, JetBrains_Mono, Newsreader } from "next/font/google";
 import "./globals.css";
 import { SmoothScrollProvider } from "@/components/providers/SmoothScrollProvider";
+
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  variable: "--font-display",
+  display: "swap",
+  weight: ["400", "500", "600", "700"],
+});
+
+const plusJakartaSans = Plus_Jakarta_Sans({
+  subsets: ["latin"],
+  variable: "--font-sans",
+  display: "swap",
+  weight: ["300", "400", "500", "600", "700"],
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-mono",
+  display: "swap",
+  weight: ["400", "500", "600"],
+});
+
+const newsreader = Newsreader({
+  subsets: ["latin"],
+  variable: "--font-serif",
+  display: "swap",
+  style: ["normal", "italic"],
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://googlereview.pollydevelopment.nl"),
@@ -42,7 +71,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   themeColor: [
     { media: "(prefers-color-scheme: light)", color: "#edf0e9" },
-    { media: "(prefers-color-scheme: dark)", color: "#070907" },
+    { media: "(prefers-color-scheme: dark)", color: "#0E1210" },
   ],
   width: "device-width",
   initialScale: 1,
@@ -54,8 +83,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="nl" className="dark scroll-smooth">
-      <body className="antialiased min-h-screen bg-[#0E1210] text-[#F3F5F0] selection:bg-[#506654] selection:text-white">
+    <html
+      lang="nl"
+      className={`dark scroll-smooth ${spaceGrotesk.variable} ${plusJakartaSans.variable} ${jetbrainsMono.variable} ${newsreader.variable}`}
+    >
+      <body className="antialiased min-h-screen bg-[#0E1210] text-[#F3F5F0] selection:bg-[#506654] selection:text-white font-sans">
         <SmoothScrollProvider>
           {children}
         </SmoothScrollProvider>

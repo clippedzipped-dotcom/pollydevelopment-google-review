@@ -546,8 +546,8 @@ export function InteractiveTapDemoPhone({
               >
                 <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl uppercase tracking-tight text-white leading-[0.95]">
                   GOED GEDAAN?<br />
-                  <span className="text-[#A4C2A9]">
-                    LAAT HET HOREN.
+                  <span className="font-serif italic font-normal text-[#A4C2A9] lowercase capitalize tracking-normal">
+                    Laat het horen.
                   </span>
                 </h1>
                 <p className="font-sans text-sm sm:text-base text-zinc-400 mt-3 sm:mt-4 leading-relaxed max-w-md">
@@ -565,8 +565,8 @@ export function InteractiveTapDemoPhone({
               >
                 <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl uppercase tracking-tight text-white leading-[0.95]">
                   TELEFOON ERBIJ.<br />
-                  <span className="text-[#A4C2A9]">
-                    PAGINA OPEN.
+                  <span className="font-serif italic font-normal text-[#A4C2A9] lowercase capitalize tracking-normal">
+                    Pagina open.
                   </span>
                 </h2>
                 <p className="font-sans text-sm sm:text-base text-zinc-400 mt-3 sm:mt-4 leading-relaxed max-w-md">
@@ -584,8 +584,8 @@ export function InteractiveTapDemoPhone({
               >
                 <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl uppercase tracking-tight text-white leading-[0.95]">
                   HUN ERVARING.<br />
-                  <span className="text-[#A4C2A9]">
-                    JOUW VERHAAL.
+                  <span className="font-serif italic font-normal text-[#A4C2A9] lowercase capitalize tracking-normal">
+                    Jouw verhaal.
                   </span>
                 </h2>
                 <p className="font-sans text-sm sm:text-base text-zinc-400 mt-3 sm:mt-4 leading-relaxed max-w-md">
@@ -887,6 +887,11 @@ export function InteractiveTapDemoPhone({
                   <VolumeX className="size-3.5" />
                 )}
               </button>
+
+              <div className="w-full pt-1 flex items-center gap-2 text-[10px] font-mono text-zinc-500 select-none">
+                <span className="size-1.5 rounded-full bg-[#8CAE93]" />
+                <span>Scroll omlaag of klik op de kaart om de contactloze tik te ervaren</span>
+              </div>
             </div>
           </motion.div>
 
@@ -987,6 +992,18 @@ export function InteractiveTapDemoPhone({
                 >
                   {/* Interactive 3D Cursor Tilt & 180° Flip Body */}
                   <motion.div
+                    onClick={() => {
+                      if (activeChapter === 1) {
+                        jumpToStep(0.38);
+                        playNfcTapSound();
+                        triggerHaptic("medium");
+                      } else {
+                        handleFlipCard();
+                      }
+                    }}
+                    role="button"
+                    tabIndex={0}
+                    title={activeChapter === 1 ? "Klik om NFC-tik te simuleren" : "Klik om kaart om te draaien"}
                     animate={
                       cardMode === "3d"
                         ? {
@@ -1001,7 +1018,7 @@ export function InteractiveTapDemoPhone({
                       stiffness: 180,
                     }}
                     style={{ transformStyle: "preserve-3d" }}
-                    className="size-full relative"
+                    className="size-full relative cursor-pointer select-none"
                   >
                     {cardMode === "photo" ? (
                       /* Original PollyDevelopment Photographic Cutout */
@@ -1399,6 +1416,9 @@ export function InteractiveTapDemoPhone({
                             </div>
 
                             <div className="text-center my-1">
+                              <div className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-full bg-amber-500/10 border border-amber-500/25 text-[7px] font-mono text-amber-800 uppercase tracking-wider mb-1 font-bold">
+                                <span>★ TIK OP DE STERREN OM TE TESTEN</span>
+                              </div>
                               <h4 className="text-[10.5px] sm:text-[11px] font-bold text-zinc-900 leading-tight">
                                 Hoe was jouw ervaring?
                               </h4>

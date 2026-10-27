@@ -32,12 +32,19 @@ interface ReviewProductShowroomProps {
   className?: string;
 }
 
+const TIERS = [
+  { id: "sample", label: "1 - 5 stuks", sub: "Proefserie" },
+  { id: "popular", label: "10 - 25 stuks", sub: "Meest gekozen" },
+  { id: "scale", label: "50+ stuks", sub: "Filialen / Horeca" },
+];
+
 export function ReviewProductShowroom({
   onOpenTapDemo,
   className,
 }: ReviewProductShowroomProps) {
   const [selectedProductId, setSelectedProductId] = useState<"sticker" | "card" | "display">("card");
   const [selectedColor, setSelectedColor] = useState<ReviewColorSwatch>("sage");
+  const [selectedTier, setSelectedTier] = useState(TIERS[1]);
   const [showLogo, setShowLogo] = useState(true);
   const [showQr, setShowQr] = useState(true);
   const [businessName, setBusinessName] = useState("Jouw Zaak");
@@ -86,7 +93,9 @@ export function ReviewProductShowroom({
           </div>
           <h2 className="font-display text-3xl sm:text-5xl lg:text-6xl tracking-tight text-white uppercase leading-[0.95]">
             JOUW HUISSTIJL.<br />
-            <span className="text-[#A4C2A9]">TANGIBLE HARDWARE.</span>
+            <span className="font-serif italic font-normal text-[#A4C2A9] lowercase capitalize tracking-normal">
+              Tangible Hardware.
+            </span>
           </h2>
         </div>
         <p className="font-sans text-sm sm:text-base text-zinc-400 max-w-md leading-relaxed">
@@ -347,24 +356,54 @@ export function ReviewProductShowroom({
                 </a>
               </div>
 
-              {/* Tactile HoldToConfirm Quote Button (The Kitchen standard) */}
-              <div className="space-y-2">
-                <HoldToConfirmButton
-                  duration={1200}
-                  onConfirm={() => {
+              {/* Indicatief Aantal Selector */}
+              <div className="space-y-1.5 pt-1">
+                <label className="font-mono text-[10px] uppercase tracking-wider text-zinc-400 flex items-center justify-between">
+                  <span>INDICATIEF AANTAL</span>
+                  <span className="text-white font-bold">{selectedTier.label}</span>
+                </label>
+                <div className="grid grid-cols-3 gap-1.5">
+                  {TIERS.map((tier) => (
+                    <button
+                      key={tier.id}
+                      type="button"
+                      onClick={() => {
+                        setSelectedTier(tier);
+                        playMechanicalClick();
+                        triggerHaptic("light");
+                      }}
+                      className={cn(
+                        "px-2 py-2 rounded-xl border font-mono text-[9px] uppercase transition-all cursor-pointer text-center",
+                        selectedTier.id === tier.id
+                          ? "bg-white text-zinc-950 font-bold border-white shadow-sm"
+                          : "bg-black/50 text-zinc-400 border-zinc-800 hover:text-white hover:border-zinc-700"
+                      )}
+                    >
+                      <div className="truncate font-bold">{tier.label}</div>
+                      <div className="text-[7.5px] opacity-75 font-normal truncate">{tier.sub}</div>
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Instant Tactile WhatsApp Quotation CTA */}
+              <div className="space-y-2 pt-1">
+                <button
+                  type="button"
+                  onClick={() => {
                     handlePrintQuote();
+                    playMechanicalClick();
+                    triggerHaptic("medium");
                     const url = `https://wa.me/31623916558?text=${encodeURIComponent(
-                      `Hallo Joey en Luc! Ik heb interesse in de Google Review NFC tags (${product.title}, kleur ${swatch.name}) voor ${businessName}. Kunnen we de mogelijkheden en een prijsopgave bespreken?`
+                      `Hallo Joey en Luc! Ik wil graag een vrijblijvende offerte aanvragen voor ${selectedTier.label} (${selectedTier.sub}) Google Review NFC tags (${product.title}, kleur ${swatch.name}) voor ${businessName}.`
                     )}`;
                     window.open(url, "_blank");
                   }}
-                  className="w-full py-3.5 rounded-xl bg-[#F5F6F2] hover:bg-white text-zinc-950 font-mono text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2 shadow-md transition-all cursor-pointer"
+                  className="w-full py-3.5 px-4 rounded-xl bg-[#F5F6F2] hover:bg-white text-zinc-950 font-mono text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2 shadow-lg transition-all active:translate-y-0.5 cursor-pointer"
                 >
-                  <span className="flex items-center justify-center gap-2">
-                    <MessageSquare className="size-4" />
-                    <span>HOU VAST VOOR OFFERTE VIA WHATSAPP (1.2S)</span>
-                  </span>
-                </HoldToConfirmButton>
+                  <MessageSquare className="size-4" />
+                  <span>VRAAG VRIJBLIJVEND OFFERTE AAN</span>
+                </button>
 
                 <div className="flex items-center justify-between text-[10px] font-mono text-zinc-500 px-1">
                   <span>* Print automatisch specificatiebon</span>
@@ -427,6 +466,10 @@ export function ReviewProductShowroom({
                       <div className="flex justify-between">
                         <span className="text-zinc-600">KLEUR:</span>
                         <span className="font-bold text-black uppercase">{swatch.name}</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-zinc-600">AANTAL:</span>
+                        <span className="font-bold text-black uppercase">{selectedTier.label} ({selectedTier.sub})</span>
                       </div>
                       <div className="flex justify-between">
                         <span className="text-zinc-600">OPDRUK:</span>

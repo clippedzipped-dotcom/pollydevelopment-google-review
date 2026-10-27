@@ -1,46 +1,22 @@
 @import "tailwindcss";
 
-@font-face {
-  font-family: "PixelOperator";
-  src: url("/fonts/PixelOperator.woff2") format("woff2");
-  font-weight: 400;
-  font-style: normal;
-  font-display: block;
-}
-
-@font-face {
-  font-family: "Geist";
-  src: url("/fonts/Geist-Light.woff2") format("woff2");
-  font-weight: 300;
-  font-style: normal;
-  font-display: block;
-}
-
-@font-face {
-  font-family: "Geist";
-  src: url("/fonts/Geist-Regular.woff2") format("woff2");
-  font-weight: 400;
-  font-style: normal;
-  font-display: block;
-}
-
-@font-face {
-  font-family: "Geist";
-  src: url("/fonts/Geist-Medium.woff2") format("woff2");
-  font-weight: 500;
-  font-style: normal;
-  font-display: block;
+@theme {
+  --font-display: var(--font-display, "Space Grotesk", sans-serif);
+  --font-sans: var(--font-sans, "Plus Jakarta Sans", sans-serif);
+  --font-mono: var(--font-mono, "JetBrains Mono", monospace);
+  --font-serif: var(--font-serif, "Newsreader", serif);
 }
 
 :root {
-  --font-display: "PixelOperator", ui-monospace, monospace;
-  --font-sans: "Geist", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --font-display: var(--font-display, "Space Grotesk", sans-serif);
+  --font-sans: var(--font-sans, "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif);
+  --font-mono: var(--font-mono, "JetBrains Mono", ui-monospace, SFMono-Regular, monospace);
+  --font-serif: var(--font-serif, "Newsreader", serif);
 
-  --color-ink: #070907;
-  --color-paper: #ffffff;
-  --color-muted: #737373;
-  --color-rule: #262626;
+  --color-ink: #0E1210;
+  --color-paper: #F3F5F0;
+  --color-muted: #8E998F;
+  --color-rule: rgba(255, 255, 255, 0.1);
   --color-accent: #8CAE93;
 
   /* Refined Nordic Sage Theme Tokens */

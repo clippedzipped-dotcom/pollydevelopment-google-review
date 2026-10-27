@@ -37,7 +37,7 @@ export function DirectContactTeam() {
 
           <h2 className="font-display text-4xl sm:text-6xl uppercase tracking-tight text-white leading-[0.92]">
             LATEN WE<br />
-            <span className="text-[#A4C2A9]">CONTACT MAKEN.</span>
+            <span className="font-serif italic font-normal text-[#A4C2A9] lowercase capitalize">direct schakelen.</span>
           </h2>
 
           <p className="font-sans text-sm sm:text-base text-zinc-300 leading-relaxed">

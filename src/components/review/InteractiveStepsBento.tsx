@@ -69,7 +69,7 @@ export function InteractiveStepsBento() {
           </div>
           <h2 className="font-display text-3xl sm:text-5xl lg:text-6xl uppercase tracking-tight text-white leading-[0.95]">
             GEEN ZOEKTRAJECT.<br />
-            <span className="text-[#A4C2A9]">DIRECT BIJ DE REVIEW.</span>
+            <span className="font-serif italic font-normal text-[#A4C2A9] lowercase capitalize">direct bij de review.</span>
           </h2>
         </div>
         <p className="font-sans text-sm sm:text-base text-zinc-400 max-w-md leading-relaxed">

@@ -88,7 +88,10 @@ export function FaqAccordion() {
           <span>ALLES WAT JE MOET WETEN · FAQ</span>
         </div>
         <h2 className="font-display text-3xl sm:text-5xl uppercase tracking-tight text-white leading-tight">
-          VEELGESTELDE VRAGEN.
+          VEELGESTELDE{" "}
+          <span className="font-serif italic font-normal text-[#A4C2A9] lowercase capitalize">
+            vragen &amp; techniek.
+          </span>
         </h2>
         <p className="font-sans text-sm text-zinc-400 mt-2 max-w-lg mx-auto">
           Heldere antwoorden over NFC-compatibiliteit, hardware beveiliging en ons bestelproces.
