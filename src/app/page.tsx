@@ -1,5 +1,6 @@
 import Link from "next/link";
-import Image from "next/image";
+import { SiteHeader } from "@/components/review/SiteHeader";
+import { AmbientShaderCanvas } from "@/components/kitchen/AmbientShaderCanvas";
 import { ReviewProductShowroom } from "@/components/review/ReviewProductShowroom";
 import { InteractiveTapDemoPhone } from "@/components/review/InteractiveTapDemoPhone";
 import { ImpactMetricsRibbon } from "@/components/review/ImpactMetricsRibbon";
@@ -7,86 +8,15 @@ import { InteractiveStepsBento } from "@/components/review/InteractiveStepsBento
 import { HardwareOscilloscope } from "@/components/review/HardwareOscilloscope";
 import { DirectContactTeam } from "@/components/review/DirectContactTeam";
 import { FaqAccordion } from "@/components/review/FaqAccordion";
-import { Phone, ArrowRight } from "lucide-react";
 
 export default function HomePage() {
   return (
     <div className="relative min-h-screen bg-[#070907] text-white font-sans antialiased selection:bg-[#00FF66] selection:text-black overflow-x-clip">
-      {/* AMBIENT BACKGROUND GLOW */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none fixed inset-0 z-0 bg-[radial-gradient(circle_at_50%_0%,rgba(80,102,84,0.18)_0%,transparent_60%)]"
-      />
+      {/* AMBIENT CURSOR-REACTIVE SHADER CANVAS (Unicorn Studio standard) */}
+      <AmbientShaderCanvas />
 
-      {/* FIXED SITE HEADER */}
-      <header className="fixed top-0 left-0 right-0 z-50 w-full backdrop-blur-md bg-[#070907]/85 border-b border-white/10 transition-colors">
-        <div className="max-w-7xl mx-auto px-4 sm:px-8 h-16 flex items-center justify-between">
-          {/* Brand */}
-          <Link href="/" className="flex items-center gap-3 group">
-            <div className="size-8 rounded-lg bg-black border border-emerald-500/50 p-1 flex items-center justify-center overflow-hidden shadow-[0_0_12px_rgba(0,255,102,0.3)]">
-              <Image
-                src="/images/products/pollydevelopment-logo.png"
-                alt="PollyDevelopment Logo"
-                width={28}
-                height={28}
-                className="object-contain"
-              />
-            </div>
-            <div>
-              <span className="font-display text-sm sm:text-base tracking-tight block uppercase text-white font-bold">
-                Google Review Kaarten
-              </span>
-              <span className="font-mono text-[9px] block tracking-widest uppercase text-emerald-400">
-                POLLYDEVELOPMENT // NFC HARDWARE
-              </span>
-            </div>
-          </Link>
-
-          {/* Center Navigation */}
-          <nav className="hidden md:flex items-center gap-6 font-mono text-xs">
-            <a href="#tap-demo" className="text-zinc-400 hover:text-white transition-colors">
-              Simulatie
-            </a>
-            <a href="#hoe-het-werkt" className="text-zinc-400 hover:text-white transition-colors">
-              Hoe het werkt
-            </a>
-            <a href="#collectie" className="text-zinc-400 hover:text-white transition-colors">
-              Collectie
-            </a>
-            <Link href="/producten" className="text-zinc-400 hover:text-white transition-colors">
-              Productfoto’s
-            </Link>
-            <a href="#specificaties" className="text-zinc-400 hover:text-white transition-colors">
-              Specificaties
-            </a>
-            <a href="#contact" className="text-zinc-400 hover:text-white transition-colors">
-              Contact
-            </a>
-            <a href="#faq" className="text-zinc-400 hover:text-white transition-colors">
-              FAQ
-            </a>
-          </nav>
-
-          {/* Action CTAs: Direct Call Joey & Luc */}
-          <div className="flex items-center gap-2 sm:gap-3">
-            <a
-              href="tel:+31623916558"
-              className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-white/20 bg-white/5 hover:bg-white hover:text-black hover:border-white font-mono text-[11px] font-bold transition-all cursor-pointer shadow-sm active:translate-y-0.5"
-            >
-              <Phone className="size-3 text-emerald-400 group-hover:text-black" />
-              <span>Bel Joey of Luc</span>
-            </a>
-
-            <a
-              href="#contact"
-              className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-emerald-500 hover:bg-emerald-400 text-black font-mono text-[11px] font-bold uppercase tracking-wider transition-all cursor-pointer shadow-[0_0_15px_rgba(0,255,102,0.3)] active:translate-y-0.5"
-            >
-              <span>Offerte</span>
-              <ArrowRight className="size-3" />
-            </a>
-          </div>
-        </div>
-      </header>
+      {/* FIXED SITE HEADER (With Web Audio Sound Controller) */}
+      <SiteHeader />
 
       {/* HERO SECTION: Interactive Tap Demo Story (Authentic PollyDevelopment Sticky Scroll Engine) */}
       <InteractiveTapDemoPhone />

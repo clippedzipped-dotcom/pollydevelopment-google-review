@@ -5,15 +5,18 @@ import {
   playMechanicalClick,
   playNfcTapSound,
   playTickSound,
+  playConfirmSound,
   triggerHaptic,
 } from "@/helpers/sound-effects";
-import { Copy, Check, Activity, ShieldCheck, Cpu } from "lucide-react";
+import { Copy, Check, Activity, ShieldCheck, Cpu, Lock } from "lucide-react";
+import { HoldToConfirmButton } from "@/components/kitchen/HoldToConfirmButton";
 
 export function HardwareOscilloscope() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [pulseActive, setPulseActive] = useState(false);
   const [copied, setCopied] = useState(false);
   const [waveMode, setWaveMode] = useState<"sine" | "ask">("sine");
+  const [writeLocked, setWriteLocked] = useState(false);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -188,8 +191,8 @@ export function HardwareOscilloscope() {
             </div>
           </div>
 
-          {/* Hardware Lock Guarantee Box */}
-          <div className="p-5 rounded-2xl border border-zinc-800 bg-black/60 font-mono text-xs space-y-2">
+          {/* Hardware Lock Guarantee Box with Interactive OTP Simulation */}
+          <div className="p-5 rounded-2xl border border-zinc-800 bg-black/60 font-mono text-xs space-y-3">
             <div className="flex items-center justify-between text-emerald-400 font-bold">
               <span className="flex items-center gap-1.5">
                 <Cpu className="size-4" />
@@ -200,6 +203,30 @@ export function HardwareOscilloscope() {
             <p className="font-sans text-xs text-zinc-400 leading-relaxed">
               Gegarandeerd meer dan 100.000 contactloze leesacties en 10 jaar gegevensretentie. Definitief vergrendeld met een 32-bit hardwarematige OTP write-lock.
             </p>
+
+            <div className="pt-2 border-t border-zinc-900">
+              <HoldToConfirmButton
+                duration={1200}
+                onConfirm={() => {
+                  setWriteLocked(true);
+                  playConfirmSound(0.2);
+                  triggerHaptic("success");
+                }}
+                className="w-full py-2.5 px-3 rounded-xl bg-zinc-900 hover:bg-zinc-800 border border-zinc-700 text-zinc-200 font-mono text-[11px] font-bold uppercase transition-all cursor-pointer flex items-center justify-center"
+              >
+                {writeLocked ? (
+                  <span className="text-emerald-400 flex items-center justify-center gap-1.5 font-bold">
+                    <Lock className="size-3.5" />
+                    CHIP DEFINITIEF READ-ONLY VERGRENDELD
+                  </span>
+                ) : (
+                  <span className="flex items-center justify-center gap-1.5 text-zinc-300">
+                    <Lock className="size-3.5 text-emerald-400" />
+                    TEST 32-BIT OTP WRITE-LOCK (HOU 1.2S VAST)
+                  </span>
+                )}
+              </HoldToConfirmButton>
+            </div>
           </div>
         </div>
 

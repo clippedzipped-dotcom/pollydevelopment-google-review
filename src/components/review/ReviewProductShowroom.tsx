@@ -11,6 +11,7 @@ import {
   ReceiptPrinter,
   type ReceiptPrinterStage,
 } from "@/components/kitchen/ReceiptPrinter";
+import { HoldToConfirmButton } from "@/components/kitchen/HoldToConfirmButton";
 import {
   Phone,
   MessageSquare,
@@ -346,19 +347,40 @@ export function ReviewProductShowroom({
                 </a>
               </div>
 
-              {/* WhatsApp Quote Direct Link */}
-              <a
-                href={`https://wa.me/31623916558?text=${encodeURIComponent(
-                  `Hallo Joey en Luc! Ik heb interesse in de Google Review NFC tags (${product.title}, kleur ${swatch.name}) voor ${businessName}. Kunnen we de mogelijkheden en een prijsopgave bespreken?`
-                )}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => playMechanicalClick()}
-                className="w-full py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-black font-mono text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2 shadow-lg transition-all active:scale-[0.98] cursor-pointer"
-              >
-                <MessageSquare className="size-4" />
-                <span>VRAAG EEN OFFERTE AAN VIA WHATSAPP</span>
-              </a>
+              {/* Tactile HoldToConfirm Quote Button (The Kitchen standard) */}
+              <div className="space-y-2">
+                <HoldToConfirmButton
+                  duration={1200}
+                  onConfirm={() => {
+                    handlePrintQuote();
+                    const url = `https://wa.me/31623916558?text=${encodeURIComponent(
+                      `Hallo Joey en Luc! Ik heb interesse in de Google Review NFC tags (${product.title}, kleur ${swatch.name}) voor ${businessName}. Kunnen we de mogelijkheden en een prijsopgave bespreken?`
+                    )}`;
+                    window.open(url, "_blank");
+                  }}
+                  className="w-full py-3.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-black font-mono text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(0,255,102,0.3)] transition-all cursor-pointer"
+                >
+                  <span className="flex items-center justify-center gap-2">
+                    <MessageSquare className="size-4" />
+                    <span>HOU VAST VOOR OFFERTE VIA WHATSAPP (1.2S)</span>
+                  </span>
+                </HoldToConfirmButton>
+
+                <div className="flex items-center justify-between text-[10px] font-mono text-zinc-500 px-1">
+                  <span>* Print automatisch specificatiebon</span>
+                  <a
+                    href={`https://wa.me/31623916558?text=${encodeURIComponent(
+                      `Hallo Joey en Luc! Ik heb interesse in de Google Review NFC tags (${product.title}, kleur ${swatch.name}) voor ${businessName}.`
+                    )}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => playMechanicalClick()}
+                    className="text-zinc-400 hover:text-white underline cursor-pointer"
+                  >
+                    Direct appen ↗
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
 

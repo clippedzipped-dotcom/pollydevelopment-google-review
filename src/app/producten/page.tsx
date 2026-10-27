@@ -2,7 +2,10 @@ import { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { REVIEW_PRODUCTS } from "@/data/review-products";
-import { Phone, ArrowLeft, ArrowRight } from "lucide-react";
+import { SpotlightCard } from "@/components/kitchen/SpotlightCard";
+import { AmbientShaderCanvas } from "@/components/kitchen/AmbientShaderCanvas";
+import { SiteHeader } from "@/components/review/SiteHeader";
+import { Phone, ArrowLeft, ArrowRight, MessageSquare } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Google Review producten & foto’s | PollyDevelopment",
@@ -15,81 +18,46 @@ export default function ProductenPage() {
 
   return (
     <div className="relative min-h-screen bg-[#070907] text-white font-sans antialiased selection:bg-[#00FF66] selection:text-black overflow-x-hidden">
+      {/* AMBIENT SHADER CANVAS */}
+      <AmbientShaderCanvas />
+
       {/* HEADER */}
-      <header className="fixed top-0 left-0 right-0 z-50 w-full backdrop-blur-md bg-[#070907]/85 border-b border-white/10 transition-colors">
-        <div className="max-w-7xl mx-auto px-4 sm:px-8 h-16 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-3">
-            <div className="size-8 rounded-lg bg-black border border-emerald-500/50 p-1 flex items-center justify-center overflow-hidden shadow">
-              <Image
-                src="/images/products/pollydevelopment-logo.png"
-                alt="PollyDevelopment Logo"
-                width={28}
-                height={28}
-                className="object-contain"
-              />
-            </div>
-            <div>
-              <span className="font-display text-sm sm:text-base tracking-tight block uppercase text-white font-bold">
-                Google Review Kaarten
-              </span>
-              <span className="font-mono text-[9px] block tracking-widest uppercase text-emerald-400">
-                POLLYDEVELOPMENT // PRODUCTEN
-              </span>
-            </div>
-          </Link>
-
-          <div className="flex items-center gap-4">
-            <Link
-              href="/"
-              className="flex items-center gap-1.5 font-mono text-xs text-zinc-300 hover:text-white transition-colors"
-            >
-              <ArrowLeft className="size-3.5" />
-              <span>Naar de interactieve studio</span>
-            </Link>
-
-            <a
-              href="tel:+31623916558"
-              className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-500 text-black font-mono text-[11px] font-bold uppercase tracking-wider"
-            >
-              <Phone className="size-3" />
-              <span>Bel Joey of Luc</span>
-            </a>
-          </div>
-        </div>
-      </header>
+      <SiteHeader />
 
       {/* INTRO HERO */}
-      <section className="pt-32 sm:pt-40 pb-16 px-4 max-w-7xl mx-auto">
+      <section className="pt-32 sm:pt-40 pb-16 px-4 max-w-7xl mx-auto relative z-10">
         <div className="max-w-2xl space-y-4">
-          <p className="font-mono text-xs text-emerald-400 uppercase tracking-widest">
-            DE ORIGINELE PRODUCTVOORBEELDEN
-          </p>
+          <div className="flex items-center gap-2 font-mono text-[10px] tracking-widest uppercase text-emerald-400">
+            <span className="size-1.5 rounded-full bg-emerald-400 animate-pulse" />
+            <span>DE ORIGINELE PRODUCTVOORBEELDEN</span>
+          </div>
           <h1 className="font-display text-4xl sm:text-6xl uppercase tracking-tight text-white leading-tight">
             VAN DICHTBIJ.<br />
             <span className="text-emerald-400">IN BEELD.</span>
           </h1>
           <p className="font-sans text-sm sm:text-base text-zinc-400 leading-relaxed">
-            Bekijk de oorspronkelijke foto’s van onze stickers, kaarten en tafeldisplays. Ook leverbaar in jouw huisstijl, met logo of QR-code. Uitvoering, prijs en beschikbaarheid bespreken we samen.
+            Bekijk de oorspronkelijke foto’s van onze stickers, kaarten en tafeldisplays. Ook leverbaar in jouw exacte huisstijl, met logo of QR-code. Uitvoering, prijs en staffels bespreken we samen.
           </p>
           <div className="pt-2">
             <Link
               href="/#collectie"
               className="inline-flex items-center gap-2 font-mono text-xs font-bold text-emerald-400 hover:underline"
             >
-              <span>Terug naar de interactieve collectie</span>
-              <ArrowRight className="size-3.5" />
+              <ArrowLeft className="size-3.5" />
+              <span>Terug naar de 3D showroom &amp; studio</span>
             </Link>
           </div>
         </div>
       </section>
 
-      {/* PRODUCT GRID PHOTO SHOWCASE */}
-      <section className="pb-28 px-4 max-w-7xl mx-auto">
+      {/* PRODUCT GRID PHOTO SHOWCASE WITH SPOTLIGHT CARDS */}
+      <section className="pb-28 px-4 max-w-7xl mx-auto relative z-10">
         <div className="grid md:grid-cols-3 gap-8">
           {products.map((p) => (
-            <article
+            <SpotlightCard
               key={p.id}
-              className="rounded-3xl border border-zinc-800 bg-black/60 shadow-2xl overflow-hidden flex flex-col justify-between group"
+              className="bg-black/70 border-zinc-800 p-0 overflow-hidden flex flex-col justify-between group shadow-2xl"
+              spotlightColor="rgba(0, 255, 102, 0.12)"
             >
               {/* Product Photo with Glass Effect */}
               <div className="relative w-full aspect-[4/3] bg-zinc-950 overflow-hidden">
@@ -97,18 +65,18 @@ export default function ProductenPage() {
                   src={p.originalImage}
                   alt={p.imageAlt}
                   fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
                   sizes="(max-width: 768px) 100vw, 33vw"
                 />
-                <div className="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-black/80 backdrop-blur-md border border-white/20 font-mono text-[9px] uppercase tracking-wider text-emerald-400 font-bold">
+                <div className="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-black/85 backdrop-blur-md border border-white/20 font-mono text-[9px] uppercase tracking-wider text-emerald-400 font-bold">
                   {`${p.number} // ${p.title}`}
                 </div>
               </div>
 
               {/* Product Card Body */}
-              <div className="p-6 space-y-3 flex-1 flex flex-col justify-between">
+              <div className="p-6 space-y-4 flex-1 flex flex-col justify-between">
                 <div>
-                  <h3 className="font-display text-xl font-bold uppercase tracking-tight text-white">
+                  <h3 className="font-display text-2xl font-bold uppercase tracking-tight text-white">
                     {p.title}
                   </h3>
                   <p className="font-sans text-xs sm:text-sm text-zinc-400 mt-2 leading-relaxed">
@@ -124,12 +92,26 @@ export default function ProductenPage() {
                     href="tel:+31623916558"
                     className="font-bold text-emerald-400 hover:underline flex items-center gap-1"
                   >
-                    <span>Prijs op aanvraag</span>
+                    <span>Vraag advies aan</span>
                     <ArrowRight className="size-3" />
                   </a>
                 </div>
+
+                <div className="pt-2">
+                  <a
+                    href={`https://wa.me/31623916558?text=${encodeURIComponent(
+                      `Hallo Joey! Ik zag de foto's van de ${p.title} op de site en heb interesse voor mijn bedrijf.`
+                    )}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full py-2.5 rounded-xl bg-zinc-900 hover:bg-zinc-800 border border-zinc-700 text-zinc-200 hover:text-white font-mono text-xs flex items-center justify-center gap-2 transition-all cursor-pointer"
+                  >
+                    <MessageSquare className="size-3.5 text-emerald-400" />
+                    <span>WhatsApp voor sample ↗</span>
+                  </a>
+                </div>
               </div>
-            </article>
+            </SpotlightCard>
           ))}
         </div>
 
@@ -139,7 +121,7 @@ export default function ProductenPage() {
       </section>
 
       {/* FOOTER */}
-      <footer className="py-12 px-4 bg-black border-t border-zinc-900 font-mono text-xs text-zinc-500 text-center">
+      <footer className="py-12 px-4 bg-black border-t border-zinc-900 font-mono text-xs text-zinc-500 text-center relative z-10">
         <p>© 2026 PollyDevelopment · Onafhankelijke aanbieder. Google is een merk van Google LLC.</p>
         <p className="mt-2 text-zinc-600">
           Bel Joey op 06 23916558 of Luc op 06 10635256
