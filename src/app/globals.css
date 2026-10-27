@@ -469,3 +469,12 @@ html.has-cursor textarea {
   }
 }
 
+@keyframes border-beam {
+  100% {
+    offset-distance: 100%;
+  }
+}
+
+.animate-border-beam {
+  animation: border-beam linear infinite;
+}
