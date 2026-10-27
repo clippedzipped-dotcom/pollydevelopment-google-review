@@ -92,6 +92,17 @@ export function InteractiveTapDemoPhone({
   const [isSimulating, setIsSimulating] = useState(false);
   const [soundOn, setSoundOn] = useState(true);
   const [qrCodeDataUrl, setQrCodeDataUrl] = useState<string>("");
+  const [hasMounted, setHasMounted] = useState(false);
+  const [shimmerKey, setShimmerKey] = useState(0);
+
+  useEffect(() => {
+    setHasMounted(true);
+  }, []);
+
+  // Trigger specular glare shimmer sweep when color or product changes
+  useEffect(() => {
+    setShimmerKey((k) => k + 1);
+  }, [selectedColor, selectedProductId]);
 
   const swatch = COLOR_SWATCHES[selectedColor];
   const product = REVIEW_PRODUCTS[selectedProductId];
@@ -505,11 +516,22 @@ export function InteractiveTapDemoPhone({
           {/* ========================================================================= */}
           {/* LEFT COLUMN: Narrative Chapters, Live Customizer & Tactile Controls       */}
           {/* ========================================================================= */}
-          <div className="lg:col-span-6 flex flex-col justify-center items-start text-left z-20 max-w-xl">
-            {/* Kicker Eyebrow with Radar Pulse */}
-            <div className="flex items-center gap-2 font-mono text-[10px] tracking-widest uppercase text-emerald-400 mb-2 sm:mb-3">
-              <span className="size-2 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_8px_#00FF66]" />
-              <span>NFC HARDWARE SPECIMEN // 3D SCROLLYTELLING</span>
+          <motion.div
+            initial={{ opacity: 0, y: 24, filter: "blur(6px)" }}
+            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:col-span-6 flex flex-col justify-center items-start text-left z-20 max-w-xl"
+          >
+            {/* Kicker Eyebrow with Radar Pulse & Realtime Status HUD */}
+            <div className="flex flex-wrap items-center gap-2 font-mono text-[9px] tracking-widest uppercase text-emerald-400 mb-2 sm:mb-3">
+              <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 shadow-[0_0_12px_rgba(0,255,102,0.15)]">
+                <span className="size-1.5 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_8px_#00FF66]" />
+                <span className="font-bold">NFC HARDWARE SPECIMEN</span>
+              </div>
+              <span className="text-zinc-600 hidden sm:inline">//</span>
+              <span className="text-zinc-400 hidden sm:inline">3D INTERACTIVE LAB</span>
+              <span className="text-zinc-600 hidden sm:inline">//</span>
+              <span className="text-emerald-400/90 font-bold hidden sm:inline">13.56 MHz HF</span>
             </div>
 
             {/* Cross-fading Narrative Chapters */}
@@ -812,8 +834,16 @@ export function InteractiveTapDemoPhone({
                 size="md"
                 onClick={runSimulation}
                 data-cursor="[SPEEL SIMULATIE AF]"
+                className="shadow-[0_4px_0_#008833,0_12px_24px_rgba(0,255,102,0.35)] active:translate-y-1 active:shadow-none"
               >
-                {isSimulating ? <Pause className="size-3.5" /> : <Play className="size-3.5" />}
+                {isSimulating ? (
+                  <Pause className="size-3.5 fill-black" />
+                ) : (
+                  <>
+                    <span className="size-2 rounded-full bg-black animate-ping mr-0.5" />
+                    <Play className="size-3.5 fill-black" />
+                  </>
+                )}
                 <span>{isSimulating ? "SIMULATIE BEZIG..." : "SPEEL SIMULATIE AF"}</span>
               </TactileButton>
 
@@ -858,21 +888,49 @@ export function InteractiveTapDemoPhone({
                 )}
               </button>
             </div>
-          </div>
+          </motion.div>
 
           {/* ========================================================================= */}
           {/* RIGHT COLUMN: 3D Hardware Specimen + Phone Contact Stage                   */}
           {/* ========================================================================= */}
           <div className="lg:col-span-6 relative flex items-center justify-center min-h-[460px] sm:min-h-[520px] select-none">
-            {/* Dedicated Stage Box with Perspective */}
+            {/* Dedicated Stage Box with Perspective & CAD Technical Markers */}
             <div
               className="relative w-full max-w-[560px] h-[460px] sm:h-[520px] flex items-center justify-center"
               style={{ perspective: 1400 }}
             >
-              {/* Radial ambient stage floor reflection */}
+              {/* CAD Caliper Coordinates & Calibration Markings on Stage Frame */}
               <div
                 aria-hidden="true"
-                className="absolute inset-4 rounded-full bg-[radial-gradient(circle_at_50%_50%,rgba(38,62,48,0.45)_0%,transparent_70%)] pointer-events-none"
+                className="pointer-events-none absolute inset-0 font-mono text-[7.5px] text-zinc-600 uppercase tracking-widest flex flex-col justify-between p-2 sm:p-3 select-none"
+              >
+                <div className="flex justify-between items-center opacity-70">
+                  <span className="flex items-center gap-1.5 text-emerald-400/90 font-bold">
+                    <span className="size-1.5 bg-emerald-400 rounded-full animate-ping" />
+                    CALIPER // NTAG215 HF INDUCTION
+                  </span>
+                  <span>ISO/IEC 14443-A PROTOCOL</span>
+                </div>
+                <div className="flex justify-between items-center opacity-70">
+                  <span>FREQ // 13.560 MHz FIELD ACTIVE</span>
+                  <span>ZERO-LATENCY // &lt;15ms</span>
+                </div>
+              </div>
+
+              {/* Radial ambient stage floor reflection with dynamic breathing in Step 1 */}
+              <motion.div
+                aria-hidden="true"
+                animate={
+                  activeChapter === 1 && !isSimulating
+                    ? { scale: [1, 0.94, 1], opacity: [0.55, 0.35, 0.55] }
+                    : { scale: 1, opacity: 0.5 }
+                }
+                transition={{
+                  repeat: Infinity,
+                  duration: 4.8,
+                  ease: "easeInOut",
+                }}
+                className="absolute inset-4 rounded-full bg-[radial-gradient(circle_at_50%_50%,rgba(38,62,48,0.55)_0%,transparent_70%)] pointer-events-none"
               />
 
               {/* ------------------------------------------------------------- */}
@@ -882,6 +940,14 @@ export function InteractiveTapDemoPhone({
                 ref={cardRef}
                 onMouseMove={handleCardMouseMove}
                 onMouseLeave={handleCardMouseLeave}
+                onClick={() => {
+                  if (activeChapter === 1) {
+                    jumpToStep(0.38);
+                  }
+                }}
+                initial={{ opacity: 0, y: 35, scale: 0.94 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
                 style={{
                   x: cardX,
                   y: cardY,
@@ -889,19 +955,6 @@ export function InteractiveTapDemoPhone({
                   scale: cardScale,
                   opacity: cardOpacity,
                   transformStyle: "preserve-3d",
-                }}
-                animate={
-                  cardMode === "3d"
-                    ? {
-                        rotateX: isFlipped ? -rotateX : rotateX,
-                        rotateY: isFlipped ? 180 + rotateY : rotateY,
-                      }
-                    : {}
-                }
-                transition={{
-                  type: "spring",
-                  damping: 24,
-                  stiffness: 180,
                 }}
                 className={cn(
                   "absolute z-10 cursor-pointer transition-shadow",
@@ -914,90 +967,142 @@ export function InteractiveTapDemoPhone({
                     : "left-[4%] sm:left-[8%] top-[24%] sm:top-[26%] w-[250px] sm:w-[290px] aspect-[85.6/53.98] rounded-2xl shadow-[0_25px_60px_-15px_rgba(0,0,0,0.9),0_0_35px_rgba(80,102,84,0.3)]"
                 )}
               >
-                {cardMode === "photo" ? (
-                  /* Original PollyDevelopment Photographic Cutout */
-                  <div className="nfc-photo">
-                    <Image
-                      src="/images/products/review-card.png"
-                      alt="PollyDevelopment NFC Review Kaart"
-                      width={900}
-                      height={600}
-                      priority
-                      className="object-cover select-none pointer-events-none"
-                    />
-                  </div>
-                ) : (
-                  /* THE HIGH-CRAFT 3D SPECIMEN (Front & Back in 3D Space) */
-                  <>
-                    {/* FRONT FACE */}
-                    <div
-                      style={{
-                        backfaceVisibility: "hidden",
-                        background: `linear-gradient(135deg, ${swatch.primaryBg} 0%, ${swatch.secondaryBg} 100%)`,
-                      }}
-                      className={cn(
-                        "absolute inset-0 flex flex-col justify-between overflow-hidden border p-4 sm:p-5 transition-colors duration-300",
-                        selectedProductId === "sticker" ? "rounded-full" : "rounded-2xl",
-                        swatch.border,
-                        swatch.textColor
-                      )}
-                    >
-                      {/* Holographic Specular Glare */}
-                      <div
-                        aria-hidden="true"
-                        className="pointer-events-none absolute inset-0 mix-blend-color-dodge transition-opacity duration-200"
-                        style={{
-                          background: `radial-gradient(circle at ${glarePos.x}% ${glarePos.y}%, rgba(255, 255, 255, 0.45) 0%, rgba(251, 188, 4, 0.25) 35%, transparent 70%)`,
-                          opacity: glarePos.opacity,
-                        }}
-                      />
-
-                      {/* Substrate Brushed Micro-Texture */}
-                      <div
-                        aria-hidden="true"
-                        className="pointer-events-none absolute inset-0 opacity-15"
-                        style={{
-                          backgroundImage:
-                            "repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255, 255, 255, 0.08) 2px, rgba(255, 255, 255, 0.08) 4px)",
-                        }}
-                      />
-
-                      {/* Concentric NFC Antenna Coil for Stickers */}
-                      {selectedProductId === "sticker" && (
-                        <div
-                          aria-hidden="true"
-                          className="pointer-events-none absolute inset-3 rounded-full border border-white/20 opacity-30 flex items-center justify-center"
-                        >
-                          <div className="size-4/5 rounded-full border border-dashed border-white/25" />
-                        </div>
-                      )}
-
-                      {/* Top Row: Business Brand & NFC Contact Wave */}
-                      <div className="relative z-10 flex items-center justify-between">
-                        <div className="flex items-center gap-2">
-                          <div className="size-7 rounded-lg bg-black/50 border border-white/20 p-1 flex items-center justify-center overflow-hidden shadow-sm">
-                            <Image
-                              src="/images/products/pollydevelopment-logo.png"
-                              alt="Logo"
-                              width={24}
-                              height={24}
-                              className="object-contain"
-                            />
-                          </div>
-                          <div>
-                            <span className="font-mono text-[8px] tracking-[0.2em] font-bold uppercase block opacity-75">
-                              GOOGLE REVIEW
-                            </span>
-                            <span className="font-mono text-[11px] sm:text-xs font-black tracking-tight uppercase block leading-none truncate max-w-[140px]">
-                              {businessName}
-                            </span>
-                          </div>
-                        </div>
-
-                        <div className="size-6 sm:size-7 rounded-full bg-black/40 border border-white/25 flex items-center justify-center shadow-inner">
-                          <Wifi className="size-3 sm:size-3.5 rotate-90 text-white" />
-                        </div>
+                {/* Magnetic Levitation / Organic Breathing Wrapper in Step 1 */}
+                <motion.div
+                  animate={
+                    activeChapter === 1 && !isSimulating
+                      ? {
+                          y: [0, -8, 0],
+                          rotateZ: [0, 1.4, 0],
+                        }
+                      : { y: 0, rotateZ: 0 }
+                  }
+                  transition={{
+                    repeat: Infinity,
+                    duration: 4.8,
+                    ease: "easeInOut",
+                  }}
+                  style={{ transformStyle: "preserve-3d" }}
+                  className="size-full"
+                >
+                  {/* Interactive 3D Cursor Tilt & 180° Flip Body */}
+                  <motion.div
+                    animate={
+                      cardMode === "3d"
+                        ? {
+                            rotateX: isFlipped ? -rotateX : rotateX,
+                            rotateY: isFlipped ? 180 + rotateY : rotateY,
+                          }
+                        : {}
+                    }
+                    transition={{
+                      type: "spring",
+                      damping: 24,
+                      stiffness: 180,
+                    }}
+                    style={{ transformStyle: "preserve-3d" }}
+                    className="size-full relative"
+                  >
+                    {cardMode === "photo" ? (
+                      /* Original PollyDevelopment Photographic Cutout */
+                      <div className="nfc-photo">
+                        <Image
+                          src="/images/products/review-card.png"
+                          alt="PollyDevelopment NFC Review Kaart"
+                          width={900}
+                          height={600}
+                          priority
+                          className="object-cover select-none pointer-events-none"
+                        />
                       </div>
+                    ) : (
+                      /* THE HIGH-CRAFT 3D SPECIMEN (Front & Back in 3D Space) */
+                      <>
+                        {/* FRONT FACE */}
+                        <div
+                          style={{
+                            backfaceVisibility: "hidden",
+                            background: `linear-gradient(135deg, ${swatch.primaryBg} 0%, ${swatch.secondaryBg} 100%)`,
+                          }}
+                          className={cn(
+                            "absolute inset-0 flex flex-col justify-between overflow-hidden border p-4 sm:p-5 transition-colors duration-300",
+                            selectedProductId === "sticker" ? "rounded-full" : "rounded-2xl",
+                            swatch.border,
+                            swatch.textColor
+                          )}
+                        >
+                          {/* Holographic Specular Glare Tracking Mouse */}
+                          <div
+                            aria-hidden="true"
+                            className="pointer-events-none absolute inset-0 mix-blend-color-dodge transition-opacity duration-200"
+                            style={{
+                              background: `radial-gradient(circle at ${glarePos.x}% ${glarePos.y}%, rgba(255, 255, 255, 0.45) 0%, rgba(251, 188, 4, 0.25) 35%, transparent 70%)`,
+                              opacity: glarePos.opacity,
+                            }}
+                          />
+
+                          {/* Dynamic Specular Shimmer Sweep on Load & Preset Change */}
+                          <motion.div
+                            key={`shimmer-${shimmerKey}`}
+                            initial={{ x: "-150%", opacity: 0 }}
+                            animate={{ x: "250%", opacity: [0, 0.75, 0.9, 0.5, 0] }}
+                            transition={{ duration: 1.3, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                            className="pointer-events-none absolute inset-0 z-20 w-3/5 h-full -skew-x-20 bg-gradient-to-r from-transparent via-white/40 to-transparent blur-sm"
+                          />
+
+                          {/* Substrate Brushed Micro-Texture */}
+                          <div
+                            aria-hidden="true"
+                            className="pointer-events-none absolute inset-0 opacity-15"
+                            style={{
+                              backgroundImage:
+                                "repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255, 255, 255, 0.08) 2px, rgba(255, 255, 255, 0.08) 4px)",
+                            }}
+                          />
+
+                          {/* Concentric NFC Antenna Coil for Stickers */}
+                          {selectedProductId === "sticker" && (
+                            <div
+                              aria-hidden="true"
+                              className="pointer-events-none absolute inset-3 rounded-full border border-white/20 opacity-30 flex items-center justify-center"
+                            >
+                              <div className="size-4/5 rounded-full border border-dashed border-white/25" />
+                            </div>
+                          )}
+
+                          {/* Top Row: Business Brand & NFC Contact Wave */}
+                          <div className="relative z-10 flex items-center justify-between">
+                            <div className="flex items-center gap-2">
+                              <div className="size-7 rounded-lg bg-black/50 border border-white/20 p-1 flex items-center justify-center overflow-hidden shadow-sm">
+                                <Image
+                                  src="/images/products/pollydevelopment-logo.png"
+                                  alt="Logo"
+                                  width={24}
+                                  height={24}
+                                  className="object-contain"
+                                />
+                              </div>
+                              <div>
+                                <span className="font-mono text-[8px] tracking-[0.2em] font-bold uppercase block opacity-75">
+                                  GOOGLE REVIEW
+                                </span>
+                                <span className="font-mono text-[11px] sm:text-xs font-black tracking-tight uppercase block leading-none truncate max-w-[140px]">
+                                  {businessName}
+                                </span>
+                              </div>
+                            </div>
+
+                            <div className="relative size-6 sm:size-7 rounded-full bg-black/40 border border-white/25 flex items-center justify-center shadow-inner">
+                              {/* Live 13.56 MHz RF Broadcasting Field Waves in Step 1 */}
+                              {activeChapter === 1 && (
+                                <div className="pointer-events-none absolute -inset-1 flex items-center justify-center">
+                                  <span className="absolute size-9 rounded-full border border-emerald-400/50 animate-ping opacity-60" />
+                                  <span className="absolute size-12 rounded-full border border-emerald-400/25 animate-pulse" />
+                                </div>
+                              )}
+                              <Wifi className="size-3 sm:size-3.5 rotate-90 text-white relative z-10" />
+                            </div>
+                          </div>
 
                       {/* Center: 5 Google Golden Stars & Slogan */}
                       <div className="relative z-10 my-auto text-center py-1">
@@ -1100,35 +1205,61 @@ export function InteractiveTapDemoPhone({
                         <span>MADE IN THE NETHERLANDS</span>
                         <span className="text-emerald-400">ENCRYPTION VERIFIED</span>
                       </div>
-                    </div>
-                  </>
-                )}
+                      </div>
+                    </>
+                  )}
+                </motion.div>
               </motion.div>
+            </motion.div>
 
-              {/* ------------------------------------------------------------- */}
-              {/* CONTACT SONAR BURST RING (Expands from the contact point)      */}
-              {/* ------------------------------------------------------------- */}
+            {/* Floating Interactive Micro-Hint Pill on Stage Floor */}
+            {activeChapter === 1 && (
               <motion.div
-                style={{
-                  opacity: ringOpacity,
-                  scale: ringScale,
-                }}
-                className="absolute z-15 left-[42%] sm:left-[44%] top-[12%] sm:top-[14%] size-28 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-emerald-400 pointer-events-none shadow-[0_0_35px_rgba(0,255,102,0.9),inset_0_0_20px_rgba(0,255,102,0.5)]"
-              />
-
-              {/* ------------------------------------------------------------- */}
-              {/* THE SMARTPHONE DEVICE (Flies in, connects, and opens review)   */}
-              {/* ------------------------------------------------------------- */}
-              <motion.div
-                style={{
-                  x: phoneX,
-                  y: phoneY,
-                  rotateZ: phoneRotateZ,
-                  rotateY: phoneRotateY,
-                  scale: phoneScale,
-                }}
-                className="absolute z-20 left-[48%] sm:left-[50%] top-[4%] sm:top-[6%] w-[190px] sm:w-[216px] h-[390px] sm:h-[442px] p-[6px] sm:p-[7px] rounded-[34px] sm:rounded-[36px] bg-[#242c2a] shadow-[inset_0_0_0_2px_#56605c,0_30px_60px_rgba(0,0,0,0.85)]"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: [0.75, 1, 0.75], y: [0, -3, 0] }}
+                transition={{ repeat: Infinity, duration: 3.4, ease: "easeInOut" }}
+                className="absolute bottom-3 left-[28%] sm:left-[30%] -translate-x-1/2 font-mono text-[8px] uppercase tracking-widest text-emerald-400 bg-black/85 backdrop-blur-md px-3 py-1 rounded-full border border-emerald-500/30 flex items-center gap-1.5 shadow-[0_0_15px_rgba(0,255,102,0.25)] pointer-events-none whitespace-nowrap z-25 select-none"
               >
+                <span className="size-1.5 rounded-full bg-emerald-400 animate-ping" />
+                <span>TIK SPECIMEN VOOR DEMO · BEWEEG IN 3D</span>
+              </motion.div>
+            )}
+
+            {/* ------------------------------------------------------------- */}
+            {/* CONTACT SONAR BURST RING (Expands from the contact point)      */}
+            {/* ------------------------------------------------------------- */}
+            <motion.div
+              style={{
+                opacity: ringOpacity,
+                scale: ringScale,
+              }}
+              className="absolute z-15 left-[42%] sm:left-[44%] top-[12%] sm:top-[14%] size-28 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-emerald-400 pointer-events-none shadow-[0_0_35px_rgba(0,255,102,0.9),inset_0_0_20px_rgba(0,255,102,0.5)]"
+            />
+
+            {/* ------------------------------------------------------------- */}
+            {/* THE SMARTPHONE DEVICE (Flies in, connects, and opens review)   */}
+            {/* ------------------------------------------------------------- */}
+            <motion.div
+              initial={{ opacity: 0, y: 45, rotateZ: 14, scale: 0.94 }}
+              animate={
+                activeChapter === 1 && !isSimulating
+                  ? { opacity: 1, y: [0, 6, 0], rotateZ: 8, scale: 1 }
+                  : { opacity: 1, y: 0, rotateZ: 0, scale: 1 }
+              }
+              transition={
+                activeChapter === 1 && !isSimulating
+                  ? { y: { repeat: Infinity, duration: 5.2, ease: "easeInOut" }, opacity: { duration: 0.85 } }
+                  : { duration: 0.6 }
+              }
+              style={{
+                x: phoneX,
+                y: phoneY,
+                rotateZ: phoneRotateZ,
+                rotateY: phoneRotateY,
+                scale: phoneScale,
+              }}
+              className="absolute z-20 left-[48%] sm:left-[50%] top-[4%] sm:top-[6%] w-[190px] sm:w-[216px] h-[390px] sm:h-[442px] p-[6px] sm:p-[7px] rounded-[34px] sm:rounded-[36px] bg-[#242c2a] shadow-[inset_0_0_0_2px_#56605c,0_30px_60px_rgba(0,0,0,0.85)]"
+            >
                 {/* Phone Glass Inner Screen */}
                 <div className="phone-screen relative w-full h-full rounded-[28px] overflow-hidden bg-[#dce5d5] text-[#172a27]">
                   {/* Status Bar */}
