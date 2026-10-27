@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { MessageSquare, Phone } from "lucide-react";
 import { SiteHeader } from "@/components/review/SiteHeader";
 import { AmbientShaderCanvas } from "@/components/kitchen/AmbientShaderCanvas";
 import { ReviewProductShowroom } from "@/components/review/ReviewProductShowroom";
@@ -109,22 +110,33 @@ export default function HomePage() {
         </div>
       </footer>
 
-      {/* MOBILE STICKY DOCK (WhatsApp & Direct Bellen) */}
-      <div className="sm:hidden fixed bottom-3 inset-x-3 z-50 p-2 rounded-2xl bg-[#0E1210]/95 backdrop-blur-md border border-white/20 shadow-2xl flex items-center justify-between gap-2">
-        <a
-          href="https://wa.me/31623916558?text=Hallo%20Joey,%20ik%20heb%20interesse%20in%20Google%20Review%20NFC%20kaarten%20voor%20mijn%20bedrijf."
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex-1 py-2.5 rounded-xl bg-[#F5F6F2] hover:bg-white text-zinc-950 font-mono text-xs font-bold uppercase tracking-wider text-center active:scale-[0.98] shadow flex items-center justify-center gap-1.5"
-        >
-          <span>WhatsApp ↗</span>
-        </a>
-        <a
-          href="tel:+31623916558"
-          className="flex-1 py-2.5 rounded-xl bg-[#2A372C] hover:bg-[#344436] text-[#F3F5F0] border border-[#405444] font-mono text-xs font-bold uppercase tracking-wider text-center active:scale-[0.98] shadow flex items-center justify-center gap-1.5"
-        >
-          <span>Bel Direct ↗</span>
-        </a>
+      {/* MOBILE STICKY DOCK (WhatsApp & Direct Bellen met status indicator) */}
+      <div className="sm:hidden fixed bottom-3 inset-x-3 z-50 p-2.5 rounded-2xl bg-[#0E1210]/95 backdrop-blur-md border border-white/20 shadow-2xl flex flex-col gap-1.5 select-none">
+        <div className="flex items-center justify-between px-1.5 text-[9px] font-mono text-zinc-400">
+          <span className="flex items-center gap-1.5">
+            <span className="size-1.5 rounded-full bg-[#A4C2A9] animate-pulse" />
+            <strong className="text-zinc-200">Joey &amp; Luc</strong> online
+          </span>
+          <span className="text-[#A4C2A9]">Reactie &lt; 2u</span>
+        </div>
+        <div className="flex items-center justify-between gap-2">
+          <a
+            href="https://wa.me/31623916558?text=Hallo%20Joey,%20ik%20heb%20interesse%20in%20Google%20Review%20NFC%20kaarten%20voor%20mijn%20bedrijf."
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex-1 py-2.5 rounded-xl bg-[#F5F6F2] hover:bg-white text-zinc-950 font-mono text-xs font-bold uppercase tracking-wider text-center active:scale-[0.98] shadow flex items-center justify-center gap-1.5 cursor-pointer"
+          >
+            <MessageSquare className="size-3.5" />
+            <span>WhatsApp ↗</span>
+          </a>
+          <a
+            href="tel:+31623916558"
+            className="flex-1 py-2.5 rounded-xl bg-[#2A372C] hover:bg-[#344436] text-[#F3F5F0] border border-[#405444] font-mono text-xs font-bold uppercase tracking-wider text-center active:scale-[0.98] shadow flex items-center justify-center gap-1.5 cursor-pointer"
+          >
+            <Phone className="size-3.5 text-[#A4C2A9]" />
+            <span>Bel Direct ↗</span>
+          </a>
+        </div>
       </div>
     </div>
   );

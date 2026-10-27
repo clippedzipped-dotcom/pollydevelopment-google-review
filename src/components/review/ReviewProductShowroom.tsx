@@ -191,6 +191,7 @@ export function ReviewProductShowroom({
   const [activeBackdropId, setActiveBackdropId] = useState<"studio" | "wood" | "marble" | "metal">("marble");
   const [customLogoUrl, setCustomLogoUrl] = useState<string | null>(null);
   const [customLogoFileName, setCustomLogoFileName] = useState<string | null>(null);
+  const [isDraggingOver, setIsDraggingOver] = useState(false);
   const [linkCheckerInput, setLinkCheckerInput] = useState("");
   const [linkCheckerVerified, setLinkCheckerVerified] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -581,11 +582,56 @@ export function ReviewProductShowroom({
         {/* Left: 3D Hardware Specimen Viewport */}
         <div className="lg:col-span-7 flex flex-col items-center">
           <div
+            onDragOver={(e) => {
+              e.preventDefault();
+              setIsDraggingOver(true);
+            }}
+            onDragLeave={(e) => {
+              e.preventDefault();
+              setIsDraggingOver(false);
+            }}
+            onDrop={(e) => {
+              e.preventDefault();
+              setIsDraggingOver(false);
+              const file = e.dataTransfer.files?.[0];
+              if (!file) return;
+              if (!file.type.startsWith("image/")) {
+                alert("Sleep een PNG, JPG of SVG afbeeldingsbestand om direct als logo te bekijken.");
+                return;
+              }
+              if (file.size > 8 * 1024 * 1024) {
+                alert("Kies een afbeeldingsbestand van maximaal 8MB.");
+                return;
+              }
+              const url = URL.createObjectURL(file);
+              setCustomLogoUrl(url);
+              setCustomLogoFileName(file.name);
+              setShowLogo(true);
+              playConfirmSound();
+              triggerHaptic("success");
+            }}
             className={cn(
               "w-full rounded-3xl p-6 sm:p-8 shadow-2xl relative overflow-hidden flex flex-col items-center justify-center min-h-[490px] transition-all duration-500 border",
-              activeBackdrop.containerClass
+              isDraggingOver ? "ring-2 ring-[#A4C2A9] border-[#A4C2A9]" : activeBackdrop.containerClass
             )}
           >
+            {/* Drag & Drop Visual Overlay */}
+            {isDraggingOver && (
+              <div className="absolute inset-4 z-40 rounded-2xl border-2 border-dashed border-[#A4C2A9] bg-[#0E1210]/95 backdrop-blur-md flex flex-col items-center justify-center gap-3 text-center p-6 select-none pointer-events-none">
+                <div className="size-16 rounded-2xl bg-[#1C261F] border border-[#A4C2A9]/40 flex items-center justify-center text-[#A4C2A9] shadow-2xl animate-bounce">
+                  <Upload className="size-8" />
+                </div>
+                <div>
+                  <div className="font-mono text-sm font-bold text-white uppercase tracking-wider">
+                    Laat je logo los
+                  </div>
+                  <div className="font-mono text-[10px] text-zinc-400 mt-1">
+                    Direct in 3D zichtbaar op jouw review hardware
+                  </div>
+                </div>
+              </div>
+            )}
+
             {/* Top Scene Caption & Countertop Simulator */}
             <div className="w-full flex flex-wrap items-center justify-between gap-2 font-mono text-[10px] text-zinc-400 mb-4 pb-3 border-b border-white/10">
               <div className="flex items-center gap-1.5">

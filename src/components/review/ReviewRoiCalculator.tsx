@@ -13,6 +13,11 @@ import {
   MessageSquare,
   Sparkles,
   Zap,
+  Utensils,
+  Scissors,
+  Stethoscope,
+  ShoppingBag,
+  Wrench,
 } from "lucide-react";
 import {
   playTickSound,
@@ -23,16 +28,16 @@ import { cn } from "@/helpers/classname-helper";
 
 interface IndustryPreset {
   label: string;
-  icon: string;
+  icon: React.ElementType;
   visitors: number;
 }
 
 const PRESETS: IndustryPreset[] = [
-  { label: "Koffiebar / Horeca", icon: "☕", visitors: 350 },
-  { label: "Kapper / Salon", icon: "✂", visitors: 80 },
-  { label: "Zorg / Praktijk", icon: "🦷", visitors: 55 },
-  { label: "Boetiek / Retail", icon: "🛍", visitors: 190 },
-  { label: "Vakman / Garage", icon: "🔧", visitors: 40 },
+  { label: "Koffiebar / Horeca", icon: Utensils, visitors: 350 },
+  { label: "Kapper / Salon", icon: Scissors, visitors: 80 },
+  { label: "Zorg / Praktijk", icon: Stethoscope, visitors: 55 },
+  { label: "Boetiek / Retail", icon: ShoppingBag, visitors: 190 },
+  { label: "Vakman / Garage", icon: Wrench, visitors: 40 },
 ];
 
 export function ReviewRoiCalculator() {
@@ -140,22 +145,25 @@ export function ReviewRoiCalculator() {
                 Snelkeuze per branche:
               </span>
               <div className="flex flex-wrap gap-2">
-                {PRESETS.map((preset) => (
-                  <button
-                    key={preset.label}
-                    type="button"
-                    onClick={() => handlePresetClick(preset.visitors)}
-                    className={cn(
-                      "px-3 py-1.5 rounded-xl border font-mono text-xs transition-all cursor-pointer flex items-center gap-1.5 active:scale-95",
-                      weeklyVisitors === preset.visitors
-                        ? "bg-white text-zinc-950 font-bold border-white shadow"
-                        : "bg-black/50 text-zinc-400 border-zinc-800 hover:text-white hover:border-zinc-700"
-                    )}
-                  >
-                    <span>{preset.icon}</span>
-                    <span>{preset.label}</span>
-                  </button>
-                ))}
+                {PRESETS.map((preset) => {
+                  const Icon = preset.icon;
+                  return (
+                    <button
+                      key={preset.label}
+                      type="button"
+                      onClick={() => handlePresetClick(preset.visitors)}
+                      className={cn(
+                        "px-3 py-1.5 rounded-xl border font-mono text-xs transition-all cursor-pointer flex items-center gap-1.5 active:scale-95",
+                        weeklyVisitors === preset.visitors
+                          ? "bg-white text-zinc-950 font-bold border-white shadow"
+                          : "bg-black/50 text-zinc-400 border-zinc-800 hover:text-white hover:border-zinc-700"
+                      )}
+                    >
+                      <Icon className="size-3.5" />
+                      <span>{preset.label}</span>
+                    </button>
+                  );
+                })}
               </div>
             </div>
           </div>

@@ -488,7 +488,7 @@ export function InteractiveTapDemoPhone({
       {/* ========================================================================= */}
       <div
         aria-hidden="true"
-        className="pointer-events-none fixed inset-0 z-0 bg-[radial-gradient(circle_at_65%_35%,rgba(0,255,102,0.06)_0%,rgba(38,62,48,0.22)_35%,transparent_65%)]"
+        className="pointer-events-none fixed inset-0 z-0 bg-[radial-gradient(circle_at_65%_35%,rgba(164,194,169,0.06)_0%,rgba(38,62,48,0.22)_35%,transparent_65%)]"
       />
       <div
         aria-hidden="true"
@@ -508,7 +508,7 @@ export function InteractiveTapDemoPhone({
           aria-hidden="true"
           className="pointer-events-none absolute inset-0 z-0 transition-opacity duration-300"
           style={{
-            background: `radial-gradient(650px circle at ${spotlightPos.x}% ${spotlightPos.y}%, rgba(0, 255, 102, 0.08) 0%, rgba(38, 62, 48, 0.05) 40%, transparent 80%)`,
+            background: `radial-gradient(650px circle at ${spotlightPos.x}% ${spotlightPos.y}%, rgba(164, 194, 169, 0.08) 0%, rgba(38, 62, 48, 0.05) 40%, transparent 80%)`,
           }}
         />
 
